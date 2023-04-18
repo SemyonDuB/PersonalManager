@@ -1,13 +1,20 @@
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
+import { TuiRootModule, TuiDialogModule, TuiAlertModule, TuiTextfieldControllerModule, TUI_SANITIZER } from "@taiga-ui/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import {ReactiveFormsModule} from "@angular/forms";
+import {TuiInputDateModule, TuiInputModule} from "@taiga-ui/kit";
 
 import { AppComponent } from './components/app/app.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { EmployeeComponent } from "./components/employee/employee.component";
 
 const components = [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    EmployeeComponent
 ];
 
 const routes: Routes = [
@@ -32,6 +39,12 @@ const routes: Routes = [
         // loadChildren: () => import('./children/cabinet/cabinet.web.routing-module')
         //     .then((m: any) => m.CabinetWebRoutingModule),
     },
+    /** TODO переместить в анторизированную зону*/
+    {
+        path: 'employee',
+        pathMatch: 'full',
+        component: EmployeeComponent
+    },
     {
         path: '**',
         pathMatch: 'full',
@@ -42,10 +55,18 @@ const routes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forRoot(routes),
-        BrowserModule
+        BrowserModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        TuiRootModule,
+        TuiDialogModule,
+        TuiAlertModule,
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        TuiInputDateModule
     ],
     declarations: components,
-    providers: [],
+    providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
     bootstrap: [
         AppComponent
     ]

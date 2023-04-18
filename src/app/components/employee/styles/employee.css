@@ -1,0 +1,108 @@
+header, .media {
+    background-color: #FFFFFF;
+}
+
+header {
+    width: calc(100% - 78px);
+    max-width: 1325px;
+    height: 28px;
+    margin: 17px auto 0 auto;
+    border-radius: 12px;
+    padding: 10px 29px;
+}
+
+.profile-icon {
+    width: 28px;
+    height: 28px;
+    background: url("src/assets/img/profile_icon.png") no-repeat;
+    display: block;
+    margin: 0 0 0 auto;
+    cursor: pointer;
+}
+
+.profile-icon:hover {
+    background-image: url("src/assets/img/profile_icon_hover.png");
+}
+
+.profile-icon:active {
+    background-image: url("src/assets/img/profile_icon_active.png");
+}
+
+.media {
+    width: calc(100% - 58px - 20px);
+    max-width: 1325px;
+    min-height: calc(100vh - 144px);
+    margin: 32px auto 0 auto;
+    border-radius: 17px 17px 0 0;
+    padding: 27px 29px 20px 29px;
+
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+input {
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.field {
+    min-width: 420px;
+}
+
+#name, #job {
+    padding: 5px 10px 5px 10px;
+}
+
+#name {
+    font-size: 26px;
+}
+
+.name-field {
+    width: 40%;
+}
+
+#job {
+    font-size: 22px;
+}
+
+.job-field {
+    margin: 17px 0 0 0;
+    width: 35%;
+}
+
+.input-group {
+    display: flex;
+    margin: 22px 0 0 0;
+}
+
+.optional-fields {
+    margin-top: 35px;
+}
+
+.education-field {
+    width: 45%;
+    min-width: 270px;
+}
+
+#education, #project {
+    font-size: 18px;
+}
+
+tui-input-date {
+    font-size: 18px;
+    width: 120px;
+}
+
+.project-field {
+    width: 30%;
+    min-width: 239px;
+}
+
+label {
+    font-size: 20px;
+    margin: 9px 15px 0 0;
+}

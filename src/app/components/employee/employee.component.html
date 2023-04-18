@@ -1,0 +1,47 @@
+<header>
+    <a class="profile-icon"></a>
+</header>
+<div class="media">
+    <form [formGroup]="employeeForm" class="b-form">
+        <tui-input tuiTextfieldSize="l" formControlName="employeeName" class="name-field field">
+            <input tuiTextfield type="text" id="name"/>
+        </tui-input>
+        <tui-input tuiTextfieldSize="m" formControlName="employeeJob" class="job-field field">
+            <input tuiTextfield type="text" id="job"/>
+        </tui-input>
+        <div class="optional-fields">
+            <div class="input-group">
+                <label for="education">Образование:</label>
+                <tui-input tuiTextfieldSize="s" formControlName="employeeEducation" class="education-field field">
+                    <input tuiTextfield type="text" id="education"/>
+                </tui-input>
+            </div>
+            <div class="input-group">
+                <label for="education">Дата рождения:</label>
+                <tui-input-date formControlName="employeeBirth" tuiTextfieldSize="s">
+                </tui-input-date>
+            </div>
+            <div class="input-group">
+                <label for="education">Текущий проект:</label>
+                <tui-input tuiTextfieldSize="s" formControlName="employeeProject" class="project-field field">
+                    <input tuiTextfield type="text" id="project"/>
+                </tui-input>
+            </div>
+            <div class="input-group">
+                <label for="education">Дата собеседования:</label>
+                <tui-input-date formControlName="employeeInterviewDate" tuiTextfieldSize="s">
+                </tui-input-date>
+            </div>
+            <div class="input-group">
+                <label for="education">Дата трудоустройтсва:</label>
+                <tui-input-date formControlName="employeeEmploymentDate" tuiTextfieldSize="s">
+                </tui-input-date>
+            </div>
+            <div class="input-group">
+                <label for="education">Первый рабочий день:</label>
+                <tui-input-date formControlName="employeeFirstWorkDay" tuiTextfieldSize="s">
+                </tui-input-date>
+            </div>
+        </div>
+    </form>
+</div>
