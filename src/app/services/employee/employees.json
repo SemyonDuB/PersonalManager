@@ -1,0 +1,83 @@
+[
+    {
+        "fullName": "Simon Dub",
+        "birthday": "2020-04-20T18:25:43.511Z",
+        "jobTitle": "Junior Backend",
+        "wage": 10000,
+        "employmentDate": "2020-04-20T18:25:43.511Z",
+        "projectName": "Pizzeria",
+        "success": true,
+        "education": "Middle school",
+        "interviewDate": "2020-04-20T18:25:43.511Z",
+        "firstWorkDay": "2020-04-20T18:25:43.511Z",
+
+        "holidayHistory": [
+            "2020-04-20T18:25:43.511Z",
+            "2020-04-20T18:25:43.511Z"
+        ],
+        "career": [
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Junior Backend"
+            },
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Senior Backend"
+            }
+        ]
+    },
+    {
+        "fullName": "Lena Popova",
+        "birthday": "2020-04-20T18:25:43.511Z",
+        "jobTitle": "Junior Frontend",
+        "wage": 10000,
+        "employmentDate": "2020-04-20T18:25:43.511Z",
+        "projectName": "Pizzeria",
+        "success": true,
+        "education": "Middle school",
+        "interviewDate": "2020-04-20T18:25:43.511Z",
+        "firstWorkDay": "2020-04-20T18:25:43.511Z",
+
+        "holidayHistory": [
+            "2020-04-20T18:25:43.511Z",
+            "2020-04-20T18:25:43.511Z"
+        ],
+        "career": [
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Junior Frontend"
+            },
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Senior Frontend"
+            }
+        ]
+    },
+    {
+        "fullName": "Nastya Demina",
+        "birthday": "2020-04-20T18:25:43.511Z",
+        "jobTitle": "Super Senior Frontend",
+        "wage": 10000,
+        "employmentDate": "2020-04-20T18:25:43.511Z",
+        "projectName": "Pizzeria",
+        "success": true,
+        "education": "Middle school",
+        "interviewDate": "2020-04-20T18:25:43.511Z",
+        "firstWorkDay": "2020-04-20T18:25:43.511Z",
+
+        "holidayHistory": [
+            "2020-04-20T18:25:43.511Z",
+            "2020-04-20T18:25:43.511Z"
+        ],
+        "career": [
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Junior Frontend"
+            },
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Senior Frontend"
+            }
+        ]
+    }
+]

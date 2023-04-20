@@ -1,20 +1,31 @@
-import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
-import { TuiRootModule, TuiDialogModule, TuiAlertModule, TuiTextfieldControllerModule, TUI_SANITIZER } from "@taiga-ui/core";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
+import {
+    TUI_SANITIZER,
+    TuiAlertModule,
+    TuiDialogModule, TuiFormatDatePipeModule,
+    TuiRootModule,
+    TuiTextfieldControllerModule
+} from "@taiga-ui/core";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
 import {ReactiveFormsModule} from "@angular/forms";
-import {TuiInputDateModule, TuiInputModule} from "@taiga-ui/kit";
+import {TuiCheckboxModule, TuiInputDateModule, TuiInputModule} from "@taiga-ui/kit";
+import {TuiTableModule} from '@taiga-ui/addon-table';
 
-import { AppComponent } from './components/app/app.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { EmployeeComponent } from "./components/employee/employee.component";
+import {AppComponent} from './components/app/app.component';
+import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {EmployeeComponent} from "./components/employee/employee.component";
+import {MenuBarComponent} from "./components/menu-bar/menu-bar.component";
+import {EmployeesComponent} from "./components/employees/employees.component";
 
 const components = [
     AppComponent,
     PageNotFoundComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    MenuBarComponent,
+    EmployeesComponent
 ];
 
 const routes: Routes = [
@@ -46,10 +57,15 @@ const routes: Routes = [
         component: EmployeeComponent
     },
     {
+        path: 'employees',
+        pathMatch: 'full',
+        component: EmployeesComponent
+    },
+    {
         path: '**',
         pathMatch: 'full',
         component: PageNotFoundComponent
-    }
+    },
 ];
 
 @NgModule({
@@ -63,7 +79,10 @@ const routes: Routes = [
         TuiAlertModule,
         TuiInputModule,
         TuiTextfieldControllerModule,
-        TuiInputDateModule
+        TuiInputDateModule,
+        TuiCheckboxModule,
+        TuiTableModule,
+        TuiFormatDatePipeModule
     ],
     declarations: components,
     providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
@@ -71,4 +90,5 @@ const routes: Routes = [
         AppComponent
     ]
 })
-export class AppModule { }
+export class AppModule {
+}
