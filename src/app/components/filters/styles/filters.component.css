@@ -1,0 +1,66 @@
+
+.filters-card{
+    display: flex;
+    width: 1300px;
+    height: 420px;
+    background-color: #FFFFFF;
+    border: 1px solid #235759;
+    border-radius: 25px;
+    margin-top: 55px;
+    margin-left: 90px;
+    padding-top: 47px;
+    padding-left: 42px;
+    padding-bottom: 23px;
+    padding-right: 43px;
+    margin-bottom: 200px;
+}
+.block{
+    display: flex;
+    background-color: #79B4B6;
+}
+.input-block{
+    width: 335px;
+    height: 60px;
+}
+.input1{
+    margin-bottom: 36px;
+    width: 335px;
+    height: 60px;
+}
+.input2{
+    margin-bottom: 36px;
+    width: 335px;
+    height: 60px;
+}
+.input3{
+    margin-bottom: 36px;
+    width: 335px;
+    height: 60px;
+}
+.input-block2{
+    margin-left: 502px;
+    width: 335px;
+    height: 60px;
+    margin-top: -55px;
+}
+.input-block3{
+    margin-left: 942px;
+    width: 335px;
+    height: 60px;
+    margin-top: -55px;
+}
+
+.apply-filters{
+    width: 274px;
+    height: 64px;
+    background-color: #235759;
+    border-radius: 30px;
+    color: #FFFFFF;
+    margin-left: 1000px;
+    margin-top: 300px;
+    position: absolute;
+    cursor: pointer ;
+}
+.sort{
+    margin-top: 60px;
+}
