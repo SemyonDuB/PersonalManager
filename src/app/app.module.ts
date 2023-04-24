@@ -4,8 +4,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import {ReactiveFormsModule} from "@angular/forms";
-import {TuiInputDateModule, TuiInputModule} from "@taiga-ui/kit";
+import { ReactiveFormsModule} from "@angular/forms";
+import { TuiInputDateModule, TuiInputModule } from "@taiga-ui/kit";
 
 import { AppComponent } from './components/app/app.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
