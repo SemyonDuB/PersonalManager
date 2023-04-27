@@ -35,10 +35,10 @@ header {
 .media {
     width: calc(100% - 20px);
     max-width: 1383px;
-    min-height: calc(100vh - 102px);
+    min-height: calc(100vh - 182px);
     margin: 17px auto 0 auto;
     border-radius: 17px 17px 0 0;
-    padding: 0 0 20px 0;
+    padding: 0 0 100px 0;
 
     font-family: 'Inter', serif;
     font-style: normal;
@@ -149,6 +149,44 @@ tui-input-date {
 label {
     font-size: 20px;
     font-weight: 500;
-    margin: 9px 15px 0 0;
+    margin: 6px 15px 0 0;
     color: #235759;
+    line-height: 1;
+}
+
+.reactive-input-group {
+    margin: 22px 0 0 0;
+}
+
+.reactive-inputs {
+    margin: 14px 0 0 3vw;
+}
+
+.reactive-inputs>* {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.reactive-inputs p {
+    font-size: 18px;
+    color: #235759;
+    margin: 0 0.5vw 0 2vw;
+    padding: 9px 0 0 0;
+}
+
+.reactive-inputs p:first-child {
+    margin-left: 0;
+}
+
+hr {
+    width: 20px;
+    height: 2px;
+    background-color: #79B4B6;
+    margin: 16px 0 0 24px;
+}
+
+.vacancy-field {
+    width: 100%;
+    max-width: 270px;
+    margin: 0 0 0 16px;
 }
