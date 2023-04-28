@@ -30,6 +30,9 @@ export class EmployeesComponent {
         this.employees = employeeService.employees;
     }
 
+    /**
+     * Навигация на страницу детальной инфы
+     */
     public navigateToDetailInfo(): void {
         this._router.navigateByUrl('/employee')
     }
