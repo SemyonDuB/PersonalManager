@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {EmployeeService} from "../../services/employee/employee.service";
 import {Employee} from "../../services/employee/employee";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-employees',
@@ -18,9 +19,18 @@ export class EmployeesComponent {
         "success",
     ];
 
+    public showFilter: boolean = false;
+
     employees: Employee[] = [];
 
-    constructor(private employeeService: EmployeeService) {
+    constructor(
+        private _router: Router,
+        private employeeService: EmployeeService
+        ) {
         this.employees = employeeService.employees;
+    }
+
+    public navigateToDetailInfo(): void {
+        this._router.navigateByUrl('/employee')
     }
 }

@@ -1,5 +1,8 @@
 <app-menu-bar></app-menu-bar>
-
+<div (click)="showFilter = !showFilter">
+    Показать фильтр
+</div>
+<app-filters *ngIf="showFilter"></app-filters>
 <table
     tuiTable
     [columns]="columns"
@@ -50,14 +53,12 @@
         </th>
     </tr>
     </thead>
+
     <tbody
         tuiTbody
         [data]="employees"
     >
-    <tr
-        *ngFor="let item of employees; let index = index"
-        tuiTr
-    >
+    <tr *ngFor="let item of employees; let index = index"  tuiTr (click)="navigateToDetailInfo()">
         <td
             *tuiCell="'fullName'"
             tuiTd

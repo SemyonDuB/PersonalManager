@@ -9,7 +9,9 @@ import { ReactiveFormsModule} from "@angular/forms";
 import {
     TUI_SANITIZER,
     TuiAlertModule,
-    TuiDialogModule, TuiFormatDatePipeModule,
+    TuiDialogModule,
+    TuiErrorModule,
+    TuiFormatDatePipeModule,
     TuiRootModule,
     TuiTextfieldControllerModule
 } from "@taiga-ui/core";
@@ -41,35 +43,21 @@ const components = [
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/login',
+        redirectTo: '/employees',
         pathMatch: 'full',
     },
     {
-        /** TODO Модуль неавторизованной зоны (находимся до авторизации)*/
-        path: 'login',
-        pathMatch: 'full',
-        component: AppComponent
-        // loadChildren: () => import('./children/account/account.web.routing-module')
-        //     .then((m: any) => m.AccountWebRoutingModule)
-    },
-    {
-        /** TODO Модуль авторизованной зоны (попадаем после авторизации) */
-        path: 'cabinet',
-        component: AppComponent
-        // canActivate: [AuthorizationGuardService],
-        // loadChildren: () => import('./children/cabinet/cabinet.web.routing-module')
-        //     .then((m: any) => m.CabinetWebRoutingModule),
-    },
-    /** TODO переместить в анторизированную зону*/
-    {
-        path: 'employee',
-        pathMatch: 'full',
-        component: EmployeeComponent
-    },
-    {
+        /** Таблица юзеров */
         path: 'employees',
         pathMatch: 'full',
         component: EmployeesComponent
+    },
+
+    {
+        /** Таблица детальной инфы о юзере */
+        path: 'employee',
+        pathMatch: 'full',
+        component: EmployeeComponent
     },
     {
         path: 'filters',
@@ -100,7 +88,7 @@ const routes: Routes = [
         TuiFieldErrorPipeModule,
         TuiComboBoxModule,
         TuiDataListWrapperModule,
-        TuiFilterByInputPipeModule
+        TuiFilterByInputPipeModule,
         TuiCheckboxModule,
         TuiTableModule,
         TuiFormatDatePipeModule
