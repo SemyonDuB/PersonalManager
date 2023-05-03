@@ -1,0 +1,75 @@
+<div class="block">
+
+    <div class="filters-card">
+
+        <form class="b-form"  [formGroup]="testFormText" [tuiTextfieldCleaner]="true">
+            <div class="input-block">
+
+                <div class="input1">
+                    <tui-input formControlName="Name">
+                        ФИО
+                        <input tuiTextfield type="text"/>
+                    </tui-input>
+                </div>
+
+                <div class="input1">
+                    <tui-input formControlName="Post">
+                        Должность
+                        <input tuiTextfield type="text"/>
+                    </tui-input>
+                </div>
+                <div class="input1">
+                    <tui-input formControlName="Project">
+                        Проект
+                        <input tuiTextfield type="text"/>
+                    </tui-input>
+                </div>
+                <div class="input1">
+                <form class="b-form sort" [formGroup]="form">
+                <tui-combo-box formControlName="user">
+                    Сортировать по
+                    <tui-data-list-wrapper *tuiDataList [items]="items | tuiFilterByInput"></tui-data-list-wrapper>
+                </tui-combo-box>
+                </form>
+                </div>
+            </div>
+
+            <div class="input-block2">
+                <div class="input2">
+                    <tui-input formControlName="Salary">
+                        Зарплата
+                        <input tuiTextfield type="number"/>
+                    </tui-input>
+                </div>
+                <div class="input2">
+                    <tui-input formControlName="Success">
+                        Успешность
+                        <input tuiTextfield type="text"/>
+                    </tui-input>
+                </div>
+            </div>
+            <div class="input-block3">
+                <div class="input3">
+                    <tui-input-date tuiUnfinishedValidator="Завершите заполнение поля" formControlName="Date">
+                        Дата рождения
+                    </tui-input-date>
+                    <tui-error formControlName="Date" [error]="[] | tuiFieldError | async"></tui-error>
+                </div>
+
+                <div class="input3">
+                    <tui-input-date tuiUnfinishedValidator="Завершите заполнение поля" formControlName="DateEmployment">
+                        Трудоустройство
+                    </tui-input-date>
+
+                    <tui-error formControlName="DateEmployment" [error]="[] | tuiFieldError | async"></tui-error>
+                </div>
+
+            </div>
+        </form>
+
+        <button class="apply-filters" (submit)="testFormText">Применить фильтры</button>
+    </div>
+</div>
+
+
+

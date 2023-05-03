@@ -3,16 +3,33 @@
 </header>
 <div class="media">
     <form [formGroup]="employeeForm" class="b-form">
-        <tui-input tuiTextfieldSize="l" formControlName="employeeName" class="name-field field">
-            <input tuiTextfield type="text" id="name"/>
-        </tui-input>
-        <tui-input tuiTextfieldSize="m" formControlName="employeeJob" class="job-field field">
-            <input tuiTextfield type="text" id="job"/>
-        </tui-input>
+        <div class="basic-container">
+            <img src="{{imgPath}}" alt="Фотография сотрудника" class="employee_photo" width="162" height="162">
+            <div class="basic-information">
+                <tui-input tuiTextfieldSize="l" formControlName="employeeName" class="name-field">
+                    <input tuiTextfield type="text" id="name"/>
+                </tui-input>
+                <p *ngIf="age" class="age">{{age}} {{ageWord}}</p>
+                <tui-input tuiTextfieldSize="m" formControlName="employeeJob" class="job-field">
+                    <input tuiTextfield type="text" id="job"/>
+                </tui-input>
+                <div class="work-experience">
+                    <p *ngIf="monthWorkExperience || yearWorkExperience">
+                        Опыт работы в компании:
+                    </p>
+                    <p *ngIf="yearWorkExperience">
+                        {{yearWorkExperience}} {{yearExperienceWord}}
+                    </p>
+                    <p *ngIf="monthWorkExperience">
+                        {{monthWorkExperience}} {{monthExperienceWord}}
+                    </p>
+                </div>
+            </div>
+        </div>
         <div class="optional-fields">
             <div class="input-group">
                 <label for="education">Образование:</label>
-                <tui-input tuiTextfieldSize="s" formControlName="employeeEducation" class="education-field field">
+                <tui-input tuiTextfieldSize="s" formControlName="employeeEducation" class="education-field">
                     <input tuiTextfield type="text" id="education"/>
                 </tui-input>
             </div>
@@ -23,7 +40,7 @@
             </div>
             <div class="input-group">
                 <label for="education">Текущий проект:</label>
-                <tui-input tuiTextfieldSize="s" formControlName="employeeProject" class="project-field field">
+                <tui-input tuiTextfieldSize="s" formControlName="employeeProject" class="project-field">
                     <input tuiTextfield type="text" id="project"/>
                 </tui-input>
             </div>
@@ -41,6 +58,32 @@
                 <label for="education">Первый рабочий день:</label>
                 <tui-input-date formControlName="employeeFirstWorkDay" tuiTextfieldSize="s">
                 </tui-input-date>
+            </div>
+            <div class="reactive-input-group">
+                <label>История отпусков:</label>
+                <div *ngFor="let vacation of vacationsHistory" class="reactive-inputs">
+                    <p>с</p>
+                    <tui-input-date formControlName="{{vacation.startName}}" tuiTextfieldSize="s">
+                    </tui-input-date>
+                    <p>по</p>
+                    <tui-input-date formControlName="{{vacation.endName}}" tuiTextfieldSize="s">
+                    </tui-input-date>
+                </div>
+            </div>
+            <div class="reactive-input-group">
+                <label>Карьерный рост:</label>
+                <div *ngFor="let vacancy of vacanciesHistory" class="reactive-inputs">
+                    <p>с</p>
+                    <tui-input-date formControlName="{{vacancy.startName}}" tuiTextfieldSize="s">
+                    </tui-input-date>
+                    <p>по</p>
+                    <tui-input-date formControlName="{{vacancy.endName}}" tuiTextfieldSize="s">
+                    </tui-input-date>
+                    <hr>
+                    <tui-input tuiTextfieldSize="s" formControlName="{{vacancy.textName}}" class="vacancy-field">
+                        <input tuiTextfield type="text" id="vacancy"/>
+                    </tui-input>
+                </div>
             </div>
         </div>
     </form>
