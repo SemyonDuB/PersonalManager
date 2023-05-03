@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {EmployeeService} from "../../services/employee/employee.service";
 import {Employee} from "../../services/employee/employee";
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-employees',
@@ -26,7 +26,7 @@ export class EmployeesComponent {
     constructor(
         private _router: Router,
         private employeeService: EmployeeService
-        ) {
+    ) {
         this.employees = employeeService.employees;
     }
 

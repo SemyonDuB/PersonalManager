@@ -30,6 +30,7 @@ import {
     TuiDataListWrapperModule,
     TuiFieldErrorPipeModule, TuiFilterByInputPipeModule,
 } from "@taiga-ui/kit";
+import {TuiLetModule} from "@taiga-ui/cdk";
 
 const components = [
     AppComponent,
@@ -91,7 +92,8 @@ const routes: Routes = [
         TuiFilterByInputPipeModule,
         TuiCheckboxModule,
         TuiTableModule,
-        TuiFormatDatePipeModule
+        TuiFormatDatePipeModule,
+        TuiLetModule
     ],
     declarations: components,
     providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],

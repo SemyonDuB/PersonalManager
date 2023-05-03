@@ -6,7 +6,8 @@ import employeesJson from './employees.json';
     providedIn: 'root'
 })
 export class EmployeeService {
-    employees: Employee[] = [];
+    private _employees: Employee[] = [];
+    public employees: Employee[] = [];
 
     constructor() {
         for (let e of employeesJson) {
@@ -17,7 +18,7 @@ export class EmployeeService {
 
             let holidays = e.holidayHistory.map((value) => new Date(value))
 
-            this.employees.push({
+            this._employees.push({
                 fullName: e.fullName,
                 birthday: new Date(e.birthday),
                 career: career,
@@ -32,5 +33,11 @@ export class EmployeeService {
                 wage: e.wage,
             });
         }
+
+        this.employees = this._employees;
+    }
+
+    updateEmployees() {
+        this.employees = this._employees;
     }
 }
