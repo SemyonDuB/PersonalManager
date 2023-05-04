@@ -3,9 +3,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule} from "@angular/forms";
-
-
+import {ReactiveFormsModule} from "@angular/forms";
 import {
     TUI_SANITIZER,
     TuiAlertModule,
@@ -18,7 +16,6 @@ import {
 
 import {TuiCheckboxModule, TuiInputDateModule, TuiInputModule} from "@taiga-ui/kit";
 import {TuiTableModule} from '@taiga-ui/addon-table';
-
 import {AppComponent} from './components/app/app.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {EmployeeComponent} from "./components/employee/employee.component";
