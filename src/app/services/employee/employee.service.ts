@@ -1,15 +1,26 @@
 import {Injectable} from '@angular/core';
 import {Career, Employee} from './employee';
 import employeesJson from './employees.json';
+import {TuiComparator} from "@taiga-ui/addon-table";
+import {tuiDefaultSort} from "@taiga-ui/cdk";
+import {BehaviorSubject, Observable, of} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class EmployeeService {
-    private _employees: Employee[] = [];
-    public employees: Employee[] = [];
+    public sorter$ = new BehaviorSubject<keyof Employee | null>(null);
+    public direction$ = new BehaviorSubject<1 | -1>(1);
+    public filterBy$ = new BehaviorSubject<Partial<Employee> | null>(null);
 
     constructor() {
+    }
+
+    public getData(filterBy: Partial<Employee> | null,
+                   sorterKey: keyof Employee | null,
+                   direction: 1 | -1): Observable<Employee[]> {
+        let result: Employee[] = [];
+
         for (let e of employeesJson) {
             let career = e.career.map((value) => <Career>{
                 date: new Date(value.date),
@@ -18,7 +29,7 @@ export class EmployeeService {
 
             let holidays = e.holidayHistory.map((value) => new Date(value))
 
-            this._employees.push({
+            result.push({
                 fullName: e.fullName,
                 birthday: new Date(e.birthday),
                 career: career,
@@ -34,10 +45,25 @@ export class EmployeeService {
             });
         }
 
-        this.employees = this._employees;
+        if (sorterKey !== null)
+            result = result.sort(this.sortBy(sorterKey ?? 'fullName', direction));
+
+        if (filterBy !== null)
+            result = result.filter(employee =>
+                Object.keys(filterBy)
+                    .filter(key => !!filterBy[key as keyof Employee])
+                    .every(key => {
+                        const employeeValue = employee[key as keyof Employee].toString();
+                        const filterValue = filterBy[key as keyof Employee]!.toString();
+
+                        return employeeValue.toLowerCase().includes(filterValue.toLowerCase());
+                    })
+            )
+
+        return of(result);
     }
 
-    updateEmployees() {
-        this.employees = this._employees;
+    public sortBy(key: keyof Employee, direction: 1 | -1): TuiComparator<Employee> {
+        return (a, b) => direction * tuiDefaultSort(a[key], b[key]);
     }
 }

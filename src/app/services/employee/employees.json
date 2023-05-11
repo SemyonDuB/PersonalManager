@@ -79,5 +79,86 @@
                 "name": "Senior Frontend"
             }
         ]
+    },
+    {
+        "fullName": "Bot 1",
+        "birthday": "2021-04-20T18:25:43.511Z",
+        "jobTitle": "Backender",
+        "wage": 10000,
+        "employmentDate": "2022-04-20T18:25:43.511Z",
+        "projectName": "Secret",
+        "success": false,
+        "education": "Middle school",
+        "interviewDate": "2021-04-20T18:25:43.511Z",
+        "firstWorkDay": "2022-04-20T18:25:43.511Z",
+
+        "holidayHistory": [
+            "2020-04-20T18:25:43.511Z",
+            "2020-04-20T18:25:43.511Z"
+        ],
+        "career": [
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Junior Backend"
+            },
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Senior Backend"
+            }
+        ]
+    },
+    {
+        "fullName": "Bot 2",
+        "birthday": "2021-04-20T18:25:43.511Z",
+        "jobTitle": "Backender",
+        "wage": 10000,
+        "employmentDate": "2022-04-20T18:25:43.511Z",
+        "projectName": "Secret",
+        "success": false,
+        "education": "Middle school",
+        "interviewDate": "2021-04-20T18:25:43.511Z",
+        "firstWorkDay": "2022-04-20T18:25:43.511Z",
+
+        "holidayHistory": [
+            "2020-04-20T18:25:43.511Z",
+            "2020-04-20T18:25:43.511Z"
+        ],
+        "career": [
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Junior Backend"
+            },
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Senior Backend"
+            }
+        ]
+    },
+    {
+        "fullName": "Bot 3",
+        "birthday": "2021-04-20T18:25:43.511Z",
+        "jobTitle": "Frontender",
+        "wage": 10000,
+        "employmentDate": "2022-04-20T18:25:43.511Z",
+        "projectName": "Secret",
+        "success": false,
+        "education": "Middle school",
+        "interviewDate": "2021-04-20T18:25:43.511Z",
+        "firstWorkDay": "2022-04-20T18:25:43.511Z",
+
+        "holidayHistory": [
+            "2020-04-20T18:25:43.511Z",
+            "2020-04-20T18:25:43.511Z"
+        ],
+        "career": [
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Junior Backend"
+            },
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Senior Backend"
+            }
+        ]
     }
 ]
