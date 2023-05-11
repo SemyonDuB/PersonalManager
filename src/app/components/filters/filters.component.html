@@ -8,29 +8,21 @@
                 <div class="input1">
                     <tui-input formControlName="Name">
                         ФИО
-                        <input tuiTextfield type="text"/>
+                        <input tuiTextfield type="text" formControlName="Name"/>
                     </tui-input>
                 </div>
 
                 <div class="input1">
                     <tui-input formControlName="Post">
                         Должность
-                        <input tuiTextfield type="text"/>
+                        <input tuiTextfield type="text" formControlName="Post"/>
                     </tui-input>
                 </div>
                 <div class="input1">
                     <tui-input formControlName="Project">
                         Проект
-                        <input tuiTextfield type="text"/>
+                        <input tuiTextfield type="text" formControlName="Project"/>
                     </tui-input>
-                </div>
-                <div class="input1">
-                <form class="b-form sort" [formGroup]="form">
-                <tui-combo-box formControlName="user">
-                    Сортировать по
-                    <tui-data-list-wrapper *tuiDataList [items]="items | tuiFilterByInput"></tui-data-list-wrapper>
-                </tui-combo-box>
-                </form>
                 </div>
             </div>
 
@@ -38,13 +30,13 @@
                 <div class="input2">
                     <tui-input formControlName="Salary">
                         Зарплата
-                        <input tuiTextfield type="number"/>
+                        <input tuiTextfield type="number" formControlName="Salary"/>
                     </tui-input>
                 </div>
                 <div class="input2">
                     <tui-input formControlName="Success">
                         Успешность
-                        <input tuiTextfield type="text"/>
+                        <input tuiTextfield type="text" formControlName="Success"/>
                     </tui-input>
                 </div>
             </div>
@@ -67,7 +59,7 @@
             </div>
         </form>
 
-        <button class="apply-filters" (submit)="testFormText">Применить фильтры</button>
+        <button class="apply-filters" (click)="applyFilters()" >Применить фильтры</button>
     </div>
 </div>
 
