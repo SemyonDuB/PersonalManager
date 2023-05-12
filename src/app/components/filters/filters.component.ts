@@ -1,36 +1,38 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {TuiDay} from '@taiga-ui/cdk';
+import {EmployeeService} from "../../services/employee/employee.service";
+import {Employee} from "../../services/employee/employee";
+
 @Component({
-  selector: 'app-filters',
-  templateUrl: './filters.component.html',
-  styleUrls: ['./styles/filters.component.css'],
+    selector: 'app-filters',
+    templateUrl: './filters.component.html',
+    styleUrls: ['./styles/filters.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class FiltersComponent {
-    readonly testFormText = new FormGroup({
-        Name: new FormControl(),
-        Post: new FormControl(),
-        Project: new FormControl(),
-        Salary: new FormControl(),
-        Success: new FormControl(),
-        Date: new FormControl(new TuiDay(2023, 4, 20)),
-        DateEmployment: new FormControl(new TuiDay(2023, 4, 20)),
 
-    });
-    readonly items = [
-        'По дате рождения',
-        'По дате трудоустройства',
-        'По успешности'
-    ];
+    constructor(private employeeService: EmployeeService) {
 
+    }
 
-    readonly form = new FormGroup({
-        sort: new FormControl()
+    readonly filterForm = new FormGroup({
+        fullName: new FormControl(null),
+        jobTitle: new FormControl(null),
+        projectName: new FormControl(null),
+        wage: new FormControl(null),
+        success: new FormControl(null),
+        date: new FormControl<Date | null>(null),
+        employmentDate: new FormControl<Date | null>(null),
     });
 
+    public applyFilters(): void {
+        this.employeeService.filterBy$.next(this.filterForm.value as Partial<Employee>);
+    }
 }
+
+
+
 
 
 
