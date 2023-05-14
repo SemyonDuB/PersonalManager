@@ -9,19 +9,19 @@
                 <tui-input tuiTextfieldSize="l" formControlName="employeeName" class="name-field">
                     <input tuiTextfield type="text" id="name"/>
                 </tui-input>
-                <p *ngIf="age" class="age">{{age}} {{ageWord}}</p>
+                <p *ngIf="age && ageWord" class="age">{{age}} {{ageWord}}</p>
                 <tui-input tuiTextfieldSize="m" formControlName="employeeJob" class="job-field">
                     <input tuiTextfield type="text" id="job"/>
                 </tui-input>
                 <div class="work-experience">
-                    <p *ngIf="monthWorkExperience || yearWorkExperience">
+                    <p *ngIf="monthWorkExp || yearWorkExp">
                         Опыт работы в компании:
                     </p>
-                    <p *ngIf="yearWorkExperience">
-                        {{yearWorkExperience}} {{yearExperienceWord}}
+                    <p *ngIf="yearWorkExp">
+                        {{yearWorkExp}} {{yearExpWord}}
                     </p>
-                    <p *ngIf="monthWorkExperience">
-                        {{monthWorkExperience}} {{monthExperienceWord}}
+                    <p *ngIf="monthWorkExp">
+                        {{monthWorkExp}} {{monthExpWord}}
                     </p>
                 </div>
             </div>
