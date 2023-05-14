@@ -18,9 +18,9 @@ import {TuiCheckboxModule, TuiInputDateModule, TuiInputModule} from "@taiga-ui/k
 import {TuiTableModule} from '@taiga-ui/addon-table';
 import {AppComponent} from './components/app/app.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import {EmployeeComponent} from "./components/employee/employee.component";
+import {EmployeeEditorComponent} from "./components/employee-editor/employee-editor.component";
 import {MenuBarComponent} from "./components/menu-bar/menu-bar.component";
-import {EmployeesComponent} from "./components/employees/employees.component";
+import {EmployeeTableComponent} from "./components/employee-table/employee-table.component";
 import {FiltersComponent} from "./components/filters/filters.component";
 import {
     TuiComboBoxModule,
@@ -33,29 +33,29 @@ const components = [
     AppComponent,
     PageNotFoundComponent,
     FiltersComponent,
-    EmployeeComponent,
+    EmployeeEditorComponent,
     MenuBarComponent,
-    EmployeesComponent
+    EmployeeTableComponent
 ];
 
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/employees',
+        redirectTo: '/employee-table',
         pathMatch: 'full',
     },
     {
         /** Таблица юзеров */
-        path: 'employees',
+        path: 'employee-table',
         pathMatch: 'full',
-        component: EmployeesComponent
+        component: EmployeeTableComponent
     },
 
     {
         /** Таблица детальной инфы о юзере */
-        path: 'employee',
+        path: 'employee-editor',
         pathMatch: 'full',
-        component: EmployeeComponent
+        component: EmployeeEditorComponent
     },
     {
         path: 'filters',

@@ -4,11 +4,12 @@ import employeesJson from './employees.json';
 import {TuiComparator} from "@taiga-ui/addon-table";
 import {tuiDefaultSort} from "@taiga-ui/cdk";
 import {BehaviorSubject, Observable, of} from "rxjs";
+import {EmployeeTableComponent} from "../../components/employee-table/employee-table.component";
 
 @Injectable({
     providedIn: 'root'
 })
-export class EmployeeService {
+export class EmployeeTableService {
     public sorter$: BehaviorSubject<keyof Employee | null> = new BehaviorSubject<keyof Employee | null>(null);
     public direction$: BehaviorSubject<1 | -1> = new BehaviorSubject<1 | -1>(1);
     public filterBy$: BehaviorSubject<Partial<Employee> | null> = new BehaviorSubject<Partial<Employee> | null>(null);

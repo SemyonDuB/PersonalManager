@@ -8,12 +8,12 @@ type IntervalControlNames = {startName: string, endName: string};
 type NamedIntervalControlNames = IntervalControlNames & {textName: string};
 
 @Component({
-    selector: 'employee',
-    templateUrl: './employee.component.html',
+    selector: 'employee-editor',
+    templateUrl: './employee-editor.component.html',
     styleUrls: ['./styles/employee.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmployeeComponent implements AfterViewInit {
+export class EmployeeEditorComponent implements AfterViewInit {
 
     public imgPath: string = "../../../assets/img/sample_photo.png";
 

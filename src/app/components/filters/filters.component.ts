@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {EmployeeService} from "../../services/employee/employee.service";
+import {EmployeeTableService} from "../../services/employee/employee-table.service";
 import {Employee} from "../../services/employee/employee";
 
 @Component({
@@ -22,7 +22,7 @@ export class FiltersComponent {
         employmentDate: new FormControl<Date | null>(null),
     });
 
-    constructor(private _employeeService: EmployeeService) {
+    constructor(private _employeeService: EmployeeTableService) {
 
     }
 

@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {EmployeeService} from "../../services/employee/employee.service";
+import {EmployeeTableService} from "../../services/employee/employee-table.service";
 import {Employee} from "../../services/employee/employee";
 import {Router} from '@angular/router';
 import {combineLatest, filter, map, Observable, switchMap} from "rxjs";
@@ -8,12 +8,12 @@ import {tuiIsPresent} from "@taiga-ui/cdk";
 type DataInput = [(Partial<Employee> | null), (keyof Employee | null), (1 | -1)];
 
 @Component({
-    selector: 'app-employees',
+    selector: 'app-employee-table',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './employees.component.html',
-    styleUrls: ['./employees.component.css'],
+    templateUrl: './employee-table.component.html',
+    styleUrls: ['./employee-table.component.css'],
 })
-export class EmployeesComponent {
+export class EmployeeTableComponent {
     public readonly columns: string[] = [
         "fullName",
         "birthday",
@@ -43,7 +43,7 @@ export class EmployeesComponent {
 
     constructor(
         private _router: Router,
-        public employeeService: EmployeeService
+        public employeeService: EmployeeTableService
     ) {
     }
 
