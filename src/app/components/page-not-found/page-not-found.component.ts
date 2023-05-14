@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class PageNotFoundComponent {
 
-    public pageTitle = '404';
-    public description = 'Page not found';
+    public pageTitle: string = '404';
+    public description: string = 'Page not found';
 
 }

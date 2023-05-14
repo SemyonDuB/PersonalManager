@@ -12,11 +12,7 @@ import {Employee} from "../../services/employee/employee";
 
 export class FiltersComponent {
 
-    constructor(private employeeService: EmployeeService) {
-
-    }
-
-    readonly filterForm = new FormGroup({
+    public readonly filterForm: FormGroup = new FormGroup({
         fullName: new FormControl(null),
         jobTitle: new FormControl(null),
         projectName: new FormControl(null),
@@ -26,8 +22,12 @@ export class FiltersComponent {
         employmentDate: new FormControl<Date | null>(null),
     });
 
+    constructor(private _employeeService: EmployeeService) {
+
+    }
+
     public applyFilters(): void {
-        this.employeeService.filterBy$.next(this.filterForm.value as Partial<Employee>);
+        this._employeeService.filterBy$.next(this.filterForm.value as Partial<Employee>);
     }
 }
 

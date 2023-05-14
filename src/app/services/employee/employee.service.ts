@@ -9,9 +9,9 @@ import {BehaviorSubject, Observable, of} from "rxjs";
     providedIn: 'root'
 })
 export class EmployeeService {
-    public sorter$ = new BehaviorSubject<keyof Employee | null>(null);
-    public direction$ = new BehaviorSubject<1 | -1>(1);
-    public filterBy$ = new BehaviorSubject<Partial<Employee> | null>(null);
+    public sorter$: BehaviorSubject<keyof Employee | null> = new BehaviorSubject<keyof Employee | null>(null);
+    public direction$: BehaviorSubject<1 | -1> = new BehaviorSubject<1 | -1>(1);
+    public filterBy$: BehaviorSubject<Partial<Employee> | null> = new BehaviorSubject<Partial<Employee> | null>(null);
 
     constructor() {
     }
@@ -21,13 +21,13 @@ export class EmployeeService {
                    direction: 1 | -1): Observable<Employee[]> {
         let result: Employee[] = [];
 
-        for (let e of employeesJson) {
-            let career = e.career.map((value) => <Career>{
-                date: new Date(value.date),
-                name: value.name
-            })
+        for (const e of employeesJson) {
+            const career: Career[] = e.career.map(({date, name}: { date: string, name: string }) => <Career>{
+                date: new Date(date),
+                name: name
+            });
 
-            let holidays = e.holidayHistory.map((value) => new Date(value))
+            const holidays: Date[] = e.holidayHistory.map((value: string) => new Date(value));
 
             result.push({
                 fullName: e.fullName,
@@ -45,25 +45,27 @@ export class EmployeeService {
             });
         }
 
-        if (sorterKey !== null)
-            result = result.sort(this.sortBy(sorterKey ?? 'fullName', direction));
+        if (sorterKey !== null) {
+            result = result.sort(this.sortBy(sorterKey!, direction));
+        }
 
-        if (filterBy !== null)
-            result = result.filter(employee =>
+        if (filterBy !== null) {
+            result = result.filter((employee: Employee) =>
                 Object.keys(filterBy)
-                    .filter(key => !!filterBy[key as keyof Employee])
-                    .every(key => {
-                        const employeeValue = employee[key as keyof Employee].toString();
-                        const filterValue = filterBy[key as keyof Employee]!.toString();
+                    .filter((key: string) => !!filterBy[key as keyof Employee])
+                    .every((key: string) => {
+                        const employeeValue: string = employee[key as keyof Employee].toString();
+                        const filterValue: string = filterBy[key as keyof Employee]!.toString();
 
                         return employeeValue.toLowerCase().includes(filterValue.toLowerCase());
                     })
-            )
+            );
+        }
 
         return of(result);
     }
 
     public sortBy(key: keyof Employee, direction: 1 | -1): TuiComparator<Employee> {
-        return (a, b) => direction * tuiDefaultSort(a[key], b[key]);
+        return (a: Employee, b: Employee) => direction * tuiDefaultSort(a[key], b[key]);
     }
 }

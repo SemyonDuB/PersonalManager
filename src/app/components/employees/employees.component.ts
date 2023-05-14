@@ -5,6 +5,8 @@ import {Router} from '@angular/router';
 import {combineLatest, filter, map, Observable, switchMap} from "rxjs";
 import {tuiIsPresent} from "@taiga-ui/cdk";
 
+type DataInput = [(Partial<Employee> | null), (keyof Employee | null), (1 | -1)];
+
 @Component({
     selector: 'app-employees',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,7 +14,7 @@ import {tuiIsPresent} from "@taiga-ui/cdk";
     styleUrls: ['./employees.component.css'],
 })
 export class EmployeesComponent {
-    readonly columns = [
+    public readonly columns: string[] = [
         "fullName",
         "birthday",
         "jobTitle",
@@ -24,17 +26,19 @@ export class EmployeesComponent {
 
     public showFilter: boolean = false;
 
-    public request$ = combineLatest([
+
+    public request$: Observable<Employee[]> = combineLatest([
         this.employeeService.filterBy$,
         this.employeeService.sorter$,
         this.employeeService.direction$
     ]).pipe(
-        switchMap(query => this.employeeService.getData(...query))
+        switchMap((query: DataInput) =>
+            this.employeeService.getData(...query))
     );
 
-    readonly data$: Observable<readonly Employee[]> = this.request$.pipe(
+    public readonly data$: Observable<readonly Employee[]> = this.request$.pipe(
         filter(tuiIsPresent),
-        map(employees => employees.filter(tuiIsPresent)),
+        map((employees: Employee[]) => employees.filter(tuiIsPresent)),
     );
 
     constructor(
@@ -47,7 +51,7 @@ export class EmployeesComponent {
      * Навигация на страницу детальной инфы
      */
     public navigateToDetailInfo(): void {
-        this._router.navigateByUrl('/employee')
+        this._router.navigateByUrl('/employee');
     }
 
 }
