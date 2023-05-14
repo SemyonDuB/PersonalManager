@@ -19,9 +19,9 @@ header {
 }
 
 .profile-icon:hover {
-    background-image: url("src/assets/img/profile_icon_hover.png");
+    background-image: url("src/assets/img/profile_icon.png");
 }
 
 .profile-icon:active {
-    background-image: url("src/assets/img/profile_icon_active.png");
+    background-image: url("src/assets/img/profile_icon.png");
 }

@@ -3,7 +3,7 @@ export interface Career {
     name: string;
 }
 
-export interface Employee {
+export interface EmployeeModel {
     fullName: string;
     birthday: Date;
     jobTitle: string;

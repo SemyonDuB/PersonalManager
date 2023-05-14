@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {EmployeeTableService} from "../../services/employee/employee-table.service";
-import {Employee} from "../../services/employee/employee";
+import {EmployeeTableService} from "../../core/services/employee-table.service";
+import {EmployeeModel} from "../../core/models/employee.model";
 
 @Component({
     selector: 'app-filters',
@@ -27,7 +27,7 @@ export class FiltersComponent {
     }
 
     public applyFilters(): void {
-        this._employeeService.filterBy$.next(this.filterForm.value as Partial<Employee>);
+        this._employeeService.filterBy$.next(this.filterForm.value as Partial<EmployeeModel>);
     }
 }
 
