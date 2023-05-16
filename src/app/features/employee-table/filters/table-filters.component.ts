@@ -1,16 +1,16 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {EmployeeTableService} from "../../core/services/employee-table.service";
-import {EmployeeModel} from "../../core/models/employee.model";
+import {EmployeeTableService} from "../../../core/services/employee-table.service";
+import {EmployeeModel} from "../../../core/models/employee.model";
 
 @Component({
-    selector: 'app-filters',
-    templateUrl: './filters.component.html',
-    styleUrls: ['./styles/filters.component.css'],
+    selector: 'employee-table-filters',
+    templateUrl: './table-filters.component.html',
+    styleUrls: ['./table-filters.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class FiltersComponent {
+export class TableFiltersComponent {
 
     public readonly filterForm: FormGroup = new FormGroup({
         fullName: new FormControl(null),

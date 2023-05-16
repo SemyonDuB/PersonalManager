@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import {PageNotFoundComponent} from "./features/page-not-found/page-not-found.component";
-import {FiltersComponent} from "./features/filters/filters.component";
-import {EmployeeEditorComponent} from "./features/employee-editor/employee-editor.component";
-import {EmployeeTableComponent} from "./features/employee-table/employee-table.component";
+import {TableFiltersComponent} from "./features/employee-table/filters/table-filters.component";
+import {EmployeeEditorComponent} from "./features/employee-editor/employee-editor/employee-editor.component";
+import {EmployeeTableComponent} from "./features/employee-table/employee-table/employee-table.component";
 
 const routes: Routes = [
     {
@@ -28,7 +28,7 @@ const routes: Routes = [
     {
         path: 'filters',
         pathMatch: 'full',
-        component:FiltersComponent
+        component:TableFiltersComponent
     },
     {
         path: '**',

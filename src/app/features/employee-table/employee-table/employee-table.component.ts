@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {EmployeeTableService} from "../../core/services/employee-table.service";
-import {EmployeeModel} from "../../core/models/employee.model";
+import {EmployeeTableService} from "../../../core/services/employee-table.service";
+import {EmployeeModel} from "../../../core/models/employee.model";
 import {Router} from '@angular/router';
 import {combineLatest, filter, map, Observable, switchMap} from "rxjs";
 import {tuiIsPresent} from "@taiga-ui/cdk";

@@ -4,7 +4,7 @@ import employeesJson from '../../../assets/employees.json';
 import {TuiComparator} from "@taiga-ui/addon-table";
 import {tuiDefaultSort} from "@taiga-ui/cdk";
 import {BehaviorSubject, Observable, of} from "rxjs";
-import {EmployeeTableComponent} from "../../features/employee-table/employee-table.component";
+import {EmployeeTableComponent} from "../../features/employee-table/employee-table/employee-table.component";
 
 @Injectable({
     providedIn: 'root'

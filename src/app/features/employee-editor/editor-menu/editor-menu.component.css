@@ -9,16 +9,16 @@ header {
 .profile-icon {
     width: 28px;
     height: 28px;
-    background: url("src/assets/img/profile_icon.png") no-repeat;
+    background: url("profile_icon.png") no-repeat;
     display: block;
     margin: 0 0 0 auto;
     cursor: pointer;
 }
 
 .profile-icon:hover {
-    background-image: url("src/assets/img/profile_icon_hover.png");
+    background-image: url("profile_icon_hover.png");
 }
 
 .profile-icon:active {
-    background-image: url("src/assets/img/profile_icon_active.png");
+    background-image: url("profile_icon_active.png");
 }

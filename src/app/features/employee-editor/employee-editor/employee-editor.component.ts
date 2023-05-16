@@ -10,7 +10,7 @@ type NamedIntervalControlNames = IntervalControlNames & {textName: string};
 @Component({
     selector: 'employee-editor',
     templateUrl: './employee-editor.component.html',
-    styleUrls: ['./styles/employee-editor.css'],
+    styleUrls: ['./employee-editor.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeEditorComponent implements AfterViewInit {
