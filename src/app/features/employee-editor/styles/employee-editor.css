@@ -1,44 +1,9 @@
-header, .media {
-    background-color: #FFFFFF;
-}
-
-/*шапка*/
-
-header {
-    width: calc(100% - 78px);
-    max-width: 1325px;
-    height: 28px;
-    margin: 17px auto 0 auto;
-    border-radius: 12px;
-    padding: 10px 29px;
-}
-
-.profile-icon {
-    width: 28px;
-    height: 28px;
-    background: url("src/assets/img/profile_icon.png") no-repeat;
-    display: block;
-    margin: 0 0 0 auto;
-    cursor: pointer;
-}
-
-.profile-icon:hover {
-    background-image: url("src/assets/img/profile_icon_hover.png");
-}
-
-.profile-icon:active {
-    background-image: url("src/assets/img/profile_icon_active.png");
-}
-
-/*форма*/
-
 .media {
-    width: calc(100% - 20px);
-    max-width: 1383px;
-    min-height: calc(100vh - 182px);
-    margin: 17px auto 0 auto;
+    background-color: #FFFFFF;
+    width: 100%;
+    margin: 0;
     border-radius: 17px 17px 0 0;
-    padding: 0 0 100px 0;
+    padding: 0 0 79px 0;
 
     font-family: 'Inter', serif;
     font-style: normal;
@@ -88,7 +53,8 @@ input {
 }
 
 .name-field, .job-field {
-    width: calc(94.4vw - 182px);
+    /*width: calc(94.4vw - 182px);*/
+    width: calc(94.4vw - 205px);
 }
 
 .name-field {
@@ -159,12 +125,21 @@ label {
 }
 
 .reactive-inputs {
-    margin: 14px 0 0 3vw;
+    margin: 0 0 0 3vw;
 }
 
 .reactive-inputs>* {
     display: inline-block;
     vertical-align: top;
+}
+
+.reactive-inputs tui-input-date {
+    margin-bottom: 14px;
+}
+
+.reactive-input-group label {
+    margin-bottom: 20px;
+    display: block;
 }
 
 .reactive-inputs p {

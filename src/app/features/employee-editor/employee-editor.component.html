@@ -1,17 +1,23 @@
-<header>
-    <a class="profile-icon"></a>
-</header>
 <div class="media">
     <form [formGroup]="employeeForm" class="b-form">
         <div class="basic-container">
             <img src="{{imgPath}}" alt="Фотография сотрудника" class="employee_photo" width="162" height="162">
             <div class="basic-information">
-                <tui-input tuiTextfieldSize="l" formControlName="employeeName" class="name-field">
-                    <input tuiTextfield type="text" id="name"/>
+                <tui-input tuiTextfieldSize="l"
+                           formControlName="employeeName"
+                           class="name-field" [tuiTextfieldLabelOutside]="true"
+                >
+                    Имя
+                    <input tuiTextfield type="text" title="Фамилия, имя и отчество" id="name"/>
                 </tui-input>
                 <p *ngIf="age && ageWord" class="age">{{age}} {{ageWord}}</p>
-                <tui-input tuiTextfieldSize="m" formControlName="employeeJob" class="job-field">
-                    <input tuiTextfield type="text" id="job"/>
+                <tui-input tuiTextfieldSize="m"
+                           formControlName="employeeJob"
+                           class="job-field"
+                           [tuiTextfieldLabelOutside]="true"
+                >
+                    Занимаемая должность
+                    <input tuiTextfield title="Занимаемая должность" type="text" id="job"/>
                 </tui-input>
                 <div class="work-experience">
                     <p *ngIf="monthWorkExp || yearWorkExp">

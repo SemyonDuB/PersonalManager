@@ -10,23 +10,20 @@ type NamedIntervalControlNames = IntervalControlNames & {textName: string};
 @Component({
     selector: 'employee-editor',
     templateUrl: './employee-editor.component.html',
-    styleUrls: ['./styles/employee.css'],
+    styleUrls: ['./styles/employee-editor.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeEditorComponent implements AfterViewInit {
 
     public imgPath: string = "../../../assets/img/sample_photo.png";
 
-    public defaultBirthDate: ShortDate = { year: 2000, month: 2, day: 1};
-    public defaultFirstWorkDate: ShortDate = { year: 2020, month: 10, day: 17};
+    public age: number | undefined;
+    public ageWord: string | undefined;
 
-    public age: number = this.calculateDateDifference(this.defaultBirthDate).year;
-    public ageWord: string = this.declineYearWord(this.age);
-
-    public yearWorkExp: number = this.calculateDateDifference(this.defaultFirstWorkDate).year;
-    public yearExpWord: string = this.declineYearWord(this.yearWorkExp);
-    public monthWorkExp: number = this.calculateDateDifference(this.defaultFirstWorkDate).month;
-    public monthExpWord: string = this.declineMonthWord(this.monthWorkExp);
+    public yearWorkExp: number | undefined;
+    public yearExpWord: string | undefined;
+    public monthWorkExp: number | undefined;
+    public monthExpWord: string | undefined;
 
     public basicVacationControlNames: IntervalControlNames = {startName: "vacationStart", endName: "vacationEnd"};
     public vacationsHistory: IntervalControlNames[] = new Array<IntervalControlNames>({
@@ -45,23 +42,23 @@ export class EmployeeEditorComponent implements AfterViewInit {
     public vacancySubs: Subscription[] = [];
 
     public employeeForm: FormGroup = new FormGroup({
-        "employeeName": new FormControl("Васий Пупупипкин Васильевич", [
+        "employeeName": new FormControl("", [
             Validators.required
         ]),
-        "employeeJob": new FormControl("Менеджер отдела связи №1", [
+        "employeeJob": new FormControl("", [
             Validators.required
         ]),
-        "employeeEducation": new FormControl("Бакалавриат \"Программная инженерия\" ИРиТРТФ УРФУ"),
-        "employeeBirth": new FormControl(new TuiDay(2000, 1, 1)),
-        "employeeProject": new FormControl("Сайт для пиццерии \"Домашнее\""),
-        "employeeInterviewDate": new FormControl(new TuiDay(2020, 10, 10)),
-        "employeeEmploymentDate": new FormControl(new TuiDay(2020, 10, 13)),
-        "employeeFirstWorkDay": new FormControl(new TuiDay(2020, 10, 17)),
-        "vacationStart0" : new FormControl(new TuiDay(2021, 11, 20)),
-        "vacationEnd0" : new FormControl(new TuiDay(2021, 11, 22)),
-        "vacancyStart0" : new FormControl(new TuiDay(2021, 11, 20)),
-        "vacancyEnd0" : new FormControl(new TuiDay(2021, 11, 22)),
-        "vacancyName0" : new FormControl("Уборщик главного зала")
+        "employeeEducation": new FormControl(""),
+        "employeeBirth": new FormControl(),
+        "employeeProject": new FormControl(""),
+        "employeeInterviewDate": new FormControl(),
+        "employeeEmploymentDate": new FormControl(),
+        "employeeFirstWorkDay": new FormControl(),
+        "vacationStart0" : new FormControl(),
+        "vacationEnd0" : new FormControl(),
+        "vacancyStart0" : new FormControl(),
+        "vacancyEnd0" : new FormControl(),
+        "vacancyName0" : new FormControl("")
     });
 
     public ngAfterViewInit(): void {

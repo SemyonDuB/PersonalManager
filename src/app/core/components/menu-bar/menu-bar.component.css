@@ -1,12 +1,9 @@
 header {
-    width: calc(100% - 78px);
-    max-width: 1325px;
     height: 28px;
-    margin: 17px auto 0 auto;
+    margin: 17px 0 17px 0;
     border-radius: 12px;
     padding: 10px 29px;
-
-    background-color: white;
+    background-color: #FFFFFF;
 }
 
 .profile-icon {
@@ -19,9 +16,9 @@ header {
 }
 
 .profile-icon:hover {
-    background-image: url("src/assets/img/profile_icon.png");
+    background-image: url("src/assets/img/profile_icon_hover.png");
 }
 
 .profile-icon:active {
-    background-image: url("src/assets/img/profile_icon.png");
+    background-image: url("src/assets/img/profile_icon_active.png");
 }

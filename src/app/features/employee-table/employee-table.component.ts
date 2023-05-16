@@ -51,7 +51,7 @@ export class EmployeeTableComponent {
      * Навигация на страницу детальной инфы
      */
     public navigateToDetailInfo(): void {
-        this._router.navigateByUrl('/employee');
+        this._router.navigateByUrl('/employee-editor');
     }
 
 }
