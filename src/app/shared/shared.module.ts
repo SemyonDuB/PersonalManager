@@ -18,6 +18,7 @@ import {
 } from "@taiga-ui/kit";
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
+import {AccountButtonComponent} from "./components/account-button/account-button.component";
 
 const modules = [
     ReactiveFormsModule,
@@ -44,9 +45,12 @@ const modules = [
         modules
     ],
     exports: [
-        modules
+        modules,
+        AccountButtonComponent
     ],
-    declarations: []
+    declarations: [
+        AccountButtonComponent
+    ]
 })
 export class SharedModule {
 }

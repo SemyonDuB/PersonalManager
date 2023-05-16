@@ -1,0 +1,17 @@
+button {
+    width: 28px;
+    height: 28px;
+    background: url("src/assets/img/profile_icon.png") no-repeat;
+    display: block;
+    margin: 0 0 0 auto;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-image: url("src/assets/img/profile_icon_hover.png");
+}
+
+button:active {
+    background-image: url("src/assets/img/profile_icon_active.png");
+}
