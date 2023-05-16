@@ -1,3 +1,7 @@
 <header>
+    <button class="add-button"></button>
+    <button class="remove-button"></button>
+    <button class="filter-button" (click)="toggleOpeningFilters()"></button>
     <account-button></account-button>
+    <employee-table-filters *ngIf="isOpenFilters"></employee-table-filters>
 </header>

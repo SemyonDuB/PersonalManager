@@ -1,23 +1,14 @@
 
 .filters-card{
     display: flex;
-    width: 1300px;
+    width: 100%;
     height: 420px;
     background-color: #FFFFFF;
     border: 1px solid #235759;
     border-radius: 25px;
     margin-top: 55px;
-    margin-left: 90px;
-    padding-top: 47px;
-    padding-left: 42px;
-    padding-bottom: 23px;
-    padding-right: 43px;
-    margin-bottom: 200px;
 }
-.block{
-    display: flex;
-    background-color: #ADCACB;
-}
+
 .input-block{
     width: 335px;
     height: 60px;

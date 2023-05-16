@@ -1,17 +1,22 @@
 button {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     background: url("src/assets/img/profile_icon.png") no-repeat;
-    display: block;
+    background-size: 26px;
+    display: inline-block;
     margin: 0 0 0 auto;
     cursor: pointer;
     border: none;
+    position: absolute;
+    right: 29px;
 }
 
 button:hover {
     background-image: url("src/assets/img/profile_icon_hover.png");
+    background-size: 26px;
 }
 
 button:active {
     background-image: url("src/assets/img/profile_icon_active.png");
+    background-size: 26px;
 }
