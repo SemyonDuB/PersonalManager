@@ -14,6 +14,9 @@ type DataInput = [(Partial<EmployeeModel> | null), (keyof EmployeeModel | null),
     styleUrls: ['./employee-table.component.css'],
 })
 export class EmployeeTableComponent {
+
+    public isOpenFilters: boolean = false;
+
     public readonly columns: string[] = [
         "fullName",
         "birthday",
@@ -23,9 +26,6 @@ export class EmployeeTableComponent {
         "projectName",
         "success",
     ];
-
-    public showFilter: boolean = false;
-
 
     public request$: Observable<EmployeeModel[]> = combineLatest([
         this.employeeService.filterBy$,
@@ -45,6 +45,10 @@ export class EmployeeTableComponent {
         private _router: Router,
         public employeeService: EmployeeTableService
     ) {
+    }
+
+    public toggleOpeningFilters(): void {
+        this.isOpenFilters = !this.isOpenFilters;
     }
 
     /**
