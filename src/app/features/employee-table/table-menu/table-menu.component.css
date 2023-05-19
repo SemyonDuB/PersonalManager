@@ -6,6 +6,10 @@ header {
     background-color: #FFFFFF;
 }
 
+.little {
+    margin-bottom: 9px;
+}
+
 button {
     border: none;
     cursor: pointer;
