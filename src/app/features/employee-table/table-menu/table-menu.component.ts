@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output, Input} from '@angular/core';
 
 @Component({
   selector: 'employee-table-menu',
@@ -7,12 +7,10 @@ import { Component } from '@angular/core';
 })
 export class TableMenuComponent {
 
-    public isOpenFilters: boolean = false;
+    @Input() public isOpenFilters: boolean = false;
 
-    constructor() {
-    }
-
-    public toggleOpeningFilters(): void {
-        this.isOpenFilters = !this.isOpenFilters;
+    @Output() public openFilters: EventEmitter<undefined> = new EventEmitter<undefined>();
+    public onOpenFilters(): void {
+        this.openFilters.emit();
     }
 }

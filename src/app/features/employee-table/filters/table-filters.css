@@ -1,66 +1,50 @@
-
-.filters-card{
-    display: flex;
-    height: 420px;
+.filters-container {
     background-color: #FFFFFF;
-    border: 1px solid #235759;
-    border-radius: 25px;
-    margin-top: 55px;
-    padding-top: 47px;
-    padding-left: 42px;
-    padding-bottom: 23px;
-    padding-right: 43px;
+    border-radius: 12px;
+    margin-bottom: 9px;
 
-    position: fixed;
-    z-index: 1000;
-    width: calc(100% - 40px);
+    width: calc(100% - 58px);
     max-width: 1325px;
+    padding: 20px 29px 20px 29px;
+}
+
+.filter-input {
+    display: inline-block;
+    width: 23.125%;
+    margin: 0 2.5% 20px 0;
+}
+
+.filters-container .filter-input:nth-child(4n) {
+    margin-right: 0;
+}
+
+/*линия?*/
+
+.button-line {
+    background-color: #76C0C2;
+    width: 100%;
+    height: 1px;
+    position: absolute;
     left: 0;
 }
 
-.input-block{
-    width: 335px;
-    height: 60px;
-}
-.input1{
-    margin-bottom: 36px;
-    width: 335px;
-    height: 60px;
-}
-.input2{
-    margin-bottom: 36px;
-    width: 335px;
-    height: 60px;
-}
-.input3{
-    margin-bottom: 36px;
-    width: 335px;
-    height: 60px;
-}
-.input-block2{
-    margin-left: 502px;
-    width: 335px;
-    height: 60px;
-    margin-top: -55px;
-}
-.input-block3{
-    margin-left: 942px;
-    width: 335px;
-    height: 60px;
-    margin-top: -55px;
+.filters-button {
+    background: url("src/assets/img/filter_button.png") no-repeat;
+    background-size: 188px 39px;
+    width: 188px;
+    height: 39px;
+    border: none;
+    cursor: pointer;
+    margin: 0 0 0 auto;
+    display: block;
 }
 
-.apply-filters{
-    width: 274px;
-    height: 64px;
-    background-color: #235759;
-    border-radius: 30px;
-    color: #FFFFFF;
-    margin-left: 1000px;
-    margin-top: 300px;
-    position: absolute;
-    cursor: pointer ;
+.filters-button:hover {
+    background: url("src/assets/img/filter_button_hover.png") no-repeat;
+    background-size: 188px 39px;
 }
-.sort{
-    margin-top: 60px;
+
+.filters-button:active {
+    background: url("src/assets/img/filter_button_active.png") no-repeat;
+    background-size: 188px 39px;
 }

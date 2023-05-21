@@ -1,5 +1,10 @@
-<employee-table-menu>
+<employee-table-menu
+    (openFilters)="toggleOpeningFilters()"
+    [isOpenFilters]="isOpenFilters"
+>
 </employee-table-menu>
+<employee-table-filters *ngIf="isOpenFilters">
+</employee-table-filters>
 <div class="table-container">
     <table
         tuiTable
