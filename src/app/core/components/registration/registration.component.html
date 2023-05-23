@@ -1,12 +1,19 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <label for="username">Имя пользователя:</label>
-    <input id="username" type="text" formControlName="username">
-
-    <label for="password">Пароль:</label>
-    <input id="password" type="password" formControlName="password">
-
-    <label for="confirm-password">Подтвердите пароль:</label>
-    <input id="confirm-password" type="password" formControlName="confirmPassword">
-
-    <button type="submit" [disabled]="!registerForm.valid">Зарегистрироваться</button>
-</form>
+<div class="container">
+    <h1>Регистрация</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="b-form">
+        <tui-input formControlName="username">
+            Имя пользователя
+            <input tuiTextfield type="text">
+        </tui-input>
+        <tui-input formControlName="password">
+            Пароль
+            <input tuiTextfield type="password">
+        </tui-input>
+        <tui-input formControlName="confirmPassword">
+            Повторите пароль
+            <input tuiTextfield type="password">
+        </tui-input>
+        <button type="submit" [disabled]="!registerForm.valid" class="registration-button"></button>
+    </form>
+    <button class="login-button" (click)="changeAuthType()">Войти в аккаунт</button>
+</div>

@@ -14,7 +14,6 @@ export class MenuBarComponent{
 
     constructor(protected readonly router: Router) {
         this.isTablePage = router.url === '/employee-table';
-        console.log(router.url);
     }
 
     public onFilterClick(): void {

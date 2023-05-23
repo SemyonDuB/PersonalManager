@@ -4,6 +4,8 @@ import {EmployeeTableService} from "./services/employee-table.service";
 import {HttpClientModule} from "@angular/common/http";
 import { RegistrationComponent } from './components/registration/registration.component';
 import {LoginComponent} from "./components/login/login.component";
+import {AuthComponent} from "./components/auth/auth.component";
+import {AuthDirective} from "./components/auth/auth.directive";
 
 @NgModule({
     imports: [
@@ -15,11 +17,15 @@ import {LoginComponent} from "./components/login/login.component";
     ],
     exports: [
         RegistrationComponent,
-        LoginComponent
+        LoginComponent,
+        AuthComponent,
+        AuthDirective
     ],
     declarations: [
         RegistrationComponent,
-        LoginComponent
+        LoginComponent,
+        AuthComponent,
+        AuthDirective
     ]
 })
 export class CoreModule {

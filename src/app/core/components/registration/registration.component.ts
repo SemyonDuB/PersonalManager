@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {ChangeAuthTypeService} from "../../services/change-auth-type.service";
 
 @Component({
     selector: 'app-registration',
@@ -18,7 +19,8 @@ export class RegistrationComponent {
         confirmPassword: new FormControl('', Validators.required)
     }, this.checkPasswords);
 
-    constructor(private _authService: AuthService) {
+    constructor(private readonly _authService: AuthService,
+                private readonly _changeAuthTypeService: ChangeAuthTypeService) {
     }
 
     public onSubmit(): void {
@@ -28,6 +30,10 @@ export class RegistrationComponent {
         this._authService
             .register(username, password)
             .subscribe();
+    }
+
+    public changeAuthType(): void {
+        this._changeAuthTypeService.changeAuthType();
     }
 
     private checkPasswords(group: AbstractControl): ValidationErrors | null {
