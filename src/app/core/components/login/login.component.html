@@ -1,0 +1,9 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <label for="username">Имя пользователя:</label>
+    <input id="username" type="text" formControlName="username">
+
+    <label for="password">Пароль:</label>
+    <input id="password" type="password" formControlName="password">
+
+    <button type="submit" [disabled]="!loginForm.valid">Подтвердить</button>
+</form>
