@@ -19,8 +19,9 @@ import {
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
 import {AccountButtonComponent} from "./components/account-button/account-button.component";
+import {MenuBarComponent} from "./components/menu-bar/menu-bar.component";
 
-const modules = [
+const modules: TuiRootModule[] = [
     ReactiveFormsModule,
     BrowserAnimationsModule,
     TuiRootModule,
@@ -46,10 +47,12 @@ const modules = [
     ],
     exports: [
         modules,
-        AccountButtonComponent
+        AccountButtonComponent,
+        MenuBarComponent
     ],
     declarations: [
-        AccountButtonComponent
+        AccountButtonComponent,
+        MenuBarComponent
     ]
 })
 export class SharedModule {

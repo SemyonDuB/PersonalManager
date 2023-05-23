@@ -1,8 +1,5 @@
-<employee-table-menu
-    (openFilters)="toggleOpeningFilters()"
-    [isOpenFilters]="isOpenFilters"
->
-</employee-table-menu>
+<menu-bar (clickFilter)="toggleOpeningFilters()" [isOpenFilters]="isOpenFilters">
+</menu-bar>
 <employee-table-filters *ngIf="isOpenFilters">
 </employee-table-filters>
 <div class="table-container">

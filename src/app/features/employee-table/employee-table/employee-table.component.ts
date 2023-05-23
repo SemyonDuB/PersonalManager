@@ -11,7 +11,7 @@ type DataInput = [(Partial<EmployeeModel> | null), (keyof EmployeeModel | null),
     selector: 'app-employee-table',
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './employee-table.component.html',
-    styleUrls: ['./employee-table.component.css'],
+    styleUrls: ['./employee-table.css'],
 })
 export class EmployeeTableComponent {
 

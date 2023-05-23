@@ -5,7 +5,7 @@ import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} f
 @Component({
     selector: 'app-registration',
     templateUrl: './registration.component.html',
-    styleUrls: ['./registration.component.css']
+    styleUrls: ['./registration.css']
 })
 export class RegistrationComponent {
     public registerForm: FormGroup<{
