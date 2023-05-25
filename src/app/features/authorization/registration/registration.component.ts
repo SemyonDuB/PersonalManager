@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from "../../../core/services/auth.service";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
-import {ChangeAuthTypeService} from "../../services/change-auth-type.service";
+import {AuthModalService} from "../../../core/services/auth-modal.service";
 
 @Component({
     selector: 'app-registration',
@@ -20,7 +20,7 @@ export class RegistrationComponent {
     }, this.checkPasswords);
 
     constructor(private readonly _authService: AuthService,
-                private readonly _changeAuthTypeService: ChangeAuthTypeService) {
+                private readonly _changeAuthTypeService: AuthModalService) {
     }
 
     public onSubmit(): void {
@@ -33,7 +33,7 @@ export class RegistrationComponent {
     }
 
     public changeAuthType(): void {
-        this._changeAuthTypeService.changeAuthType();
+        this._changeAuthTypeService.toggleAuthType();
     }
 
     private checkPasswords(group: AbstractControl): ValidationErrors | null {

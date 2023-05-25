@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from "../../../core/services/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ChangeAuthTypeService} from "../../services/change-auth-type.service";
+import {AuthModalService} from "../../../core/services/auth-modal.service";
 
 @Component({
     selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent {
     });
 
     constructor(private readonly _authService: AuthService,
-                private readonly _changeAuthTypeService: ChangeAuthTypeService) {
+                private readonly _authModalService: AuthModalService) {
     }
 
     public onSubmit(): void {
@@ -28,6 +28,6 @@ export class LoginComponent {
     }
 
     public changeAuthType(): void {
-        this._changeAuthTypeService.changeAuthType();
+        this._authModalService.toggleAuthType();
     }
 }

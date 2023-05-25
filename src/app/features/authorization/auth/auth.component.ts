@@ -1,5 +1,5 @@
 import {
-    Component,
+    Component, OnDestroy,
     OnInit,
     ViewChild,
     ViewContainerRef
@@ -7,7 +7,7 @@ import {
 import {LoginComponent} from "../login/login.component";
 import {RegistrationComponent} from "../registration/registration.component";
 import {AuthDirective} from "./auth.directive";
-import {ChangeAuthTypeService} from "../../services/change-auth-type.service";
+import {AuthModalService} from "../../../core/services/auth-modal.service";
 
 @Component({
     selector: 'app-auth',
@@ -19,7 +19,7 @@ export class AuthComponent implements OnInit {
     @ViewChild(AuthDirective, {static: true}) public authHost!: AuthDirective;
 
     public isRenderedLogIn: boolean = false;
-    constructor( private readonly _changeAuthTypeService: ChangeAuthTypeService) {
+    constructor(private readonly _authModalService: AuthModalService) {
     }
 
     public loadAuthComponent(): void {
@@ -33,11 +33,10 @@ export class AuthComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this._changeAuthTypeService.type$.subscribe((): void => {
+        this._authModalService.isLogInType$.subscribe((): void => {
             this.isRenderedLogIn = !this.isRenderedLogIn;
             this.loadAuthComponent();
         });
         this.loadAuthComponent();
     }
-
 }

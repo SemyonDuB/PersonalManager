@@ -20,8 +20,11 @@ import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
 import {AccountButtonComponent} from "./components/account-button/account-button.component";
 import {MenuBarComponent} from "./components/menu-bar/menu-bar.component";
+import {RouterLink} from "@angular/router";
+import {CommonModule} from "@angular/common";
 
 const modules: TuiRootModule[] = [
+    CommonModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     TuiRootModule,
@@ -43,7 +46,8 @@ const modules: TuiRootModule[] = [
 
 @NgModule({
     imports: [
-        modules
+        modules,
+        RouterLink
     ],
     exports: [
         modules,

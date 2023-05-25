@@ -1,9 +1,10 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {EmployeeTableService} from "../../../core/services/employee-table.service";
 import {EmployeeModel} from "../../../core/models/employee.model";
 import {Router} from '@angular/router';
-import {combineLatest, filter, map, Observable, switchMap} from "rxjs";
+import {combineLatest, filter, map, Observable, Subject, switchMap} from "rxjs";
 import {tuiIsPresent} from "@taiga-ui/cdk";
+import {AuthModalService} from "../../../core/services/auth-modal.service";
 
 type DataInput = [(Partial<EmployeeModel> | null), (keyof EmployeeModel | null), (1 | -1)];
 
@@ -42,8 +43,8 @@ export class EmployeeTableComponent {
     );
 
     constructor(
-        private _router: Router,
-        public employeeService: EmployeeTableService
+        public employeeService: EmployeeTableService,
+        private _router: Router
     ) {
     }
 
@@ -55,7 +56,7 @@ export class EmployeeTableComponent {
      * Навигация на страницу детальной инфы
      */
     public navigateToDetailInfo(): void {
-        this._router.navigateByUrl('/employee-editor');
+        this._router.navigateByUrl('/employee-editor').then();
     }
 
 }

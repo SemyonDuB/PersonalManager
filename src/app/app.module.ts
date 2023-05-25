@@ -10,6 +10,7 @@ import {CoreModule} from "./core/core.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {EmployeeEditorModule} from "./features/employee-editor/employee-editor.module";
 import {EmployeeTableModule} from "./features/employee-table/employee-table.module";
+import {AuthorizationModule} from "./features/authorization/authorization.module";
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import {EmployeeTableModule} from "./features/employee-table/employee-table.modu
         CoreModule,
         AppRoutingModule,
         EmployeeEditorModule,
-        EmployeeTableModule
+        EmployeeTableModule,
+        AuthorizationModule
     ],
     declarations: [
         AppComponent,
