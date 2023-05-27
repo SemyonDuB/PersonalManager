@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {LoginComponent} from '../login/login.component';
 import {RegistrationComponent} from '../registration/registration.component';
-import {AuthDirective} from './auth.directive';
+import {ComponentHostDirective} from '../../../shared/directives/component-host.directive';
 import {AuthModalService} from '../../../core/services/auth-modal.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {fromEvent, Observable, Subscription} from 'rxjs';
 
 @Component({
@@ -13,14 +13,15 @@ import {fromEvent, Observable, Subscription} from 'rxjs';
 })
 export class AuthComponent implements OnInit {
 
-    @ViewChild(AuthDirective, {static: true}) public authHost!: AuthDirective;
+    @ViewChild(ComponentHostDirective, {static: true}) public authHost!: ComponentHostDirective;
     public isRenderedLogIn: boolean = false;
 
     private _documentClick$: Observable<Event> = fromEvent(document, 'click');
     private _documentKeyDown$: Observable<Event> = fromEvent(document, 'keydown');
     private _subscriptions: Subscription[] = [];
     constructor(private readonly _authModalService: AuthModalService,
-                private readonly _router: Router) {
+                private readonly _router: Router,
+                private readonly _route: ActivatedRoute) {
     }
 
     public loadAuthComponent(): void {
@@ -75,6 +76,6 @@ export class AuthComponent implements OnInit {
 
     public closeModal(): void {
         this._subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
-        this._router.navigateByUrl('').then();
+        this._router.navigate(['./'], {relativeTo: this._route.parent}).then();
     }
 }

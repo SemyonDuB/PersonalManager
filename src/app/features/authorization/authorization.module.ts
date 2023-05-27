@@ -3,7 +3,6 @@ import {SharedModule} from "../../shared/shared.module";
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {AuthComponent} from "./auth/auth.component";
-import {AuthDirective} from "./auth/auth.directive";
 
 @NgModule({
     imports: [
@@ -13,7 +12,6 @@ import {AuthDirective} from "./auth/auth.directive";
         LoginComponent,
         RegistrationComponent,
         AuthComponent,
-        AuthDirective
     ],
     exports: [
         RegistrationComponent
