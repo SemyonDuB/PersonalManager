@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {LoginComponent} from '../login/login.component';
 import {RegistrationComponent} from '../registration/registration.component';
 import {AuthDirective} from './auth.directive';
@@ -33,32 +33,43 @@ export class AuthComponent implements OnInit {
         }
     }
 
-    public ngOnInit(): void {
+    public changingLogInTypeSubscribe(): void {
         this._authModalService.isLogInType$.subscribe((): void => {
             this.isRenderedLogIn = !this.isRenderedLogIn;
             this.loadAuthComponent();
         });
-        this.loadAuthComponent();
+    }
 
-        const context: AuthComponent = this;
-        setTimeout(function(): void {
-            const clickSubscription: Subscription =
-                context._documentClick$.subscribe((evt: Event): void => {
+    public clickOutsideSubscribe(context: AuthComponent): void {
+        const clickSubscription: Subscription =
+            context._documentClick$.subscribe((evt: Event): void => {
                     const authRef: Element = document.querySelector('.auth')!;
                     if (!evt.composedPath().includes(authRef!)) {
                         context.closeModal();
                     }
-                }
-            );
-            const keyDownSubscription: Subscription =
-                context._documentKeyDown$.subscribe((evt: Event): void => {
+            });
+        context._subscriptions.push(clickSubscription);
+    }
+
+    public keyDownSubscribe(context: AuthComponent): void {
+        const keyDownSubscription: Subscription =
+            context._documentKeyDown$.subscribe((evt: Event): void => {
                     if ((evt as KeyboardEvent).code === 'Escape') {
                         context.closeModal();
                     }
                 }
             );
-            context._subscriptions.push(clickSubscription);
-            context._subscriptions.push(keyDownSubscription);
+        context._subscriptions.push(keyDownSubscription);
+    }
+
+    public ngOnInit(): void {
+        this.changingLogInTypeSubscribe();
+        this.loadAuthComponent();
+
+        const context: AuthComponent = this;
+        setTimeout(function(): void {
+            context.clickOutsideSubscribe(context);
+            context.keyDownSubscribe(context);
         }, 100);
     }
 
