@@ -9,3 +9,7 @@ app-root {
     margin: 0 auto 0 auto;
     display: block;
 }
+
+button:focus{
+    outline: 0;
+}

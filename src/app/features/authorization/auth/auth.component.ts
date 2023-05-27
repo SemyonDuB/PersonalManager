@@ -1,13 +1,10 @@
-import {
-    Component, OnDestroy,
-    OnInit,
-    ViewChild,
-    ViewContainerRef
-} from '@angular/core';
-import {LoginComponent} from "../login/login.component";
-import {RegistrationComponent} from "../registration/registration.component";
-import {AuthDirective} from "./auth.directive";
-import {AuthModalService} from "../../../core/services/auth-modal.service";
+import {Component, OnDestroy, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {LoginComponent} from '../login/login.component';
+import {RegistrationComponent} from '../registration/registration.component';
+import {AuthDirective} from './auth.directive';
+import {AuthModalService} from '../../../core/services/auth-modal.service';
+import {Router} from '@angular/router';
+import {fromEvent, Observable, Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-auth',
@@ -17,9 +14,13 @@ import {AuthModalService} from "../../../core/services/auth-modal.service";
 export class AuthComponent implements OnInit {
 
     @ViewChild(AuthDirective, {static: true}) public authHost!: AuthDirective;
-
     public isRenderedLogIn: boolean = false;
-    constructor(private readonly _authModalService: AuthModalService) {
+
+    private _documentClick$: Observable<Event> = fromEvent(document, 'click');
+    private _documentKeyDown$: Observable<Event> = fromEvent(document, 'keydown');
+    private _subscriptions: Subscription[] = [];
+    constructor(private readonly _authModalService: AuthModalService,
+                private readonly _router: Router) {
     }
 
     public loadAuthComponent(): void {
@@ -38,5 +39,31 @@ export class AuthComponent implements OnInit {
             this.loadAuthComponent();
         });
         this.loadAuthComponent();
+
+        const context: AuthComponent = this;
+        setTimeout(function(): void {
+            const clickSubscription: Subscription =
+                context._documentClick$.subscribe((evt: Event): void => {
+                    const authRef: Element = document.querySelector('.auth')!;
+                    if (!evt.composedPath().includes(authRef!)) {
+                        context.closeModal();
+                    }
+                }
+            );
+            const keyDownSubscription: Subscription =
+                context._documentKeyDown$.subscribe((evt: Event): void => {
+                    if ((evt as KeyboardEvent).code === 'Escape') {
+                        context.closeModal();
+                    }
+                }
+            );
+            context._subscriptions.push(clickSubscription);
+            context._subscriptions.push(keyDownSubscription);
+        }, 100);
+    }
+
+    public closeModal(): void {
+        this._subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+        this._router.navigateByUrl('').then();
     }
 }
