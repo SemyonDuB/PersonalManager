@@ -64,6 +64,7 @@ export class AuthComponent implements OnInit {
     }
 
     public ngOnInit(): void {
+        this._authModalService.changeModalOpening(true);
         this.changingLogInTypeSubscribe();
         this.loadAuthComponent();
 
@@ -75,6 +76,7 @@ export class AuthComponent implements OnInit {
     }
 
     public closeModal(): void {
+        this._authModalService.changeModalOpening(false);
         this._subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
         this._router.navigate(['./'], {relativeTo: this._route.parent}).then();
     }

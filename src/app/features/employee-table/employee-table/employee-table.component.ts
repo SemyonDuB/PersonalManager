@@ -1,9 +1,10 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {EmployeeTableService} from "../../../core/services/employee-table.service";
 import {EmployeeModel} from "../../../core/models/employee.model";
 import {Router} from '@angular/router';
 import {combineLatest, filter, map, Observable, switchMap} from "rxjs";
 import {tuiIsPresent} from "@taiga-ui/cdk";
+import {AuthModalService} from "../../../core/services/auth-modal.service";
 
 type DataInput = [(Partial<EmployeeModel> | null), (keyof EmployeeModel | null), (1 | -1)];
 
@@ -13,9 +14,10 @@ type DataInput = [(Partial<EmployeeModel> | null), (keyof EmployeeModel | null),
     templateUrl: './employee-table.component.html',
     styleUrls: ['./employee-table.css'],
 })
-export class EmployeeTableComponent {
+export class EmployeeTableComponent implements OnInit{
 
     public isOpenFilters: boolean = false;
+    public isOpenModal!: boolean;
 
     public readonly columns: string[] = [
         "fullName",
@@ -42,9 +44,19 @@ export class EmployeeTableComponent {
     );
 
     constructor(
+        public authModalService: AuthModalService,
         public employeeService: EmployeeTableService,
-        private _router: Router
+        private _router: Router,
+        public changeRef: ChangeDetectorRef
     ) {
+    }
+
+    public ngOnInit(): void {
+        const context: EmployeeTableComponent = this;
+        this.authModalService.isModalOpening$.subscribe(function(isModalOpening: boolean): void {
+            context.isOpenModal = isModalOpening;
+            context.changeRef.markForCheck();
+        });
     }
 
     public toggleOpeningFilters(): void {

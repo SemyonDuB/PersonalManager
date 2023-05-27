@@ -45,6 +45,6 @@ table tr:last-child * {
     border-bottom: none;
 }
 
-.disabled {
+.disabled-container {
     pointer-events: none;
 }

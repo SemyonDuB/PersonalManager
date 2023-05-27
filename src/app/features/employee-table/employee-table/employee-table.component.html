@@ -1,6 +1,6 @@
 <router-outlet>
 </router-outlet>
-<div>
+<div [class.disabled-container]="isOpenModal">
     <menu-bar (clickFilter)="toggleOpeningFilters()" [isOpenFilters]="isOpenFilters">
     </menu-bar>
     <employee-table-filters *ngIf="isOpenFilters">
