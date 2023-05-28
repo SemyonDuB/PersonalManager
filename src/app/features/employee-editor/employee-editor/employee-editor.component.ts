@@ -1,7 +1,16 @@
-import {ChangeDetectionStrategy, Component, AfterViewInit} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    AfterViewInit,
+    ViewChild,
+    ViewContainerRef,
+    OnInit
+} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {TuiDay} from "@taiga-ui/cdk";
 import {Subscription} from "rxjs";
+import {ComponentHostDirective} from "../../../shared/directives/component-host.directive";
+import {CabinetModalService} from "../../../core/services/cabinet-modal.service";
+import {CabinetComponent} from "../../../shared/components/cabinet/cabinet.component";
 
 type ShortDate = {year: number, month: number, day: number};
 type IntervalControlNames = {startName: string, endName: string};
@@ -13,17 +22,14 @@ type NamedIntervalControlNames = IntervalControlNames & {textName: string};
     styleUrls: ['./employee-editor.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmployeeEditorComponent implements AfterViewInit {
+export class EmployeeEditorComponent implements OnInit, AfterViewInit {
 
+    @ViewChild(ComponentHostDirective, {static: true}) public cabinetHost!: ComponentHostDirective;
     public imgPath: string = "../../../assets/img/sample_photo.png";
 
     public age: number | undefined;
-    public ageWord: string | undefined;
-
     public yearWorkExp: number | undefined;
-    public yearExpWord: string | undefined;
     public monthWorkExp: number | undefined;
-    public monthExpWord: string | undefined;
 
     public basicVacationControlNames: IntervalControlNames = {startName: "vacationStart", endName: "vacationEnd"};
     public vacationsHistory: IntervalControlNames[] = new Array<IntervalControlNames>({
@@ -61,6 +67,30 @@ export class EmployeeEditorComponent implements AfterViewInit {
         "vacancyName0" : new FormControl("")
     });
 
+    constructor(private readonly _cabinetModalService: CabinetModalService) {
+    }
+    
+    public ngOnInit(): void {
+        const context: EmployeeEditorComponent = this;
+        this._cabinetModalService.isModalOpen$.subscribe(function(isModalOpening: boolean): void {
+            if (isModalOpening) {
+                context.loadCabinetModal();
+            } else {
+                context.clearCabinetModal();
+            }
+        });
+    }
+
+    public loadCabinetModal(): void {
+        const containerRef: ViewContainerRef = this.cabinetHost.viewContainerRef;
+        containerRef.clear();
+        containerRef.createComponent<CabinetComponent>(CabinetComponent);
+    }
+
+    public clearCabinetModal(): void {
+        this.cabinetHost.viewContainerRef.clear();
+    }
+
     public ngAfterViewInit(): void {
         this.employeeForm.get("employeeBirth")?.valueChanges.subscribe((newBirthDate: ShortDate) => {
             this.age = this.calculateDateDifference(newBirthDate).year;
@@ -70,13 +100,7 @@ export class EmployeeEditorComponent implements AfterViewInit {
         this.employeeForm.get("employeeFirstWorkDay")?.valueChanges.subscribe((newStartDate: ShortDate) => {
             const dateDifference: ShortDate = this.calculateDateDifference(newStartDate);
             this.yearWorkExp = dateDifference.year;
-            // if (this.yearWorkExp > 0) {
-            //     this.yearExpWord = this.declineYearWord(this.yearWorkExp);
-            // }
             this.monthWorkExp = dateDifference.month;
-            // if (this.monthWorkExp > 0) {
-            //     this.monthExpWord = this.declineMonthWord(this.monthWorkExp);
-            // }
         });
 
         this.subscribeVacationFields(this.vacationsHistory[0]!.startName, 1);
