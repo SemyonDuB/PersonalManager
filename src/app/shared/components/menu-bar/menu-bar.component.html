@@ -1,0 +1,6 @@
+<header [class.little]="isOpenFilters">
+    <button class="add-button" *ngIf="isTablePage" title="Добавить работника"></button>
+    <button class="remove-button" *ngIf="isTablePage" title="Удалить работника"></button>
+    <button class="filter-button" (click)="onFilterClick()" *ngIf="isTablePage" title="Отфильтровать"></button>
+    <account-button></account-button>
+</header>

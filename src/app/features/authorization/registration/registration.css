@@ -1,0 +1,91 @@
+.container {
+    background: #FFFFFF;
+    position: fixed;
+    z-index: 1000;
+    padding: 35px 10px 20px 10px;
+    border-radius: 22px;
+    overflow-y: scroll;
+    box-shadow: 0 0 250px 1000px rgba(0, 0, 0, 0.25);
+
+    width: calc(100vw - 60px);
+    max-width: 500px;
+    left: calc(50vw - min(260px, calc(50vw - 20px)));
+
+    height: calc(100vh - 50px);
+    max-height: 380px;
+    top: calc(42vh - min(188px, calc(42vh - 10px)));
+}
+
+.container::-webkit-scrollbar {
+    width: 0;
+}
+
+h1 {
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    display: block;
+    margin: 0 0 25px 40px;
+    color: #235759;
+}
+
+tui-input {
+    margin: 25px 40px 0 40px;
+}
+
+form tui-input:first-child {
+    margin-top: 0;
+}
+
+.registration-button {
+    width: 210px;
+    height: 44px;
+    background: url("src/assets/img/registration_button.png") no-repeat;
+    background-size: 210px 44px;
+    border: none;
+    cursor: pointer;
+    display: block;
+
+    margin: 30px auto 0 auto;
+}
+
+.registration-button:hover {
+    background: url("src/assets/img/registration_button_hover.png") no-repeat;
+    background-size: 210px 44px;
+}
+
+.registration-button:active {
+    background: url("src/assets/img/registration_button_active.png") no-repeat;
+    background-size: 210px 44px;
+}
+
+.registration-button:disabled {
+    background: url("src/assets/img/registration_button_disabled.png") no-repeat;
+    background-size: 210px 44px;
+    cursor: auto;
+}
+
+.login-button {
+    border: none;
+    cursor: pointer;
+    background: none;
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #235759;
+    display: block;
+    padding: 10px;
+
+    margin: 0 auto 0 auto;
+}
+
+.login-button:hover {
+    color: #12393A;
+}
+
+.login-button:active {
+    text-shadow: 0 4px 12px rgba(35, 87, 89, 0.4);
+    color: #235759;
+}

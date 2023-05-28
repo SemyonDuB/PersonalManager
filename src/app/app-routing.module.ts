@@ -5,6 +5,16 @@ import {PageNotFoundComponent} from "./features/page-not-found/page-not-found.co
 import {TableFiltersComponent} from "./features/employee-table/filters/table-filters.component";
 import {EmployeeEditorComponent} from "./features/employee-editor/employee-editor/employee-editor.component";
 import {EmployeeTableComponent} from "./features/employee-table/employee-table/employee-table.component";
+import {AuthComponent} from "./features/authorization/auth/auth.component";
+import {AuthGuard} from "./auth.guard";
+
+const authRoutes: Routes = [
+    {
+        path: 'auth',
+        pathMatch: 'full',
+        component: AuthComponent
+    }
+];
 
 const routes: Routes = [
     {
@@ -15,15 +25,15 @@ const routes: Routes = [
     {
         /** Таблица работников */
         path: 'employee-table',
-        pathMatch: 'full',
-        component: EmployeeTableComponent
+        component: EmployeeTableComponent,
+        children: authRoutes
     },
-
     {
         /** Редактирование работника */
         path: 'employee-editor',
-        pathMatch: 'full',
-        component: EmployeeEditorComponent
+        component: EmployeeEditorComponent,
+        children: authRoutes,
+        canActivate: [AuthGuard]
     },
     {
         path: 'filters',
@@ -35,7 +45,6 @@ const routes: Routes = [
         pathMatch: 'full',
         component: PageNotFoundComponent
     }
-
 ];
 
 @NgModule({

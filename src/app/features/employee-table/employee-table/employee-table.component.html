@@ -1,11 +1,10 @@
-<employee-table-menu
-    (openFilters)="toggleOpeningFilters()"
-    [isOpenFilters]="isOpenFilters"
->
-</employee-table-menu>
+<router-outlet></router-outlet>
+<menu-bar (clickFilter)="toggleOpeningFilters()" [isOpenFilters]="isOpenFilters">
+</menu-bar>
+<ng-template componentsHost></ng-template>
 <employee-table-filters *ngIf="isOpenFilters">
 </employee-table-filters>
-<div class="table-container">
+<div [class.disabled-container]="isOpenModal" class="table-container">
     <table
         tuiTable
         *ngIf="data$ | async as data"

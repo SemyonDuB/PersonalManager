@@ -1,17 +1,22 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {SharedModule} from "../../shared/shared.module";
 import {EmployeeTableComponent} from "./employee-table/employee-table.component";
-import {TableMenuComponent} from "./table-menu/table-menu.component";
 import {TableFiltersComponent} from "./filters/table-filters.component";
+import {AuthorizationModule} from "../authorization/authorization.module";
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     imports: [
+        RouterModule,
         SharedModule,
+        AuthorizationModule
     ],
     declarations: [
         EmployeeTableComponent,
-        TableMenuComponent,
         TableFiltersComponent
+    ],
+    exports: [
+        EmployeeTableComponent
     ]
 })
 export class EmployeeTableModule{

@@ -1,0 +1,15 @@
+<div class="container">
+    <h1>Вход в аккаунт</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="b-form">
+        <tui-input formControlName="username">
+            Имя пользователя
+            <input tuiTextfield type="text">
+        </tui-input>
+        <tui-input formControlName="password">
+            Пароль
+            <input tuiTextfield type="password">
+        </tui-input>
+        <button type="submit" [disabled]="!loginForm.valid" class="login-button"></button>
+    </form>
+    <button class="registration-button" (click)="changeAuthType()">Зарегистрироваться</button>
+</div>
