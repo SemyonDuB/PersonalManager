@@ -46,6 +46,7 @@ export class AuthComponent implements OnInit {
             context._documentClick$.subscribe((evt: Event): void => {
                     const authRef: Element = document.querySelector('.auth')!;
                     if (!evt.composedPath().includes(authRef!)) {
+                        context._authModalService.changeModalOpening(false);
                         context.closeModal();
                     }
             });
@@ -56,6 +57,7 @@ export class AuthComponent implements OnInit {
         const keyDownSubscription: Subscription =
             context._documentKeyDown$.subscribe((evt: Event): void => {
                     if ((evt as KeyboardEvent).code === 'Escape') {
+                        context._authModalService.changeModalOpening(false);
                         context.closeModal();
                     }
                 }
@@ -65,10 +67,15 @@ export class AuthComponent implements OnInit {
 
     public ngOnInit(): void {
         this._authModalService.changeModalOpening(true);
+        const context: AuthComponent = this;
+        this._authModalService.isModalOpening$.subscribe(function (isOpening: boolean): void {
+            if (!isOpening) {
+                context.closeModal();
+            }
+        });
         this.changingLogInTypeSubscribe();
         this.loadAuthComponent();
 
-        const context: AuthComponent = this;
         setTimeout(function(): void {
             context.clickOutsideSubscribe(context);
             context.keyDownSubscribe(context);
@@ -76,7 +83,6 @@ export class AuthComponent implements OnInit {
     }
 
     public closeModal(): void {
-        this._authModalService.changeModalOpening(false);
         this._subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
         this._router.navigate(['./'], {relativeTo: this._route.parent}).then();
     }

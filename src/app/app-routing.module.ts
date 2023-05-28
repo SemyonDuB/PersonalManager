@@ -6,6 +6,7 @@ import {TableFiltersComponent} from "./features/employee-table/filters/table-fil
 import {EmployeeEditorComponent} from "./features/employee-editor/employee-editor/employee-editor.component";
 import {EmployeeTableComponent} from "./features/employee-table/employee-table/employee-table.component";
 import {AuthComponent} from "./features/authorization/auth/auth.component";
+import {AuthGuard} from "./auth.guard";
 
 const authRoutes: Routes = [
     {
@@ -31,7 +32,8 @@ const routes: Routes = [
         /** Редактирование работника */
         path: 'employee-editor',
         component: EmployeeEditorComponent,
-        children: authRoutes
+        children: authRoutes,
+        canActivate: [AuthGuard]
     },
     {
         path: 'filters',

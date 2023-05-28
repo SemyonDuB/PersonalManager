@@ -52,10 +52,9 @@ export class AuthService {
                 }
 
                 const maxId: number = Math.max(...users.map((user: User) => user.id));
-
                 const user: User = new User(maxId, username, password);
-
                 this._registeredUsers.push(user);
+                window.localStorage["jwt"] = "randomString";
 
                 return user;
             })

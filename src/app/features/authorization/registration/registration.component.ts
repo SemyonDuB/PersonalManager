@@ -20,7 +20,8 @@ export class RegistrationComponent {
     }, this.checkPasswords);
 
     constructor(private readonly _authService: AuthService,
-                private readonly _changeAuthTypeService: AuthModalService) {
+                private readonly _changeAuthTypeService: AuthModalService,
+                private readonly _authModalService: AuthModalService) {
     }
 
     public onSubmit(): void {
@@ -30,6 +31,7 @@ export class RegistrationComponent {
         this._authService
             .register(username, password)
             .subscribe();
+        this._authModalService.changeModalOpening(false);
     }
 
     public changeAuthType(): void {

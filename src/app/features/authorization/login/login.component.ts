@@ -25,6 +25,7 @@ export class LoginComponent {
         this._authService
             .login(this.loginForm.value.username!, this.loginForm.value.password!)
             .subscribe();
+        this._authModalService.changeModalOpening(false);
     }
 
     public changeAuthType(): void {
