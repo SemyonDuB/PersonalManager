@@ -14,7 +14,7 @@ import {tuiIsPresent} from "@taiga-ui/cdk";
 import {AuthModalService} from "../../../core/services/auth-modal.service";
 import {ComponentHostDirective} from "../../../shared/directives/component-host.directive";
 import {CabinetModalService} from "../../../core/services/cabinet-modal.service";
-import {CabinetComponent} from "../cabinet/cabinet.component";
+import {CabinetComponent} from "../../../shared/components/cabinet/cabinet.component";
 
 type DataInput = [(Partial<EmployeeModel> | null), (keyof EmployeeModel | null), (1 | -1)];
 

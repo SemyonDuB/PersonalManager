@@ -23,6 +23,7 @@ import {MenuBarComponent} from "./components/menu-bar/menu-bar.component";
 import {RouterLink} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {ComponentHostDirective} from "./directives/component-host.directive";
+import {CabinetComponent} from "./components/cabinet/cabinet.component";
 
 const modules: TuiRootModule[] = [
     CommonModule,
@@ -54,12 +55,14 @@ const modules: TuiRootModule[] = [
         modules,
         AccountButtonComponent,
         MenuBarComponent,
-        ComponentHostDirective
+        ComponentHostDirective,
+        CabinetComponent
     ],
     declarations: [
         AccountButtonComponent,
         MenuBarComponent,
-        ComponentHostDirective
+        ComponentHostDirective,
+        CabinetComponent
     ]
 })
 export class SharedModule {
