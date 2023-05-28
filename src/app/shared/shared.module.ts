@@ -24,6 +24,7 @@ import {RouterLink} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {ComponentHostDirective} from "./directives/component-host.directive";
 import {CabinetComponent} from "./components/cabinet/cabinet.component";
+import {DeclensionPipe} from "./pipes/declension.pipe";
 
 const modules: TuiRootModule[] = [
     CommonModule,
@@ -56,12 +57,14 @@ const modules: TuiRootModule[] = [
         AccountButtonComponent,
         MenuBarComponent,
         ComponentHostDirective,
+        DeclensionPipe,
         CabinetComponent
     ],
     declarations: [
         AccountButtonComponent,
         MenuBarComponent,
         ComponentHostDirective,
+        DeclensionPipe,
         CabinetComponent
     ]
 })
