@@ -11,7 +11,7 @@ import {AuthComponent} from "./auth/auth.component";
     declarations: [
         LoginComponent,
         RegistrationComponent,
-        AuthComponent,
+        AuthComponent
     ],
     exports: [
         RegistrationComponent

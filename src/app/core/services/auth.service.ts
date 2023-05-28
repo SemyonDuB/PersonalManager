@@ -38,6 +38,7 @@ export class AuthService {
                 }
 
                 window.localStorage["jwt"] = "randomString";
+                window.localStorage["name"] = username;
 
                 return result!;
             })
@@ -55,6 +56,7 @@ export class AuthService {
                 const user: User = new User(maxId, username, password);
                 this._registeredUsers.push(user);
                 window.localStorage["jwt"] = "randomString";
+                window.localStorage["name"] = username;
 
                 return user;
             })

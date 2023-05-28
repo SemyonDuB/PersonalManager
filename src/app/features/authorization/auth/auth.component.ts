@@ -13,7 +13,7 @@ import {fromEvent, Observable, Subscription} from 'rxjs';
 })
 export class AuthComponent implements OnInit {
 
-    @ViewChild(ComponentHostDirective, {static: true}) public authHost!: ComponentHostDirective;
+    @ViewChild(ComponentHostDirective, {static: true}) public componentsHost!: ComponentHostDirective;
     public isRenderedLogIn: boolean = false;
 
     private _documentClick$: Observable<Event> = fromEvent(document, 'click');
@@ -25,7 +25,7 @@ export class AuthComponent implements OnInit {
     }
 
     public loadAuthComponent(): void {
-        const containerRef: ViewContainerRef = this.authHost.viewContainerRef;
+        const containerRef: ViewContainerRef = this.componentsHost.viewContainerRef;
         containerRef.clear();
         if (this.isRenderedLogIn) {
             containerRef.createComponent<RegistrationComponent>(RegistrationComponent);

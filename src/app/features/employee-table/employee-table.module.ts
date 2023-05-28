@@ -4,6 +4,7 @@ import {EmployeeTableComponent} from "./employee-table/employee-table.component"
 import {TableFiltersComponent} from "./filters/table-filters.component";
 import {AuthorizationModule} from "../authorization/authorization.module";
 import {RouterModule} from '@angular/router';
+import {CabinetComponent} from "./cabinet/cabinet.component";
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import {RouterModule} from '@angular/router';
     ],
     declarations: [
         EmployeeTableComponent,
-        TableFiltersComponent
+        TableFiltersComponent,
+        CabinetComponent
     ],
     exports: [
         EmployeeTableComponent
