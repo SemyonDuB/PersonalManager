@@ -14,7 +14,7 @@
                     Имя
                     <input tuiTextfield type="text" title="Фамилия, имя и отчество" id="name"/>
                 </tui-input>
-                <p *ngIf="age && ageWord" class="age">{{age}} {{ageWord}}</p>
+                <p *ngIf="age" class="age">{{age}} {{age | declension:'year' }}</p>
                 <tui-input tuiTextfieldSize="m"
                            formControlName="employeeJob"
                            class="job-field"
@@ -28,10 +28,10 @@
                         Опыт работы в компании:
                     </p>
                     <p *ngIf="yearWorkExp">
-                        {{yearWorkExp}} {{yearExpWord}}
+                        {{yearWorkExp}} {{yearWorkExp | declension:'year'}}
                     </p>
                     <p *ngIf="monthWorkExp">
-                        {{monthWorkExp}} {{monthExpWord}}
+                        {{monthWorkExp}} {{monthWorkExp | declension: 'month'}}
                     </p>
                 </div>
             </div>

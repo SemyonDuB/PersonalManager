@@ -64,19 +64,19 @@ export class EmployeeEditorComponent implements AfterViewInit {
     public ngAfterViewInit(): void {
         this.employeeForm.get("employeeBirth")?.valueChanges.subscribe((newBirthDate: ShortDate) => {
             this.age = this.calculateDateDifference(newBirthDate).year;
-            this.ageWord = this.declineYearWord(this.age);
+
         });
 
         this.employeeForm.get("employeeFirstWorkDay")?.valueChanges.subscribe((newStartDate: ShortDate) => {
             const dateDifference: ShortDate = this.calculateDateDifference(newStartDate);
             this.yearWorkExp = dateDifference.year;
-            if (this.yearWorkExp > 0) {
-                this.yearExpWord = this.declineYearWord(this.yearWorkExp);
-            }
+            // if (this.yearWorkExp > 0) {
+            //     this.yearExpWord = this.declineYearWord(this.yearWorkExp);
+            // }
             this.monthWorkExp = dateDifference.month;
-            if (this.monthWorkExp > 0) {
-                this.monthExpWord = this.declineMonthWord(this.monthWorkExp);
-            }
+            // if (this.monthWorkExp > 0) {
+            //     this.monthExpWord = this.declineMonthWord(this.monthWorkExp);
+            // }
         });
 
         this.subscribeVacationFields(this.vacationsHistory[0]!.startName, 1);
@@ -145,21 +145,4 @@ export class EmployeeEditorComponent implements AfterViewInit {
         return {year: yearDifference, month: monthDifference, day: dayDifference};
     }
 
-    public declineNumberWord(number: number, nominative: string, parental: string, plural: string): string {
-        if (number.toString().slice(number.toString().length - 1) === '1') {
-            return nominative;
-        } else if ('234'.includes(number.toString().slice(number.toString().length - 1))) {
-            return parental;
-        } else {
-            return plural;
-        }
-    }
-
-    public declineYearWord(number: number): string {
-        return this.declineNumberWord(number, 'год', 'года', 'лет');
-    }
-
-    public declineMonthWord(number: number): string {
-        return this.declineNumberWord(number, 'месяц', 'месяца', 'месяцев');
-    }
 }
