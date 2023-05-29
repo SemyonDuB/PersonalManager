@@ -110,8 +110,8 @@ export class EmployeeTableComponent implements OnInit {
     /**
      * Навигация на страницу детальной инфы
      */
-    public navigateToDetailInfo(): void {
-        // this._router.navigateByUrl('/employee-editor').then();
+    public navigateToDetailInfo(index: number): void {
+        this._router.navigateByUrl(`/employee-editor/${index}`).then();
     }
 
 }

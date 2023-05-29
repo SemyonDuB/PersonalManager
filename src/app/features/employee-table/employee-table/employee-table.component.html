@@ -80,7 +80,7 @@
             tuiTbody
             [data]="sortedEmployees"
         >
-        <tr *ngFor="let item of sortedEmployees; let index = index" tuiTr (click)="navigateToDetailInfo()">
+        <tr *ngFor="let item of sortedEmployees; let index = index" tuiTr>
             <td
                 *tuiCell="'checkbox'"
                 tuiTd
@@ -90,42 +90,49 @@
             <td
                 *tuiCell="'fullName'"
                 tuiTd
+                (click)="navigateToDetailInfo(item.id)"
             >
                 {{ index + 1 }}. {{ item.fullName }}
             </td>
             <td
                 *tuiCell="'birthday'"
                 tuiTd
+                (click)="navigateToDetailInfo(item.id)"
             >
                 {{ item.birthday | date }}
             </td>
             <td
                 *tuiCell="'jobTitle'"
                 tuiTd
+                (click)="navigateToDetailInfo(item.id)"
             >
                 {{ item.jobTitle }}
             </td>
             <td
                 *tuiCell="'wage'"
                 tuiTd
+                (click)="navigateToDetailInfo(item.id)"
             >
                 {{ item.wage }}
             </td>
             <td
                 *tuiCell="'employmentDate'"
                 tuiTd
+                (click)="navigateToDetailInfo(item.id)"
             >
                 {{ item.employmentDate | date }}
             </td>
             <td
                 *tuiCell="'projectName'"
                 tuiTd
+                (click)="navigateToDetailInfo(item.id)"
             >
                 {{ item.projectName }}
             </td>
             <td
                 *tuiCell="'success'"
                 tuiTd
+                (click)="navigateToDetailInfo(item.id)"
             >
                 {{ item.success }}
             </td>

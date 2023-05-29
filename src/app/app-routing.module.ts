@@ -30,7 +30,7 @@ const routes: Routes = [
     },
     {
         /** Редактирование работника */
-        path: 'employee-editor',
+        path: 'employee-editor/:id',
         component: EmployeeEditorComponent,
         children: authRoutes,
         canActivate: [AuthGuard]

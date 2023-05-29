@@ -20,7 +20,30 @@ export class EmployeeTableService {
     public getData(filterBy: Partial<IEmployeeModel> | null,
                    sorterKey: keyof IEmployeeModel | null,
                    direction: 1 | -1): Observable<IEmployeeModel[]> {
-        let result: IEmployeeModel[] = [];
+        let result: IEmployeeModel[] = this.employees;
+
+        if (sorterKey !== null) {
+            result = result.sort(this.sortBy(sorterKey!, direction));
+        }
+
+        if (filterBy !== null) {
+            result = result.filter((employee: IEmployeeModel) =>
+                Object.keys(filterBy)
+                    .filter((key: string) => !!filterBy[key as keyof IEmployeeModel])
+                    .every((key: string) => {
+                        const employeeValue: string = employee[key as keyof IEmployeeModel]!.toString();
+                        const filterValue: string = filterBy[key as keyof IEmployeeModel]!.toString();
+
+                        return employeeValue.toLowerCase().includes(filterValue.toLowerCase());
+                    })
+            );
+        }
+
+        return of(result);
+    }
+
+    public get employees(): IEmployeeModel[] {
+        const result: IEmployeeModel[] = [];
 
         for (const e of employeesJson) {
             const career: ICareer[] = e.career.map(({date, name}: { date: string, name: string }) => <ICareer>{
@@ -49,24 +72,11 @@ export class EmployeeTableService {
             });
         }
 
-        if (sorterKey !== null) {
-            result = result.sort(this.sortBy(sorterKey!, direction));
-        }
+        return result;
+    }
 
-        if (filterBy !== null) {
-            result = result.filter((employee: IEmployeeModel) =>
-                Object.keys(filterBy)
-                    .filter((key: string) => !!filterBy[key as keyof IEmployeeModel])
-                    .every((key: string) => {
-                        const employeeValue: string = employee[key as keyof IEmployeeModel]!.toString();
-                        const filterValue: string = filterBy[key as keyof IEmployeeModel]!.toString();
-
-                        return employeeValue.toLowerCase().includes(filterValue.toLowerCase());
-                    })
-            );
-        }
-
-        return of(result);
+    public getEmployee(id: number): IEmployeeModel | undefined {
+        return this.employees.find((employee: IEmployeeModel) => employee.id === id);
     }
 
     public sortBy(key: keyof IEmployeeModel, direction: 1 | -1): TuiComparator<IEmployeeModel> {

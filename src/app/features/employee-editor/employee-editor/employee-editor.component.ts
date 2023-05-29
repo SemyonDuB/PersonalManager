@@ -7,10 +7,13 @@ import {
     OnInit
 } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Subscription} from "rxjs";
+import {filter, map, Subscription} from "rxjs";
 import {ComponentHostDirective} from "../../../shared/directives/component-host.directive";
 import {CabinetModalService} from "../../../core/services/cabinet-modal.service";
 import {CabinetComponent} from "../../../shared/components/cabinet/cabinet.component";
+import {ActivatedRoute} from "@angular/router";
+import {IEmployeeModel} from "../../../core/models/employee.model";
+import {EmployeeTableService} from "../../../core/services/employee-table.service";
 
 type ShortDate = {year: number, month: number, day: number};
 type IntervalControlNames = {startName: string, endName: string};
@@ -47,6 +50,8 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit {
     });
     public vacancySubs: Subscription[] = [];
 
+    public employee: IEmployeeModel | undefined = undefined;
+
     public employeeForm: FormGroup = new FormGroup({
         "employeeName": new FormControl("", [
             Validators.required
@@ -67,9 +72,23 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit {
         "vacancyName0" : new FormControl("")
     });
 
-    constructor(private readonly _cabinetModalService: CabinetModalService) {
+    constructor(private readonly _cabinetModalService: CabinetModalService,
+                private _route: ActivatedRoute,
+                private _employeeTableService: EmployeeTableService) {
+        const id: number = Number(_route.snapshot.paramMap.get('id')) ?? 0;
+
+        this.employee = _employeeTableService.getEmployee(id);
+
+        this.employeeForm.get("employeeName")?.setValue(this.employee?.fullName);
+        this.employeeForm.get("employeeJob")?.setValue(this.employee?.jobTitle);
+        this.employeeForm.get("employeeEducation")?.setValue(this.employee?.education);
+        this.employeeForm.get("employeeBirth")?.setValue(this.employee?.birthday);
+        this.employeeForm.get("employeeProject")?.setValue(this.employee?.projectName);
+        this.employeeForm.get("employeeInterviewDate")?.setValue(this.employee?.interviewDate);
+        this.employeeForm.get("employeeEmploymentDate")?.setValue(this.employee?.employmentDate);
+        this.employeeForm.get("employeeFirstWorkDay")?.setValue(this.employee?.firstWorkDay);
     }
-    
+
     public ngOnInit(): void {
         const context: EmployeeEditorComponent = this;
         this._cabinetModalService.isModalOpen$.subscribe(function(isModalOpening: boolean): void {
