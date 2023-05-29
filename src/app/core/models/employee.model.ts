@@ -1,9 +1,8 @@
-export interface Career {
-    date: Date;
-    name: string;
-}
+import {ICareer} from './career.model';
 
-export interface EmployeeModel {
+export interface IEmployeeModel {
+    id: number;
+
     fullName: string;
     birthday: Date;
     jobTitle: string;
@@ -17,5 +16,7 @@ export interface EmployeeModel {
     firstWorkDay: Date;
 
     holidayHistory: Date[];
-    career: Career[];
+    career: ICareer[];
+
+    checked: boolean;
 }

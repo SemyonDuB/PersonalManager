@@ -17,6 +17,13 @@
         <thead>
         <tr tuiThGroup>
             <th
+                *tuiHead="'checkbox'"
+                [sorter]="null"
+                tuiTh
+            >
+                <tui-checkbox [formControl]="onCheckedAll"></tui-checkbox>
+            </th>
+            <th
                 *tuiHead="'fullName'"
                 tuiTh
                 tuiSortable
@@ -74,6 +81,12 @@
             [data]="sortedEmployees"
         >
         <tr *ngFor="let item of sortedEmployees; let index = index" tuiTr (click)="navigateToDetailInfo()">
+            <td
+                *tuiCell="'checkbox'"
+                tuiTd
+            >
+                <tui-checkbox [(ngModel)]="item.checked"></tui-checkbox>
+            </td>
             <td
                 *tuiCell="'fullName'"
                 tuiTd

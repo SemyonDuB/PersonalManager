@@ -4,12 +4,14 @@ import {EmployeeTableComponent} from "./employee-table/employee-table.component"
 import {TableFiltersComponent} from "./filters/table-filters.component";
 import {AuthorizationModule} from "../authorization/authorization.module";
 import {RouterModule} from '@angular/router';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     imports: [
         RouterModule,
         SharedModule,
-        AuthorizationModule
+        AuthorizationModule,
+        FormsModule
     ],
     declarations: [
         EmployeeTableComponent,

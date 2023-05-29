@@ -7,16 +7,17 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import {EmployeeTableService} from '../../../core/services/employee-table.service';
-import {EmployeeModel} from '../../../core/models/employee.model';
+import {IEmployeeModel} from '../../../core/models/employee.model';
 import {Router} from '@angular/router';
-import {combineLatest, filter, map, Observable, switchMap} from 'rxjs';
+import {BehaviorSubject, combineLatest, filter, map, mergeMap, Observable, switchMap} from 'rxjs';
 import {tuiIsPresent} from '@taiga-ui/cdk';
 import {AuthModalService} from '../../../core/services/auth-modal.service';
 import {ComponentHostDirective} from '../../../shared/directives/component-host.directive';
 import {CabinetModalService} from '../../../core/services/cabinet-modal.service';
 import {CabinetComponent} from '../../../shared/components/cabinet/cabinet.component';
+import {FormControl} from "@angular/forms";
 
-type DataInput = [(Partial<EmployeeModel> | null), (keyof EmployeeModel | null), (1 | -1)];
+type DataInput = [(Partial<IEmployeeModel> | null), (keyof IEmployeeModel | null), (1 | -1)];
 
 @Component({
     selector: 'app-employee-table',
@@ -24,13 +25,14 @@ type DataInput = [(Partial<EmployeeModel> | null), (keyof EmployeeModel | null),
     templateUrl: './employee-table.component.html',
     styleUrls: ['./employee-table.css'],
 })
-export class EmployeeTableComponent implements OnInit{
+export class EmployeeTableComponent implements OnInit {
 
     @ViewChild(ComponentHostDirective, {static: true}) public cabinetHost!: ComponentHostDirective;
     public isOpenFilters: boolean = false;
     public isOpenModal!: boolean;
 
     public readonly columns: string[] = [
+        "checkbox",
         "fullName",
         "birthday",
         "jobTitle",
@@ -40,19 +42,31 @@ export class EmployeeTableComponent implements OnInit{
         "success",
     ];
 
-    public request$: Observable<EmployeeModel[]> = combineLatest([
+    public checkedAll$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+    public onCheckedAll: FormControl = new FormControl<boolean>(false);
+
+    public request$: Observable<IEmployeeModel[]> = combineLatest([
         this.employeeService.filterBy$,
         this.employeeService.sorter$,
         this.employeeService.direction$
     ]).pipe(
-        switchMap((query: DataInput) =>
-            this.employeeService.getData(...query))
+        switchMap((query: DataInput) => this.employeeService.getData(...query))
     );
 
-    public readonly data$: Observable<readonly EmployeeModel[]> = this.request$.pipe(
+    public data$: Observable<readonly IEmployeeModel[]> = this.request$.pipe(
         filter(tuiIsPresent),
-        map((employees: EmployeeModel[]) => employees.filter(tuiIsPresent)),
+        map((employees: IEmployeeModel[]) => employees.filter(tuiIsPresent)),
+        mergeMap((employees: IEmployeeModel[]) => this.checkedAll$.pipe(map((checked: boolean) => {
+                for (const employee of employees) {
+                    employee.checked = checked;
+                }
+
+                return employees;
+            }
+        )))
     );
+
 
     constructor(
         public authModalService: AuthModalService,
@@ -61,6 +75,7 @@ export class EmployeeTableComponent implements OnInit{
         private _router: Router,
         private readonly _cabinetModalService: CabinetModalService
     ) {
+        this.onCheckedAll.valueChanges.subscribe((value: boolean) => this.checkedAll$.next(value));
     }
 
     public loadCabinetModal(): void {
@@ -75,11 +90,11 @@ export class EmployeeTableComponent implements OnInit{
 
     public ngOnInit(): void {
         const context: EmployeeTableComponent = this;
-        this.authModalService.isModalOpening$.subscribe(function(isModalOpening: boolean): void {
+        this.authModalService.isModalOpening$.subscribe(function (isModalOpening: boolean): void {
             context.isOpenModal = isModalOpening;
             context.changeRef.markForCheck();
         });
-        this._cabinetModalService.isModalOpen$.subscribe(function(isModalOpening: boolean): void {
+        this._cabinetModalService.isModalOpen$.subscribe(function (isModalOpening: boolean): void {
             if (isModalOpening) {
                 context.loadCabinetModal();
             } else {
@@ -96,7 +111,7 @@ export class EmployeeTableComponent implements OnInit{
      * Навигация на страницу детальной инфы
      */
     public navigateToDetailInfo(): void {
-        this._router.navigateByUrl('/employee-editor').then();
+        // this._router.navigateByUrl('/employee-editor').then();
     }
 
 }
