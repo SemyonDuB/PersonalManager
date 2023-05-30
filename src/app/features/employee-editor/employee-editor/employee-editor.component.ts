@@ -6,14 +6,14 @@ import {
     ViewContainerRef,
     OnInit
 } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {filter, map, Subscription} from "rxjs";
-import {ComponentHostDirective} from "../../../shared/directives/component-host.directive";
-import {CabinetModalService} from "../../../core/services/cabinet-modal.service";
-import {CabinetComponent} from "../../../shared/components/cabinet/cabinet.component";
-import {ActivatedRoute} from "@angular/router";
-import {IEmployeeModel} from "../../../core/models/employee.model";
-import {EmployeeTableService} from "../../../core/services/employee-table.service";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { filter, map, Subscription } from 'rxjs';
+import { ComponentHostDirective } from '../../../shared/directives/component-host.directive';
+import { CabinetModalService } from '../../../core/services/cabinet-modal.service';
+import { CabinetComponent } from '../../../shared/components/cabinet/cabinet.component';
+import { ActivatedRoute } from '@angular/router';
+import { IEmployeeModel } from '../../../core/models/employee.model';
+import { EmployeeTableService } from '../../../core/services/employee-table.service';
 
 type ShortDate = {year: number, month: number, day: number};
 type IntervalControlNames = {startName: string, endName: string};

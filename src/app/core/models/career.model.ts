@@ -1,4 +1,4 @@
-import {TuiDay} from '@taiga-ui/cdk';
+import { TuiDay } from '@taiga-ui/cdk';
 
 export interface ICareer {
     date: TuiDay;

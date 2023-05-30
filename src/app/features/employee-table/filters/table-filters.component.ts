@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {EmployeeTableService} from "../../../core/services/employee-table.service";
-import {IEmployeeModel} from "../../../core/models/employee.model";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { EmployeeTableService } from '../../../core/services/employee-table.service';
+import { IEmployeeModel } from '../../../core/models/employee.model';
 
 @Component({
     selector: 'employee-table-filters',

@@ -1,5 +1,5 @@
-import {ICareer} from './career.model';
-import {TuiDay} from '@taiga-ui/cdk';
+import { ICareer } from './career.model';
+import { TuiDay } from '@taiga-ui/cdk';
 
 export interface IEmployeeModel {
     id: number;

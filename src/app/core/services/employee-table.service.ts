@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {IEmployeeModel} from '../models/employee.model';
+import { Injectable } from '@angular/core';
+import { IEmployeeModel } from '../models/employee.model';
 import employeesJson from '../../../assets/employees.json';
-import {TuiComparator} from "@taiga-ui/addon-table";
-import {tuiDefaultSort} from "@taiga-ui/cdk";
-import {BehaviorSubject, Observable, of} from "rxjs";
-import {ICareer} from "../models/career.model";
-import {TuiDay} from '@taiga-ui/cdk';
+import { TuiComparator } from '@taiga-ui/addon-table';
+import { tuiDefaultSort } from '@taiga-ui/cdk';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { ICareer } from '../models/career.model';
+import { TuiDay } from '@taiga-ui/cdk';
 
 @Injectable({
     providedIn: 'root'

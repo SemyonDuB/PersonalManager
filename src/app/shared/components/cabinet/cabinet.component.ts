@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {CabinetModalService} from '../../../core/services/cabinet-modal.service';
-import {fromEvent, Observable, Subscription} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { CabinetModalService } from '../../../core/services/cabinet-modal.service';
+import { fromEvent, Observable, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-cabinet',

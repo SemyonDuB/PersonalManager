@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {LoginComponent} from '../login/login.component';
-import {RegistrationComponent} from '../registration/registration.component';
-import {ComponentHostDirective} from '../../../shared/directives/component-host.directive';
-import {AuthModalService} from '../../../core/services/auth-modal.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {fromEvent, Observable, Subscription} from 'rxjs';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { LoginComponent } from '../login/login.component';
+import { RegistrationComponent } from '../registration/registration.component';
+import { ComponentHostDirective } from '../../../shared/directives/component-host.directive';
+import { AuthModalService } from '../../../core/services/auth-modal.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { fromEvent, Observable, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-auth',
