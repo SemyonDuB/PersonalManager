@@ -46,7 +46,6 @@ export class EmployeeTableService {
     public dateStringConvertToTuiDay(dateString: string): TuiDay {
         const date: Date = new Date(dateString);
 
-        //возможно необходимо вычесть из месяца 1
         return new TuiDay(date.getFullYear(), date.getMonth(), date.getDay());
     }
 

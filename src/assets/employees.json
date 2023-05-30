@@ -28,34 +28,6 @@
         ]
     },
     {
-        "id": 2,
-        "fullName": "Lena Popova",
-        "birthday": "2022-04-20T18:25:43.511Z",
-        "jobTitle": "Junior Frontend",
-        "wage": 10000,
-        "employmentDate": "2023-04-20T18:25:43.511Z",
-        "projectName": "Management",
-        "success": true,
-        "education": "Senior school",
-        "interviewDate": "2025-04-20T18:25:43.511Z",
-        "firstWorkDay": "2024-04-20T18:25:43.511Z",
-
-        "holidayHistory": [
-            "2020-04-20T18:25:43.511Z",
-            "2020-04-20T18:25:43.511Z"
-        ],
-        "career": [
-            {
-                "date": "2020-04-20T18:25:43.511Z",
-                "name": "Junior Frontend"
-            },
-            {
-                "date": "2020-04-20T18:25:43.511Z",
-                "name": "Senior Frontend"
-            }
-        ]
-    },
-    {
         "id": 3,
         "fullName": "Nastya Demina",
         "birthday": "2023-04-20T18:25:43.511Z",
