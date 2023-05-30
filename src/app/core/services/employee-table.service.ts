@@ -5,6 +5,7 @@ import {TuiComparator} from "@taiga-ui/addon-table";
 import {tuiDefaultSort} from "@taiga-ui/cdk";
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {ICareer} from "../models/career.model";
+import {TuiDay} from '@taiga-ui/cdk';
 
 @Injectable({
     providedIn: 'root'
@@ -42,27 +43,34 @@ export class EmployeeTableService {
         return of(result);
     }
 
+    public dateStringConvertToTuiDay(dateString: string): TuiDay {
+        const date: Date = new Date(dateString);
+
+        //возможно необходимо вычесть из месяца 1
+        return new TuiDay(date.getFullYear(), date.getMonth(), date.getDay());
+    }
+
     public get employees(): IEmployeeModel[] {
         const result: IEmployeeModel[] = [];
 
         for (const e of employeesJson) {
             const career: ICareer[] = e.career.map(({date, name}: { date: string, name: string }) => <ICareer>{
-                date: new Date(date),
+                date: this.dateStringConvertToTuiDay(date),
                 name: name
             });
 
-            const holidays: Date[] = e.holidayHistory.map((value: string) => new Date(value));
+            const holidays: TuiDay[] = e.holidayHistory.map((value: string) => this.dateStringConvertToTuiDay(value));
 
             result.push({
                 id: e.id,
                 fullName: e.fullName,
-                birthday: new Date(e.birthday),
+                birthday: this.dateStringConvertToTuiDay(e.birthday),
                 career: career,
                 education: e.education,
-                employmentDate: new Date(e.employmentDate),
-                firstWorkDay: new Date(e.firstWorkDay),
+                employmentDate: this.dateStringConvertToTuiDay(e.employmentDate),
+                firstWorkDay: this.dateStringConvertToTuiDay(e.firstWorkDay),
                 holidayHistory: holidays,
-                interviewDate: new Date(e.interviewDate),
+                interviewDate: this.dateStringConvertToTuiDay(e.interviewDate),
                 jobTitle: e.jobTitle,
                 projectName: e.projectName,
                 success: e.success,
