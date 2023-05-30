@@ -1,19 +1,28 @@
 .media {
-    background-color: #FFFFFF;
+    /*background-color: #FFFFFF;*/
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 26.46%, rgba(232, 246, 247, 0.2) 93.38%, rgba(239, 247, 248, 0.2) 93.38%), #FFFFFF;
     width: 100%;
     margin: 0;
     border-radius: 17px 17px 0 0;
-    padding: 0 0 69px 0;
+    padding: 0 0 17px 0;
 
     font-family: 'Inter', serif;
     font-style: normal;
     font-weight: 400;
     line-height: 100%;
+    height: calc(100vh - 160px);
+
+    overflow-y: scroll;
+}
+
+.media::-webkit-scrollbar {
+    width: 0;
+    background-color: #f9f9fd;
 }
 
 .basic-container {
     display: flex;
-    border-bottom: 1px solid #235759;
+    /*border-bottom: 1px solid #235759;*/
     padding: 30px 1.8vw 30px 1.8vw;
 }
 
@@ -23,6 +32,10 @@
 
 .basic-information {
     margin: 0 0 0 2vw;
+}
+
+.name-field {
+    margin: 15px 0 0 0;
 }
 
 .name-field, .age {
