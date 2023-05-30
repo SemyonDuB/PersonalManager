@@ -84,6 +84,7 @@ export class AuthComponent implements OnInit {
 
     public closeModal(): void {
         this._subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+        this._subscriptions = [];
         this._router.navigate(['./'], {relativeTo: this._route.parent}).then();
     }
 }
