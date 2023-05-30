@@ -8,6 +8,7 @@
 table {
     width: 100%;
     color: #0c2425;
+    border: none;
 }
 
 table * {
@@ -18,8 +19,8 @@ table * {
     word-break: break-all;
 }
 
-table {
-    border: none;
+td {
+    cursor: pointer;
 }
 
 th {
@@ -45,6 +46,21 @@ table tr:last-child * {
     border-bottom: none;
 }
 
+/*table thead tr * {*/
+/*    border-bottom: 1px solid #cbcbcb;*/
+/*}*/
+
+.thead-checkbox * {
+    border-bottom: none!important;
+}
+
 .disabled-container {
     pointer-events: none;
+}
+
+.tbody-checkbox, .thead-checkbox {
+    width: 20px;
+    height: 20px;
+    padding: 12px!important;
+    border-right: none!important;
 }
