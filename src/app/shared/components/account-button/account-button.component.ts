@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {CabinetModalService} from "../../../core/services/cabinet-modal.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CabinetModalService } from '../../../core/services/cabinet-modal.service';
 
 @Component({
     selector: 'account-button',

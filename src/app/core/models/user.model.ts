@@ -1,4 +1,4 @@
-import {Property, Url} from "@tsed/schema";
+import { Property, Url } from '@tsed/schema';
 
 export class User {
     @Property()

@@ -20,6 +20,7 @@
                 *tuiHead="'checkbox'"
                 [sorter]="null"
                 tuiTh
+                class="thead-checkbox"
             >
                 <tui-checkbox [formControl]="onCheckedAll"></tui-checkbox>
             </th>
@@ -84,6 +85,7 @@
             <td
                 *tuiCell="'checkbox'"
                 tuiTd
+                class="tbody-checkbox"
             >
                 <tui-checkbox [(ngModel)]="item.checked"></tui-checkbox>
             </td>

@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {map, Observable, of, zip} from "rxjs";
-import {User} from "../models/user.model";
-import {deserialize} from "@tsed/json-mapper";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map, Observable, of, zip } from 'rxjs';
+import { User } from '../models/user.model';
+import { deserialize } from '@tsed/json-mapper';
 
 @Injectable({
     providedIn: 'root'

@@ -1,4 +1,6 @@
+import { TuiDay } from '@taiga-ui/cdk';
+
 export interface ICareer {
-    date: Date;
+    date: TuiDay;
     name: string;
 }

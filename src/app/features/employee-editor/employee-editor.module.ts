@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import {SharedModule} from "../../shared/shared.module";
-import {EmployeeEditorComponent} from "./employee-editor/employee-editor.component";
-import {RouterOutlet} from "@angular/router";
+import { SharedModule } from '../../shared/shared.module';
+import { EmployeeEditorComponent } from './employee-editor/employee-editor.component';
+import { RouterOutlet } from '@angular/router';
+import {EditorFooterComponent} from "./editor-footer/editor-footer.component";
 
 @NgModule({
     imports: [
@@ -10,6 +11,7 @@ import {RouterOutlet} from "@angular/router";
     ],
     declarations: [
         EmployeeEditorComponent,
+        EditorFooterComponent
     ]
 })
 export class EmployeeEditorModule {

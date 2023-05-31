@@ -6,16 +6,16 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import {EmployeeTableService} from '../../../core/services/employee-table.service';
-import {IEmployeeModel} from '../../../core/models/employee.model';
-import {Router} from '@angular/router';
-import {BehaviorSubject, combineLatest, filter, map, mergeMap, Observable, switchMap} from 'rxjs';
-import {tuiIsPresent} from '@taiga-ui/cdk';
-import {AuthModalService} from '../../../core/services/auth-modal.service';
-import {ComponentHostDirective} from '../../../shared/directives/component-host.directive';
-import {CabinetModalService} from '../../../core/services/cabinet-modal.service';
-import {CabinetComponent} from '../../../shared/components/cabinet/cabinet.component';
-import {FormControl} from "@angular/forms";
+import { EmployeeTableService } from '../../../core/services/employee-table.service';
+import { IEmployeeModel } from '../../../core/models/employee.model';
+import { Router } from '@angular/router';
+import { BehaviorSubject, combineLatest, filter, map, mergeMap, Observable, switchMap } from 'rxjs';
+import { tuiIsPresent } from '@taiga-ui/cdk';
+import { AuthModalService } from '../../../core/services/auth-modal.service';
+import { ComponentHostDirective } from '../../../shared/directives/component-host.directive';
+import { CabinetModalService } from '../../../core/services/cabinet-modal.service';
+import { CabinetComponent } from '../../../shared/components/cabinet/cabinet.component';
+import { FormControl } from '@angular/forms';
 
 type DataInput = [(Partial<IEmployeeModel> | null), (keyof IEmployeeModel | null), (1 | -1)];
 
