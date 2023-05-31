@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { IEmployeeModel } from '../models/employee.model';
 import employeesJson from '../../../assets/employees.json';
 import { TuiComparator } from '@taiga-ui/addon-table';
-import { tuiDefaultSort } from '@taiga-ui/cdk';
+import { TuiDay, tuiDefaultSort } from '@taiga-ui/cdk';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ICareer } from '../models/career.model';
-import { TuiDay } from '@taiga-ui/cdk';
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +14,10 @@ export class EmployeeTableService {
     public direction$: BehaviorSubject<1 | -1> = new BehaviorSubject<1 | -1>(1);
     public filterBy$: BehaviorSubject<Partial<IEmployeeModel> | null> = new BehaviorSubject<Partial<IEmployeeModel> | null>(null);
 
+    private _employees: IEmployeeModel[] = [];
+
     constructor() {
+        this._employees = this.parseEmployeesJson();
     }
 
     public getData(filterBy: Partial<IEmployeeModel> | null,
@@ -50,6 +52,48 @@ export class EmployeeTableService {
     }
 
     public get employees(): IEmployeeModel[] {
+        return this._employees;
+    }
+
+    public getEmployee(id: number): IEmployeeModel | undefined {
+        return this.employees.find((employee: IEmployeeModel) => employee.id === id);
+    }
+
+    public sortBy(key: keyof IEmployeeModel, direction: 1 | -1): TuiComparator<IEmployeeModel> {
+        return (a: IEmployeeModel, b: IEmployeeModel) => direction * tuiDefaultSort(a[key], b[key]);
+    }
+
+    public addEmployee(employee: IEmployeeModel): IEmployeeModel {
+        employee.id = Math.max(...this.employees.map((e: IEmployeeModel) => e.id));
+        this._employees.push(employee);
+
+        return employee;
+    }
+
+    public updateEmployee(employee: IEmployeeModel): IEmployeeModel | undefined {
+        const index: number = this._employees.findIndex((e: IEmployeeModel) => e.id === employee.id);
+
+        if (index === -1) {
+            return undefined;
+        }
+
+        this._employees[index] = employee;
+
+        return employee;
+    }
+
+    public deleteEmployees(ids: [number]): void {
+        for (const id of ids) {
+            const deletedEmployee: IEmployeeModel | undefined =
+                this._employees.find((employee: IEmployeeModel) => employee.id === id);
+
+            if (deletedEmployee) {
+                this._employees = this._employees.filter((employee: IEmployeeModel) => employee.id !== id);
+            }
+        }
+    }
+
+    private parseEmployeesJson(): IEmployeeModel[] {
         const result: IEmployeeModel[] = [];
 
         for (const e of employeesJson) {
@@ -80,13 +124,5 @@ export class EmployeeTableService {
         }
 
         return result;
-    }
-
-    public getEmployee(id: number): IEmployeeModel | undefined {
-        return this.employees.find((employee: IEmployeeModel) => employee.id === id);
-    }
-
-    public sortBy(key: keyof IEmployeeModel, direction: 1 | -1): TuiComparator<IEmployeeModel> {
-        return (a: IEmployeeModel, b: IEmployeeModel) => direction * tuiDefaultSort(a[key], b[key]);
     }
 }
