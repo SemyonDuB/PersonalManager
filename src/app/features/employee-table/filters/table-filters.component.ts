@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { EmployeeTableService } from '../../../core/services/employee-table.service';
 import { IEmployeeModel } from '../../../core/models/employee.model';
+import {TuiDay} from "@taiga-ui/cdk";
 
 @Component({
     selector: 'employee-table-filters',
@@ -18,8 +19,8 @@ export class TableFiltersComponent {
         projectName: new FormControl(null),
         wage: new FormControl(null),
         success: new FormControl(null),
-        date: new FormControl<Date | null>(null),
-        employmentDate: new FormControl<Date | null>(null),
+        birthday: new FormControl<TuiDay | null>(null),
+        employmentDate: new FormControl<TuiDay | null>(null),
     });
 
     constructor(private _employeeService: EmployeeTableService) {
