@@ -64,7 +64,7 @@ export class EmployeeTableService {
     }
 
     public addEmployee(employee: IEmployeeModel): IEmployeeModel {
-        employee.id = Math.max(...this.employees.map((e: IEmployeeModel) => e.id));
+        employee.id = 1 + Math.max(...this.employees.map((e: IEmployeeModel) => e.id));
         this._employees.push(employee);
 
         return employee;
