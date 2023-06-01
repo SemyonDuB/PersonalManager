@@ -3,7 +3,7 @@ import { IEmployeeModel } from '../models/employee.model';
 import employeesJson from '../../../assets/employees.json';
 import { TuiComparator } from '@taiga-ui/addon-table';
 import { TuiDay, tuiDefaultSort } from '@taiga-ui/cdk';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { ICareer } from '../models/career.model';
 
 @Injectable({
@@ -14,11 +14,9 @@ export class EmployeeTableService {
     public direction$: BehaviorSubject<1 | -1> = new BehaviorSubject<1 | -1>(1);
     public filterBy$: BehaviorSubject<Partial<IEmployeeModel> | null> = new BehaviorSubject<Partial<IEmployeeModel> | null>(null);
 
-    private _employees: IEmployeeModel[] = [];
+    public deleteEmployees$: BehaviorSubject<void> = new BehaviorSubject<void>(undefined);
 
-    constructor() {
-        this._employees = this.parseEmployeesJson();
-    }
+    private _employees: IEmployeeModel[] = this.parseEmployeesJson();
 
     public getData(filterBy: Partial<IEmployeeModel> | null,
                    sorterKey: keyof IEmployeeModel | null,
@@ -82,15 +80,9 @@ export class EmployeeTableService {
         return employee;
     }
 
-    public deleteEmployees(ids: [number]): void {
-        for (const id of ids) {
-            const deletedEmployee: IEmployeeModel | undefined =
-                this._employees.find((employee: IEmployeeModel) => employee.id === id);
-
-            if (deletedEmployee) {
-                this._employees = this._employees.filter((employee: IEmployeeModel) => employee.id !== id);
-            }
-        }
+    public deleteEmployees(ids: number[]): void {
+        this._employees = this._employees.filter((employee: IEmployeeModel) => !(ids.includes(employee.id)));
+        this.deleteEmployees$.next();
     }
 
     private parseEmployeesJson(): IEmployeeModel[] {

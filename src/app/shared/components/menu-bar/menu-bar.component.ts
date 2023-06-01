@@ -40,6 +40,13 @@ export class MenuBarComponent{
         this.router.navigateByUrl(`/employee-editor/${employee.id}`).then();
     }
 
+    public deleteEmployees(): void {
+        const checked: IEmployeeModel[] = this._employeeTableService.employees.filter((e: IEmployeeModel) => e.checked);
+        const ids: number[] = checked.map((e: IEmployeeModel) => e.id);
+
+        this._employeeTableService.deleteEmployees(ids);
+    }
+
     public onFilterClick(): void {
         this.clickFilter.emit();
     }

@@ -9,7 +9,7 @@ import {
 import { EmployeeTableService } from '../../../core/services/employee-table.service';
 import { IEmployeeModel } from '../../../core/models/employee.model';
 import { Router } from '@angular/router';
-import { BehaviorSubject, combineLatest, filter, map, mergeMap, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, combineLatest, combineLatestWith, filter, map, mergeMap, Observable, switchMap } from 'rxjs';
 import { tuiIsPresent } from '@taiga-ui/cdk';
 import { AuthModalService } from '../../../core/services/auth-modal.service';
 import { ComponentHostDirective } from '../../../shared/directives/component-host.directive';
@@ -49,9 +49,10 @@ export class EmployeeTableComponent implements OnInit {
     public request$: Observable<IEmployeeModel[]> = combineLatest([
         this.employeeService.filterBy$,
         this.employeeService.sorter$,
-        this.employeeService.direction$
+        this.employeeService.direction$,
+        this.employeeService.deleteEmployees$
     ]).pipe(
-        switchMap((query: DataInput) => this.employeeService.getData(...query))
+        switchMap((query: readonly unknown[]) => this.employeeService.getData(...query as DataInput)),
     );
 
     public data$: Observable<readonly IEmployeeModel[]> = this.request$.pipe(
