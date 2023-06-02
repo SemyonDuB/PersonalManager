@@ -1,5 +1,4 @@
 .media {
-    /*background-color: #FFFFFF;*/
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 26.46%, rgba(232, 246, 247, 0.2) 93.38%, rgba(239, 247, 248, 0.2) 93.38%), #FFFFFF;
     width: 100%;
     margin: 0;
@@ -22,7 +21,6 @@
 
 .basic-container {
     display: flex;
-    /*border-bottom: 1px solid #235759;*/
     padding: 30px 1.8vw 0 1.8vw;
 }
 
@@ -40,7 +38,6 @@
 
 .name-field, .age {
     display: inline-block;
-    /*vertical-align: top;*/
 }
 
 .age {
@@ -78,7 +75,6 @@ input {
 }
 
 .name-field, .job-field {
-    /*width: calc(94.4vw - 182px);*/
     width: calc(94.4vw - 205px);
 }
 
@@ -141,6 +137,13 @@ label {
     font-size: 20px;
     font-weight: 500;
     margin: 6px 15px 0 0;
+    color: #235759;
+    line-height: 1;
+}
+
+.rubles {
+    font-size: 18px;
+    margin: 8px 0 0 10px;
     color: #235759;
     line-height: 1;
 }
