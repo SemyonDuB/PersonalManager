@@ -15,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IEmployeeModel } from '../../../core/models/employee.model';
 import { EmployeeTableService } from '../../../core/services/employee-table.service';
 import { TuiDay } from "@taiga-ui/cdk";
+import {ICareer} from "../../../core/models/career.model";
 
 type IntervalControlNames = {startName: string, endName: string};
 type SignedStartDateNames = {startName: string, titleName: string};
@@ -68,7 +69,6 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit, OnDestroy
         "vacationStart0" : new FormControl(),
         "vacationEnd0" : new FormControl(),
         "vacancyStart0" : new FormControl(),
-        "vacancyEnd0" : new FormControl(),
         "vacancyName0" : new FormControl("")
     });
 
@@ -124,11 +124,32 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit, OnDestroy
 
         this.subscribeVacancyFields(this.vacanciesHistory[0]!.startName, 1);
         this.subscribeVacancyFields(this.vacanciesHistory[0]!.titleName, 1);
+
+        this.loadCareer();
+        this.loadHolidays();
     }
 
     public ngOnDestroy(): void {
         this.vacationSubs.forEach((sub: Subscription) => sub.unsubscribe());
         this.vacancySubs.forEach((sub: Subscription) => sub.unsubscribe());
+    }
+
+    public loadHolidays(): void {
+        if (this.employee?.holidayHistory) {
+            for (let i: number = 0; i < this.employee!.holidayHistory.length; i++) {
+                this.employeeForm.get("vacationStart" + i)?.setValue(this.employee!.holidayHistory[i].startDate);
+                this.employeeForm.get("vacationEnd" + i)?.setValue(this.employee!.holidayHistory[i].endDate);
+            }
+        }
+    }
+
+    public loadCareer(): void {
+        if (this.employee?.career) {
+            for (let i: number = 0; i < this.employee.career.length; i++) {
+                this.employeeForm.get("vacancyStart" + i)?.setValue(this.employee.career[i].date);
+                this.employeeForm.get("vacancyName" + i)?.setValue(this.employee.career[i].name);
+            }
+        }
     }
 
     public loadCabinetModal(): void {
