@@ -4,7 +4,7 @@ import {
     AfterViewInit,
     ViewChild,
     ViewContainerRef,
-    OnInit
+    OnInit, OnDestroy
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { filter, map, Subscription } from 'rxjs';
@@ -25,7 +25,7 @@ type SignedStartDateNames = {startName: string, titleName: string};
     styleUrls: ['./employee-editor.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmployeeEditorComponent implements OnInit, AfterViewInit {
+export class EmployeeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @ViewChild(ComponentHostDirective, {static: true}) public cabinetHost!: ComponentHostDirective;
     public imgPath: string = "../../../assets/img/sample_photo.png";
@@ -107,16 +107,6 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit {
         });
     }
 
-    public loadCabinetModal(): void {
-        const containerRef: ViewContainerRef = this.cabinetHost.viewContainerRef;
-        containerRef.clear();
-        containerRef.createComponent<CabinetComponent>(CabinetComponent);
-    }
-
-    public clearCabinetModal(): void {
-        this.cabinetHost.viewContainerRef.clear();
-    }
-
     public ngAfterViewInit(): void {
         this.employeeForm.get("birthday")?.valueChanges.subscribe((newBirthDate: TuiDay) => {
             this.age = this.calculateDateDifference(newBirthDate).year;
@@ -134,6 +124,21 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit {
 
         this.subscribeVacancyFields(this.vacanciesHistory[0]!.startName, 1);
         this.subscribeVacancyFields(this.vacanciesHistory[0]!.titleName, 1);
+    }
+
+    public ngOnDestroy(): void {
+        this.vacationSubs.forEach((sub: Subscription) => sub.unsubscribe());
+        this.vacancySubs.forEach((sub: Subscription) => sub.unsubscribe());
+    }
+
+    public loadCabinetModal(): void {
+        const containerRef: ViewContainerRef = this.cabinetHost.viewContainerRef;
+        containerRef.clear();
+        containerRef.createComponent<CabinetComponent>(CabinetComponent);
+    }
+
+    public clearCabinetModal(): void {
+        this.cabinetHost.viewContainerRef.clear();
     }
 
     public subscribeVacationFields(controlName: string, nextIndex: number): void {
