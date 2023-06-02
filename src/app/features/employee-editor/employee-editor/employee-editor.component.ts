@@ -1,21 +1,21 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    AfterViewInit,
     ViewChild,
     ViewContainerRef,
     OnInit, OnDestroy
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { filter, map, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ComponentHostDirective } from '../../../shared/directives/component-host.directive';
 import { CabinetModalService } from '../../../core/services/cabinet-modal.service';
 import { CabinetComponent } from '../../../shared/components/cabinet/cabinet.component';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { IEmployeeModel } from '../../../core/models/employee.model';
 import { EmployeeTableService } from '../../../core/services/employee-table.service';
-import { TuiDay } from "@taiga-ui/cdk";
-import {ICareer} from "../../../core/models/career.model";
+import { TuiDay } from '@taiga-ui/cdk';
+import { ICareer } from '../../../core/models/career.model';
+import { IHolidays } from '../../../core/models/holidays.model';
 
 type IntervalControlNames = {startName: string, endName: string};
 type SignedStartDateNames = {startName: string, titleName: string};
@@ -74,6 +74,7 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
 
     constructor(private readonly _cabinetModalService: CabinetModalService,
                 private _route: ActivatedRoute,
+                private _router: Router,
                 private _employeeTableService: EmployeeTableService) {
         const id: number = Number(_route.snapshot.paramMap.get('id')) ?? 0;
 
@@ -187,7 +188,7 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
     }
 
     public addFormControls(...controlNames: string[]): void {
-        controlNames.forEach((name: string) => {
+        controlNames.forEach((name: string): void => {
             this.employeeForm.addControl(name, new FormControl());
         });
     }
@@ -219,9 +220,56 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
         yearDifference = today < nextAnniversaryDay ? yearDifference - 1 : yearDifference;
         let monthDifference: number = Math.abs(today.getMonth() - startDate.getMonth());
         monthDifference = today.getMonth() < nextAnniversaryDay.getMonth() ? monthDifference - 1 : monthDifference;
-        const dayDifference: number = Math.abs(today.getDay() - startDate.getDay());
+        const dayDifference: number = Math.abs(today.getDay() - startDate.getDay()) + 1;
 
         return new TuiDay(yearDifference, monthDifference, dayDifference);
     }
 
+    public getCareerValues(): ICareer[] {
+        const careerValues: ICareer[] = [];
+        for (let i: number = 0; i < this.vacanciesHistory.length; i++) {
+            const date: TuiDay = this.employeeForm.get(this.vacanciesHistory[i].startName)?.value;
+            const name: string = this.employeeForm.get(this.vacanciesHistory[i].titleName)?.value;
+            if (date || name) {
+                careerValues.push({date: date, name: name});
+            }
+        }
+
+        return careerValues;
+    }
+
+    public getHolidayValues(): IHolidays[] {
+        const holidayValues: IHolidays[] = [];
+        for (let i: number = 0; i < this.vacationsHistory.length; i++) {
+            const startDate: TuiDay = this.employeeForm.get(this.vacationsHistory[i].startName)?.value;
+            const endDate: TuiDay = this.employeeForm.get(this.vacationsHistory[i].endName)?.value;
+            if (startDate || endDate) {
+                holidayValues.push({startDate: startDate, endDate: endDate});
+            }
+        }
+
+        return holidayValues;
+    }
+
+    public saveEmployee(): void {
+        this._employeeTableService.updateEmployee(
+            {
+                id: this.employee!.id,
+                fullName: this.employeeForm.get("fullName")?.value,
+                birthday: this.employeeForm.get("birthday")?.value,
+                career: this.getCareerValues(),
+                education: this.employeeForm.get("education")?.value,
+                employmentDate: this.employeeForm.get("employmentDate")?.value,
+                firstWorkDay: this.employeeForm.get("firstWorkDay")?.value,
+                holidayHistory: this.getHolidayValues(),
+                interviewDate: this.employeeForm.get("interviewDate")?.value,
+                jobTitle: this.employeeForm.get("jobTitle")?.value,
+                projectName: this.employeeForm.get("projectName")?.value,
+                success: this.employee!.success,
+                wage: this.employeeForm.get("wage")?.value,
+                checked: false
+            }
+        );
+        this._router.navigateByUrl('').then();
+    }
 }

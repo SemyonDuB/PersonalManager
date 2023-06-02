@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,9 +8,16 @@ import { Router } from '@angular/router';
 })
 export class EditorFooterComponent {
 
+    @Output() public saveClick: EventEmitter<undefined> = new EventEmitter<undefined>();
+
     constructor(private readonly _router: Router) {
     }
+
     public returnToTable(): void {
         this._router.navigateByUrl('').then();
+    }
+
+    public saveEmployeeChanges(): void {
+        this.saveClick.emit(undefined);
     }
 }
