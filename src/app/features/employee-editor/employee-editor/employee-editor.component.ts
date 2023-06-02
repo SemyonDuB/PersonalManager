@@ -14,8 +14,8 @@ import { CabinetComponent } from '../../../shared/components/cabinet/cabinet.com
 import { ActivatedRoute } from '@angular/router';
 import { IEmployeeModel } from '../../../core/models/employee.model';
 import { EmployeeTableService } from '../../../core/services/employee-table.service';
+import { TuiDay } from "@taiga-ui/cdk";
 
-type ShortDate = {year: number, month: number, day: number};
 type IntervalControlNames = {startName: string, endName: string};
 type NamedIntervalControlNames = IntervalControlNames & {textName: string};
 
@@ -53,18 +53,19 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit {
     public employee: IEmployeeModel | undefined = undefined;
 
     public employeeForm: FormGroup = new FormGroup({
-        "employeeName": new FormControl("", [
+        "fullName": new FormControl("", [
             Validators.required
         ]),
-        "employeeJob": new FormControl("", [
+        "jobTitle": new FormControl("", [
             Validators.required
         ]),
-        "employeeEducation": new FormControl(""),
-        "employeeBirth": new FormControl(),
-        "employeeProject": new FormControl(""),
-        "employeeInterviewDate": new FormControl(),
-        "employeeEmploymentDate": new FormControl(),
-        "employeeFirstWorkDay": new FormControl(),
+        "education": new FormControl(""),
+        "birthday": new FormControl(),
+        "projectName": new FormControl(""),
+        "wage": new FormControl(""),
+        "interviewDate": new FormControl(),
+        "employmentDate": new FormControl(),
+        "firstWorkDay": new FormControl(),
         "vacationStart0" : new FormControl(),
         "vacationEnd0" : new FormControl(),
         "vacancyStart0" : new FormControl(),
@@ -79,14 +80,21 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit {
 
         this.employee = _employeeTableService.getEmployee(id);
 
-        this.employeeForm.get("employeeName")?.setValue(this.employee?.fullName);
-        this.employeeForm.get("employeeJob")?.setValue(this.employee?.jobTitle);
-        this.employeeForm.get("employeeEducation")?.setValue(this.employee?.education);
-        this.employeeForm.get("employeeBirth")?.setValue(this.employee?.birthday);
-        this.employeeForm.get("employeeProject")?.setValue(this.employee?.projectName);
-        this.employeeForm.get("employeeInterviewDate")?.setValue(this.employee?.interviewDate);
-        this.employeeForm.get("employeeEmploymentDate")?.setValue(this.employee?.employmentDate);
-        this.employeeForm.get("employeeFirstWorkDay")?.setValue(this.employee?.firstWorkDay);
+        this.employeeForm.get("fullName")?.setValue(this.employee?.fullName);
+        this.employeeForm.get("jobTitle")?.setValue(this.employee?.jobTitle);
+        this.employeeForm.get("education")?.setValue(this.employee?.education);
+        this.employeeForm.get("birthday")?.setValue(this.employee?.birthday);
+        this.employeeForm.get("projectName")?.setValue(this.employee?.projectName);
+        this.employeeForm.get("interviewDate")?.setValue(this.employee?.interviewDate);
+        this.employeeForm.get("employmentDate")?.setValue(this.employee?.employmentDate);
+        this.employeeForm.get("firstWorkDay")?.setValue(this.employee?.firstWorkDay);
+        this.employeeForm.get("wage")?.setValue(this.employee?.wage);
+
+        this.age = this.employee?.birthday ? this.calculateDateDifference(this.employee.birthday).year : undefined;
+        this.yearWorkExp = this.employee?.firstWorkDay ?
+            this.calculateDateDifference(this.employee.firstWorkDay).year : undefined;
+        this.monthWorkExp = this.employee?.firstWorkDay ?
+            this.calculateDateDifference(this.employee.firstWorkDay).month : undefined;
     }
 
     public ngOnInit(): void {
@@ -111,13 +119,13 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit {
     }
 
     public ngAfterViewInit(): void {
-        this.employeeForm.get("employeeBirth")?.valueChanges.subscribe((newBirthDate: ShortDate) => {
+        this.employeeForm.get("birthday")?.valueChanges.subscribe((newBirthDate: TuiDay) => {
             this.age = this.calculateDateDifference(newBirthDate).year;
 
         });
 
-        this.employeeForm.get("employeeFirstWorkDay")?.valueChanges.subscribe((newStartDate: ShortDate) => {
-            const dateDifference: ShortDate = this.calculateDateDifference(newStartDate);
+        this.employeeForm.get("firstWorkDay")?.valueChanges.subscribe((newStartDate: TuiDay) => {
+            const dateDifference: TuiDay = this.calculateDateDifference(newStartDate);
             this.yearWorkExp = dateDifference.year;
             this.monthWorkExp = dateDifference.month;
         });
@@ -174,7 +182,7 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit {
         this.subscribeVacancyFields(this.vacanciesHistory[index]!.textName, index + 1);
     }
 
-    public calculateDateDifference(newStartDate: ShortDate): ShortDate {
+    public calculateDateDifference(newStartDate: TuiDay): TuiDay {
         const now: Date = new Date();
         const today: Date = new Date(now.getFullYear(), now.getMonth(), now.getDate());
         const startDate: Date = new Date(newStartDate.year, newStartDate.month, newStartDate.day);
@@ -185,7 +193,7 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit {
         monthDifference = today.getMonth() < nextAnniversaryDay.getMonth() ? monthDifference - 1 : monthDifference;
         const dayDifference: number = Math.abs(today.getDay() - startDate.getDay());
 
-        return {year: yearDifference, month: monthDifference, day: dayDifference};
+        return new TuiDay(yearDifference, monthDifference, dayDifference);
     }
 
 }

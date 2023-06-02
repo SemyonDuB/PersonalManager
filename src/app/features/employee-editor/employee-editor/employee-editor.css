@@ -23,7 +23,7 @@
 .basic-container {
     display: flex;
     /*border-bottom: 1px solid #235759;*/
-    padding: 30px 1.8vw 30px 1.8vw;
+    padding: 30px 1.8vw 0 1.8vw;
 }
 
 .employee_photo {
@@ -40,7 +40,19 @@
 
 .name-field, .age {
     display: inline-block;
+    /*vertical-align: top;*/
+}
+
+.age {
     vertical-align: top;
+}
+
+.wage-field {
+    width: 90px;
+}
+
+.wage-field input {
+    font-weight: 500;
 }
 
 input {
@@ -53,7 +65,7 @@ input {
 .age {
     color: #235759;
     font-size: 24px;
-    margin: 0;
+    margin: 12px 0 12px 0;
     padding: 23px 0 0 28px;
 }
 
