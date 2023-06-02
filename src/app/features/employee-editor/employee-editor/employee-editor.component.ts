@@ -26,7 +26,7 @@ type SignedStartDateNames = {startName: string, titleName: string};
     styleUrls: ['./employee-editor.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmployeeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
+export class EmployeeEditorComponent implements OnInit, OnDestroy {
 
     @ViewChild(ComponentHostDirective, {static: true}) public cabinetHost!: ComponentHostDirective;
     public imgPath: string = "../../../assets/img/sample_photo.png";
@@ -97,27 +97,9 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit, OnDestroy
     }
 
     public ngOnInit(): void {
-        const context: EmployeeEditorComponent = this;
-        this._cabinetModalService.isModalOpen$.subscribe(function(isModalOpening: boolean): void {
-            if (isModalOpening) {
-                context.loadCabinetModal();
-            } else {
-                context.clearCabinetModal();
-            }
-        });
-    }
+        this.initializeCabinetModal();
 
-    public ngAfterViewInit(): void {
-        this.employeeForm.get("birthday")?.valueChanges.subscribe((newBirthDate: TuiDay) => {
-            this.age = this.calculateDateDifference(newBirthDate).year;
-
-        });
-
-        this.employeeForm.get("firstWorkDay")?.valueChanges.subscribe((newStartDate: TuiDay) => {
-            const dateDifference: TuiDay = this.calculateDateDifference(newStartDate);
-            this.yearWorkExp = dateDifference.year;
-            this.monthWorkExp = dateDifference.month;
-        });
+        this.subscribeAnnotationFields();
 
         this.subscribeVacationFields(this.vacationsHistory[0]!.startName, 1);
         this.subscribeVacationFields(this.vacationsHistory[0]!.endName, 1);
@@ -132,6 +114,19 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit, OnDestroy
     public ngOnDestroy(): void {
         this.vacationSubs.forEach((sub: Subscription) => sub.unsubscribe());
         this.vacancySubs.forEach((sub: Subscription) => sub.unsubscribe());
+    }
+
+    public subscribeAnnotationFields(): void {
+        this.employeeForm.get("birthday")?.valueChanges.subscribe((newBirthDate: TuiDay) => {
+            this.age = this.calculateDateDifference(newBirthDate).year;
+
+        });
+
+        this.employeeForm.get("firstWorkDay")?.valueChanges.subscribe((newStartDate: TuiDay) => {
+            const dateDifference: TuiDay = this.calculateDateDifference(newStartDate);
+            this.yearWorkExp = dateDifference.year;
+            this.monthWorkExp = dateDifference.month;
+        });
     }
 
     public loadHolidays(): void {
@@ -152,7 +147,18 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit, OnDestroy
         }
     }
 
-    public loadCabinetModal(): void {
+    public initializeCabinetModal(): void {
+        const context: EmployeeEditorComponent = this;
+        this._cabinetModalService.isModalOpen$.subscribe(function(isModalOpening: boolean): void {
+            if (isModalOpening) {
+                context.renderCabinetModal();
+            } else {
+                context.clearCabinetModal();
+            }
+        });
+    }
+
+    public renderCabinetModal(): void {
         const containerRef: ViewContainerRef = this.cabinetHost.viewContainerRef;
         containerRef.clear();
         containerRef.createComponent<CabinetComponent>(CabinetComponent);
