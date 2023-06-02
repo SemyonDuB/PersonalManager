@@ -17,7 +17,7 @@ import { EmployeeTableService } from '../../../core/services/employee-table.serv
 import { TuiDay } from "@taiga-ui/cdk";
 
 type IntervalControlNames = {startName: string, endName: string};
-type NamedIntervalControlNames = IntervalControlNames & {textName: string};
+type SignedStartDateNames = {startName: string, titleName: string};
 
 @Component({
     selector: 'employee-editor',
@@ -41,12 +41,11 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit {
     });
     public vacationSubs: Subscription[] = [];
 
-    public basicVacancyControlNames: NamedIntervalControlNames =
-        {startName: "vacancyStart", endName: "vacancyEnd", textName: "vacancyName"};
-    public vacanciesHistory: NamedIntervalControlNames[] = new Array<NamedIntervalControlNames>({
+    public basicVacancyControlNames: SignedStartDateNames =
+        {startName: "vacancyStart", titleName: "vacancyName"};
+    public vacanciesHistory: SignedStartDateNames[] = new Array<SignedStartDateNames>({
         startName: this.basicVacancyControlNames.startName + "0",
-        endName: this.basicVacancyControlNames.endName + "0",
-        textName: this.basicVacancyControlNames.textName + "0"
+        titleName: this.basicVacancyControlNames.titleName + "0"
     });
     public vacancySubs: Subscription[] = [];
 
@@ -134,8 +133,7 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit {
         this.subscribeVacationFields(this.vacationsHistory[0]!.endName, 1);
 
         this.subscribeVacancyFields(this.vacanciesHistory[0]!.startName, 1);
-        this.subscribeVacancyFields(this.vacanciesHistory[0]!.endName, 1);
-        this.subscribeVacancyFields(this.vacanciesHistory[0]!.textName, 1);
+        this.subscribeVacancyFields(this.vacanciesHistory[0]!.titleName, 1);
     }
 
     public subscribeVacationFields(controlName: string, nextIndex: number): void {
@@ -173,13 +171,11 @@ export class EmployeeEditorComponent implements OnInit, AfterViewInit {
 
     public generateVacancyFields(index: number): void {
         const startName: string = this.basicVacancyControlNames.startName + index.toString();
-        const endName: string = this.basicVacancyControlNames.endName + index.toString();
-        const textName: string = this.basicVacancyControlNames.textName + index.toString();
-        this.addFormControls(startName, endName,textName);
-        this.vacanciesHistory.push({startName: startName, endName: endName, textName: textName});
+        const titleName: string = this.basicVacancyControlNames.titleName + index.toString();
+        this.addFormControls(startName, titleName);
+        this.vacanciesHistory.push({startName: startName, titleName: titleName});
         this.subscribeVacancyFields(this.vacanciesHistory[index]!.startName, index + 1);
-        this.subscribeVacancyFields(this.vacanciesHistory[index]!.endName, index + 1);
-        this.subscribeVacancyFields(this.vacanciesHistory[index]!.textName, index + 1);
+        this.subscribeVacancyFields(this.vacanciesHistory[index]!.titleName, index + 1);
     }
 
     public calculateDateDifference(newStartDate: TuiDay): TuiDay {
