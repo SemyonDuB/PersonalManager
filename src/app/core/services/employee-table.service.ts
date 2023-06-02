@@ -48,7 +48,7 @@ export class EmployeeTableService {
     public dateStringConvertToTuiDay(dateString: string): TuiDay {
         const date: Date = new Date(dateString);
 
-        return new TuiDay(date.getFullYear(), date.getMonth(), date.getDay());
+        return new TuiDay(date.getFullYear(), date.getMonth(), date.getDate());
     }
 
     public get employees(): IEmployeeModel[] {
