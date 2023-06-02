@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { IEmployeeModel } from '../models/employee.model';
 import employeesJson from '../../../assets/employees.json';
 import { TuiComparator } from '@taiga-ui/addon-table';
-import { tuiDefaultSort } from '@taiga-ui/cdk';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { TuiDay, tuiDefaultSort } from '@taiga-ui/cdk';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { ICareer } from '../models/career.model';
-import { TuiDay } from '@taiga-ui/cdk';
+import { IHolidays } from '../models/holidays.model';
 
 @Injectable({
     providedIn: 'root'
@@ -15,8 +15,9 @@ export class EmployeeTableService {
     public direction$: BehaviorSubject<1 | -1> = new BehaviorSubject<1 | -1>(1);
     public filterBy$: BehaviorSubject<Partial<IEmployeeModel> | null> = new BehaviorSubject<Partial<IEmployeeModel> | null>(null);
 
-    constructor() {
-    }
+    public deleteEmployees$: BehaviorSubject<void> = new BehaviorSubject<void>(undefined);
+
+    private _employees: IEmployeeModel[] = this.parseEmployeesJson();
 
     public getData(filterBy: Partial<IEmployeeModel> | null,
                    sorterKey: keyof IEmployeeModel | null,
@@ -46,10 +47,46 @@ export class EmployeeTableService {
     public dateStringConvertToTuiDay(dateString: string): TuiDay {
         const date: Date = new Date(dateString);
 
-        return new TuiDay(date.getFullYear(), date.getMonth(), date.getDay());
+        return new TuiDay(date.getFullYear(), date.getMonth(), date.getDate());
     }
 
     public get employees(): IEmployeeModel[] {
+        return this._employees;
+    }
+
+    public getEmployee(id: number): IEmployeeModel | undefined {
+        return this.employees.find((employee: IEmployeeModel) => employee.id === id);
+    }
+
+    public sortBy(key: keyof IEmployeeModel, direction: 1 | -1): TuiComparator<IEmployeeModel> {
+        return (a: IEmployeeModel, b: IEmployeeModel) => direction * tuiDefaultSort(a[key], b[key]);
+    }
+
+    public addEmployee(employee: IEmployeeModel): IEmployeeModel {
+        employee.id = 1 + Math.max(...this.employees.map((e: IEmployeeModel) => e.id));
+        this._employees.push(employee);
+
+        return employee;
+    }
+
+    public updateEmployee(employee: IEmployeeModel): IEmployeeModel | undefined {
+        const index: number = this._employees.findIndex((e: IEmployeeModel) => e.id === employee.id);
+
+        if (index === -1) {
+            return undefined;
+        }
+
+        this._employees[index] = employee;
+
+        return employee;
+    }
+
+    public deleteEmployees(ids: number[]): void {
+        this._employees = this._employees.filter((employee: IEmployeeModel) => !(ids.includes(employee.id)));
+        this.deleteEmployees$.next();
+    }
+
+    private parseEmployeesJson(): IEmployeeModel[] {
         const result: IEmployeeModel[] = [];
 
         for (const e of employeesJson) {
@@ -58,7 +95,12 @@ export class EmployeeTableService {
                 name: name
             });
 
-            const holidays: TuiDay[] = e.holidayHistory.map((value: string) => this.dateStringConvertToTuiDay(value));
+            const holidays: IHolidays[] = e.holidayHistory.map(
+                ({startDate, endDate}: {startDate: string, endDate: string}) => <IHolidays>{
+                    startDate: this.dateStringConvertToTuiDay(startDate),
+                    endDate: this.dateStringConvertToTuiDay(endDate)
+                }
+            );
 
             result.push({
                 id: e.id,
@@ -80,13 +122,5 @@ export class EmployeeTableService {
         }
 
         return result;
-    }
-
-    public getEmployee(id: number): IEmployeeModel | undefined {
-        return this.employees.find((employee: IEmployeeModel) => employee.id === id);
-    }
-
-    public sortBy(key: keyof IEmployeeModel, direction: 1 | -1): TuiComparator<IEmployeeModel> {
-        return (a: IEmployeeModel, b: IEmployeeModel) => direction * tuiDefaultSort(a[key], b[key]);
     }
 }

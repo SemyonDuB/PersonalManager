@@ -7,7 +7,7 @@
             <img src="{{imgPath}}" alt="Фотография сотрудника" class="employee_photo" width="162" height="162">
             <div class="basic-information">
                 <tui-input tuiTextfieldSize="l"
-                           formControlName="employeeName"
+                           formControlName="fullName"
                            class="name-field" [tuiTextfieldLabelOutside]="true"
                 >
                     Имя
@@ -15,7 +15,7 @@
                 </tui-input>
                 <p *ngIf="age" class="age">{{age}} {{age | declension:'year' }}</p>
                 <tui-input tuiTextfieldSize="m"
-                           formControlName="employeeJob"
+                           formControlName="jobTitle"
                            class="job-field"
                            [tuiTextfieldLabelOutside]="true"
                 >
@@ -38,34 +38,41 @@
         <div class="optional-fields">
             <div class="input-group">
                 <label for="education">Образование:</label>
-                <tui-input tuiTextfieldSize="s" formControlName="employeeEducation" class="education-field">
+                <tui-input tuiTextfieldSize="s" formControlName="education" class="education-field">
                     <input tuiTextfield type="text" id="education"/>
                 </tui-input>
             </div>
             <div class="input-group">
-                <label for="education">Дата рождения:</label>
-                <tui-input-date formControlName="employeeBirth" tuiTextfieldSize="s">
+                <label>Дата рождения:</label>
+                <tui-input-date formControlName="birthday" tuiTextfieldSize="s">
                 </tui-input-date>
             </div>
             <div class="input-group">
-                <label for="education">Текущий проект:</label>
-                <tui-input tuiTextfieldSize="s" formControlName="employeeProject" class="project-field">
+                <label for="project">Текущий проект:</label>
+                <tui-input tuiTextfieldSize="s" formControlName="projectName" class="project-field">
                     <input tuiTextfield type="text" id="project"/>
                 </tui-input>
             </div>
             <div class="input-group">
-                <label for="education">Дата собеседования:</label>
-                <tui-input-date formControlName="employeeInterviewDate" tuiTextfieldSize="s">
+                <label for="wage">Оклад:</label>
+                <tui-input tuiTextfieldSize="s" formControlName="wage" class="wage-field">
+                    <input tuiTextfield type="text" id="wage"/>
+                </tui-input>
+                <p class="rubles">₽</p>
+            </div>
+            <div class="input-group">
+                <label>Дата собеседования:</label>
+                <tui-input-date formControlName="interviewDate" tuiTextfieldSize="s">
                 </tui-input-date>
             </div>
             <div class="input-group">
-                <label for="education">Дата трудоустройтсва:</label>
-                <tui-input-date formControlName="employeeEmploymentDate" tuiTextfieldSize="s">
+                <label>Дата трудоустройтсва:</label>
+                <tui-input-date formControlName="employmentDate" tuiTextfieldSize="s">
                 </tui-input-date>
             </div>
             <div class="input-group">
-                <label for="education">Первый рабочий день:</label>
-                <tui-input-date formControlName="employeeFirstWorkDay" tuiTextfieldSize="s">
+                <label>Первый рабочий день:</label>
+                <tui-input-date formControlName="firstWorkDay" tuiTextfieldSize="s">
                 </tui-input-date>
             </div>
             <div class="reactive-input-group">
@@ -85,11 +92,8 @@
                     <p>с</p>
                     <tui-input-date formControlName="{{vacancy.startName}}" tuiTextfieldSize="s">
                     </tui-input-date>
-                    <p>по</p>
-                    <tui-input-date formControlName="{{vacancy.endName}}" tuiTextfieldSize="s">
-                    </tui-input-date>
                     <hr>
-                    <tui-input tuiTextfieldSize="s" formControlName="{{vacancy.textName}}" class="vacancy-field">
+                    <tui-input tuiTextfieldSize="s" formControlName="{{vacancy.titleName}}" class="vacancy-field">
                         <input tuiTextfield type="text" id="vacancy"/>
                     </tui-input>
                 </div>
@@ -97,4 +101,4 @@
         </div>
     </form>
 </div>
-<employee-editor-footer></employee-editor-footer>
+<employee-editor-footer (saveClick)="saveEmployee()"></employee-editor-footer>

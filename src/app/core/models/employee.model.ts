@@ -1,4 +1,5 @@
 import { ICareer } from './career.model';
+import { IHolidays } from './holidays.model';
 import { TuiDay } from '@taiga-ui/cdk';
 
 export interface IEmployeeModel {
@@ -16,7 +17,7 @@ export interface IEmployeeModel {
     interviewDate: TuiDay;
     firstWorkDay: TuiDay;
 
-    holidayHistory: TuiDay[];
+    holidayHistory: IHolidays[];
     career: ICareer[];
 
     checked: boolean;
