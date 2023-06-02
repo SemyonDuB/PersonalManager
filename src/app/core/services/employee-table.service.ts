@@ -5,6 +5,7 @@ import { TuiComparator } from '@taiga-ui/addon-table';
 import { TuiDay, tuiDefaultSort } from '@taiga-ui/cdk';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { ICareer } from '../models/career.model';
+import { IHolidays } from '../models/holidays.model';
 
 @Injectable({
     providedIn: 'root'
@@ -46,7 +47,7 @@ export class EmployeeTableService {
     public dateStringConvertToTuiDay(dateString: string): TuiDay {
         const date: Date = new Date(dateString);
 
-        return new TuiDay(date.getFullYear(), date.getMonth(), date.getDay());
+        return new TuiDay(date.getFullYear(), date.getMonth(), date.getDate());
     }
 
     public get employees(): IEmployeeModel[] {
@@ -94,7 +95,12 @@ export class EmployeeTableService {
                 name: name
             });
 
-            const holidays: TuiDay[] = e.holidayHistory.map((value: string) => this.dateStringConvertToTuiDay(value));
+            const holidays: IHolidays[] = e.holidayHistory.map(
+                ({startDate, endDate}: {startDate: string, endDate: string}) => <IHolidays>{
+                    startDate: this.dateStringConvertToTuiDay(startDate),
+                    endDate: this.dateStringConvertToTuiDay(endDate)
+                }
+            );
 
             result.push({
                 id: e.id,

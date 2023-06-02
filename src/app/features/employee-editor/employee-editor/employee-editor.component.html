@@ -43,28 +43,35 @@
                 </tui-input>
             </div>
             <div class="input-group">
-                <label for="education">Дата рождения:</label>
+                <label>Дата рождения:</label>
                 <tui-input-date formControlName="birthday" tuiTextfieldSize="s">
                 </tui-input-date>
             </div>
             <div class="input-group">
-                <label for="education">Текущий проект:</label>
+                <label for="project">Текущий проект:</label>
                 <tui-input tuiTextfieldSize="s" formControlName="projectName" class="project-field">
                     <input tuiTextfield type="text" id="project"/>
                 </tui-input>
             </div>
             <div class="input-group">
-                <label for="education">Дата собеседования:</label>
+                <label for="wage">Оклад:</label>
+                <tui-input tuiTextfieldSize="s" formControlName="wage" class="wage-field">
+                    <input tuiTextfield type="text" id="wage"/>
+                </tui-input>
+                <p class="rubles">₽</p>
+            </div>
+            <div class="input-group">
+                <label>Дата собеседования:</label>
                 <tui-input-date formControlName="interviewDate" tuiTextfieldSize="s">
                 </tui-input-date>
             </div>
             <div class="input-group">
-                <label for="education">Дата трудоустройтсва:</label>
+                <label>Дата трудоустройтсва:</label>
                 <tui-input-date formControlName="employmentDate" tuiTextfieldSize="s">
                 </tui-input-date>
             </div>
             <div class="input-group">
-                <label for="education">Первый рабочий день:</label>
+                <label>Первый рабочий день:</label>
                 <tui-input-date formControlName="firstWorkDay" tuiTextfieldSize="s">
                 </tui-input-date>
             </div>
@@ -85,11 +92,8 @@
                     <p>с</p>
                     <tui-input-date formControlName="{{vacancy.startName}}" tuiTextfieldSize="s">
                     </tui-input-date>
-                    <p>по</p>
-                    <tui-input-date formControlName="{{vacancy.endName}}" tuiTextfieldSize="s">
-                    </tui-input-date>
                     <hr>
-                    <tui-input tuiTextfieldSize="s" formControlName="{{vacancy.textName}}" class="vacancy-field">
+                    <tui-input tuiTextfieldSize="s" formControlName="{{vacancy.titleName}}" class="vacancy-field">
                         <input tuiTextfield type="text" id="vacancy"/>
                     </tui-input>
                 </div>
@@ -97,4 +101,4 @@
         </div>
     </form>
 </div>
-<employee-editor-footer [employee]="this.employee$ | async"></employee-editor-footer>
+<employee-editor-footer (saveClick)="saveEmployee()"></employee-editor-footer>

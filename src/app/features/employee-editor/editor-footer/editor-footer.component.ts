@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import { IEmployeeModel } from "../../../core/models/employee.model";
 import { EmployeeTableService } from "../../../core/services/employee-table.service";
@@ -10,20 +10,16 @@ import { EmployeeTableService } from "../../../core/services/employee-table.serv
 })
 export class EditorFooterComponent {
 
-    @Input() public employee: IEmployeeModel | null = null;
+    @Output() public saveClick: EventEmitter<undefined> = new EventEmitter<undefined>();
 
-    constructor(private readonly _router: Router, private _employeeTableService: EmployeeTableService) {
+    constructor(private readonly _router: Router) {
     }
 
     public returnToTable(): void {
         this._router.navigateByUrl('').then();
     }
 
-    public saveEmployee(): void {
-        if (this.employee) {
-            this._employeeTableService.updateEmployee(this.employee);
-        }
-
-        this._router.navigateByUrl('').then();
+    public saveEmployeeChanges(): void {
+        this.saveClick.emit(undefined);
     }
 }
