@@ -171,7 +171,7 @@ export class EmployeeTableService {
                 holidayHistory: employee.holidayHistory.map((h: string) => {
                     const date: Date = new Date(h);
 
-                    return new TuiDay(date.getFullYear(), date.getMonth(), date.getDay());
+                    return new TuiDay(date.getFullYear(), date.getMonth(), date.getDate());
                 }),
                 interviewDate: new TuiDay(interviewDate.getFullYear(), interviewDate.getMonth(), interviewDate.getMonth()),
                 jobTitle: employee.jobTitle,
