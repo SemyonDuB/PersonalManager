@@ -11,9 +11,14 @@ import { IHolidays } from '../models/holidays.model';
     providedIn: 'root'
 })
 export class EmployeeTableService {
-    public sorter$: BehaviorSubject<keyof IEmployeeModel | null> = new BehaviorSubject<keyof IEmployeeModel | null>(null);
+
+    public sorter$: BehaviorSubject<keyof IEmployeeModel | null> =
+        new BehaviorSubject<keyof IEmployeeModel | null>(null);
+
     public direction$: BehaviorSubject<1 | -1> = new BehaviorSubject<1 | -1>(1);
-    public filterBy$: BehaviorSubject<Partial<IEmployeeModel> | null> = new BehaviorSubject<Partial<IEmployeeModel> | null>(null);
+
+    public filterBy$: BehaviorSubject<Partial<IEmployeeModel> | null> =
+        new BehaviorSubject<Partial<IEmployeeModel> | null>(null);
 
     public deleteEmployees$: BehaviorSubject<void> = new BehaviorSubject<void>(undefined);
 
@@ -152,12 +157,12 @@ export class EmployeeTableService {
             const interviewDate: Date = new Date(employee.interviewDate);
 
             employees.push({
-                birthday: new TuiDay(birthday.getFullYear(), birthday.getMonth(), birthday.getDay()),
+                birthday: new TuiDay(birthday.getFullYear(), birthday.getMonth(), birthday.getDate()),
                 career: employee.career.map((c: any) => {
                     const date: Date = new Date(c.date);
 
                     const career: ICareer = {
-                        date: new TuiDay(date.getFullYear(), date.getMonth(), date.getDay()),
+                        date: new TuiDay(date.getFullYear(), date.getMonth(), date.getDate()),
                         name: c.name
                     };
 
@@ -165,15 +170,15 @@ export class EmployeeTableService {
                 }),
                 checked: false,
                 education: employee.education,
-                employmentDate: new TuiDay(employmentDate.getFullYear(), employmentDate.getMonth(), employmentDate.getDay()),
-                firstWorkDay: new TuiDay(firstWorkDay.getFullYear(), firstWorkDay.getMonth(), firstWorkDay.getDay()),
+                employmentDate: new TuiDay(employmentDate.getFullYear(), employmentDate.getMonth(), employmentDate.getDate()),
+                firstWorkDay: new TuiDay(firstWorkDay.getFullYear(), firstWorkDay.getMonth(), firstWorkDay.getDate()),
                 fullName: employee.fullName,
                 holidayHistory: employee.holidayHistory.map((h: string) => {
                     const date: Date = new Date(h);
 
                     return new TuiDay(date.getFullYear(), date.getMonth(), date.getDate());
                 }),
-                interviewDate: new TuiDay(interviewDate.getFullYear(), interviewDate.getMonth(), interviewDate.getMonth()),
+                interviewDate: new TuiDay(interviewDate.getFullYear(), interviewDate.getMonth(), interviewDate.getDate()),
                 jobTitle: employee.jobTitle,
                 projectName: employee.projectName,
                 success: employee.success,

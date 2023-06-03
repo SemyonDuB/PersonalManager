@@ -219,7 +219,7 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
         yearDifference = today < nextAnniversaryDay ? yearDifference - 1 : yearDifference;
         let monthDifference: number = Math.abs(today.getMonth() - startDate.getMonth());
         monthDifference = today.getMonth() < nextAnniversaryDay.getMonth() ? monthDifference - 1 : monthDifference;
-        const dayDifference: number = Math.abs(today.getDay() - startDate.getDay()) + 1;
+        const dayDifference: number = Math.abs(today.getDate() - startDate.getDate()) + 1;
 
         return new TuiDay(yearDifference, monthDifference, dayDifference);
     }

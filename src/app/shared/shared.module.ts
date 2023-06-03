@@ -25,6 +25,7 @@ import { CommonModule } from '@angular/common';
 import { ComponentHostDirective } from './directives/component-host.directive';
 import { CabinetComponent } from './components/cabinet/cabinet.component';
 import { DeclensionPipe } from './pipes/declension.pipe';
+import {MessageModalComponent} from "./components/message-modal/message-modal.component";
 
 const modules: TuiRootModule[] = [
     CommonModule,
@@ -58,14 +59,16 @@ const modules: TuiRootModule[] = [
         MenuBarComponent,
         ComponentHostDirective,
         DeclensionPipe,
-        CabinetComponent
+        CabinetComponent,
+        MessageModalComponent
     ],
     declarations: [
         AccountButtonComponent,
         MenuBarComponent,
         ComponentHostDirective,
         DeclensionPipe,
-        CabinetComponent
+        CabinetComponent,
+        MessageModalComponent
     ]
 })
 export class SharedModule {
