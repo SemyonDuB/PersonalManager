@@ -136,7 +136,10 @@
                 tuiTd
                 (click)="navigateToDetailInfo(item.id)"
             >
-                {{ item.success }}
+                <div *ngIf="item.success else elseBlock" class="is-success success"></div>
+                <ng-template #elseBlock>
+                    <div class="is-success unsuccess"></div>
+                </ng-template>
             </td>
 
         </tr>
