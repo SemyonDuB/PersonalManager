@@ -83,7 +83,11 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
         this.employeeForm.get("employmentDate")?.setValue(this.employee?.employmentDate);
         this.employeeForm.get("firstWorkDay")?.setValue(this.employee?.firstWorkDay);
         this.employeeForm.get("wage")?.setValue(this.employee?.wage);
-        this.employeeForm.get("success")?.setValue(this.employee?.success);
+        if (this.employee?.success) {
+            this.employeeForm.get("success")?.setValue(this.employee?.success);
+        } else {
+            this.employeeForm.get("success")?.setValue(false);
+        }
 
         this.age = this.employee?.birthday ? this.calculateDateDifference(this.employee.birthday).year : undefined;
         this.yearWorkExp = this.employee?.firstWorkDay ?
