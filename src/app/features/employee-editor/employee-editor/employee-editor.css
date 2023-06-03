@@ -19,6 +19,10 @@
     background-color: #f9f9fd;
 }
 
+.media {
+    scrollbar-width: none;
+}
+
 .basic-container {
     display: flex;
     padding: 30px 1.8vw 0 1.8vw;
