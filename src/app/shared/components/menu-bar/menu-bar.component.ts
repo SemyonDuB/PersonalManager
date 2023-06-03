@@ -20,24 +20,9 @@ export class MenuBarComponent{
     }
 
     public addEmployee(): void {
-        const employee: IEmployeeModel = this._employeeTableService.addEmployee({
-            id: 0,
-            fullName: '',
-            wage: 0,
-            jobTitle: '',
-            education: '',
-            birthday: new TuiDay(2000, 0, 0),
-            projectName: '',
-            interviewDate: new TuiDay(2000, 0, 0),
-            employmentDate: new TuiDay(2000, 0, 0),
-            firstWorkDay: new TuiDay(2000, 0, 0),
-            success: false,
-            checked: false,
-            career: [],
-            holidayHistory: []
-        });
+        const id: number = 1 + Math.max(...this._employeeTableService.employees.map((e: IEmployeeModel) => e.id));
 
-        this.router.navigateByUrl(`/employee-editor/${employee.id}`).then();
+        this.router.navigateByUrl(`/employee-editor/${id}`).then();
     }
 
     public deleteEmployees(): void {
