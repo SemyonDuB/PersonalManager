@@ -60,6 +60,7 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
         "interviewDate": new FormControl(),
         "employmentDate": new FormControl(),
         "firstWorkDay": new FormControl(),
+        "success": new FormControl(),
         "vacationStart0": new FormControl(),
         "vacationEnd0": new FormControl(),
         "vacancyStart0": new FormControl(),
@@ -83,6 +84,7 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
         this.employeeForm.get("employmentDate")?.setValue(this.employee?.employmentDate);
         this.employeeForm.get("firstWorkDay")?.setValue(this.employee?.firstWorkDay);
         this.employeeForm.get("wage")?.setValue(this.employee?.wage);
+        this.employeeForm.get("success")?.setValue(this.employee?.success);
 
         this.age = this.employee?.birthday ? this.calculateDateDifference(this.employee.birthday).year : undefined;
         this.yearWorkExp = this.employee?.firstWorkDay ?
@@ -259,7 +261,7 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
                 interviewDate: this.employeeForm.get("interviewDate")?.value,
                 jobTitle: this.employeeForm.get("jobTitle")?.value,
                 projectName: this.employeeForm.get("projectName")?.value,
-                success: this.employee!.success,
+                success: this.employeeForm.get("success")?.value,
                 wage: this.employeeForm.get("wage")?.value,
                 checked: false
             }

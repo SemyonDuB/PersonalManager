@@ -197,3 +197,7 @@ hr {
     max-width: 270px;
     margin: 0 0 0 23px;
 }
+
+tui-checkbox {
+    margin-top: 3px;
+}
