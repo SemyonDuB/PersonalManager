@@ -36,6 +36,7 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
     });
     public vacationSubs: Subscription[] = [];
 
+    public employeeId: number = Number(this._route.snapshot.paramMap.get('id')) ?? 0;
     public employee: IEmployeeModel | undefined = undefined;
 
     public basicVacancyControlNames: SignedStartDateNames =
@@ -71,9 +72,7 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
                 private _route: ActivatedRoute,
                 private _router: Router,
                 private _employeeTableService: EmployeeTableService) {
-        const id: number = Number(_route.snapshot.paramMap.get('id')) ?? 0;
-
-        this.employee = _employeeTableService.getEmployee(id);
+        this.employee = _employeeTableService.getEmployee(this.employeeId);
 
         this.employeeForm.get("fullName")?.setValue(this.employee?.fullName);
         this.employeeForm.get("jobTitle")?.setValue(this.employee?.jobTitle);
@@ -248,24 +247,32 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
     }
 
     public saveEmployee(): void {
-        this._employeeTableService.updateEmployee(
-            {
-                id: this.employee!.id,
-                fullName: this.employeeForm.get("fullName")?.value,
-                birthday: this.employeeForm.get("birthday")?.value,
-                career: this.getCareerValues(),
-                education: this.employeeForm.get("education")?.value,
-                employmentDate: this.employeeForm.get("employmentDate")?.value,
-                firstWorkDay: this.employeeForm.get("firstWorkDay")?.value,
-                holidayHistory: this.getHolidayValues(),
-                interviewDate: this.employeeForm.get("interviewDate")?.value,
-                jobTitle: this.employeeForm.get("jobTitle")?.value,
-                projectName: this.employeeForm.get("projectName")?.value,
-                success: this.employeeForm.get("success")?.value,
-                wage: this.employeeForm.get("wage")?.value,
-                checked: false
-            }
-        );
+        const employee: IEmployeeModel = {
+            id: this.employeeId,
+            fullName: this.employeeForm.get("fullName")?.value,
+            birthday: this.employeeForm.get("birthday")?.value,
+            career: this.getCareerValues(),
+            education: this.employeeForm.get("education")?.value,
+            employmentDate: this.employeeForm.get("employmentDate")?.value,
+            firstWorkDay: this.employeeForm.get("firstWorkDay")?.value,
+            holidayHistory: this.getHolidayValues(),
+            interviewDate: this.employeeForm.get("interviewDate")?.value,
+            jobTitle: this.employeeForm.get("jobTitle")?.value,
+            projectName: this.employeeForm.get("projectName")?.value,
+
+            // TODO: Добавить контрол для success
+            success: false,
+
+            wage: this.employeeForm.get("wage")?.value,
+            checked: false
+        };
+
+        if (!this.employee) {
+            this._employeeTableService.addEmployee(employee);
+        } else {
+            this._employeeTableService.updateEmployee(employee);
+        }
+
         this._router.navigateByUrl('').then();
     }
 }

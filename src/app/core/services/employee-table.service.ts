@@ -3,7 +3,7 @@ import { IEmployeeModel } from '../models/employee.model';
 import employeesJson from '../../../assets/employees.json';
 import { TuiComparator } from '@taiga-ui/addon-table';
 import { TuiDay, tuiDefaultSort } from '@taiga-ui/cdk';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ICareer } from '../models/career.model';
 import { IHolidays } from '../models/holidays.model';
 
@@ -17,7 +17,17 @@ export class EmployeeTableService {
 
     public deleteEmployees$: BehaviorSubject<void> = new BehaviorSubject<void>(undefined);
 
-    private _employees: IEmployeeModel[] = this.parseEmployeesJson();
+    private _employees: IEmployeeModel[];
+
+    constructor() {
+        const localEmployees: string | null = window.localStorage.getItem("employees");
+
+        this._employees = localEmployees
+            ? this.parseEmployeesLocalStorage()
+            : this.parseEmployeesJson();
+
+        window.localStorage["employees"] = JSON.stringify(this._employees);
+    }
 
     public getData(filterBy: Partial<IEmployeeModel> | null,
                    sorterKey: keyof IEmployeeModel | null,
@@ -66,6 +76,8 @@ export class EmployeeTableService {
         employee.id = 1 + Math.max(...this.employees.map((e: IEmployeeModel) => e.id));
         this._employees.push(employee);
 
+        window.localStorage["employees"] = JSON.stringify(this._employees);
+
         return employee;
     }
 
@@ -78,12 +90,16 @@ export class EmployeeTableService {
 
         this._employees[index] = employee;
 
+        window.localStorage["employees"] = JSON.stringify(this._employees);
+
         return employee;
     }
 
     public deleteEmployees(ids: number[]): void {
         this._employees = this._employees.filter((employee: IEmployeeModel) => !(ids.includes(employee.id)));
         this.deleteEmployees$.next();
+
+        window.localStorage["employees"] = JSON.stringify(this._employees);
     }
 
     private parseEmployeesJson(): IEmployeeModel[] {
@@ -96,7 +112,7 @@ export class EmployeeTableService {
             });
 
             const holidays: IHolidays[] = e.holidayHistory.map(
-                ({startDate, endDate}: {startDate: string, endDate: string}) => <IHolidays>{
+                ({startDate, endDate}: { startDate: string, endDate: string }) => <IHolidays>{
                     startDate: this.dateStringConvertToTuiDay(startDate),
                     endDate: this.dateStringConvertToTuiDay(endDate)
                 }
@@ -122,5 +138,50 @@ export class EmployeeTableService {
         }
 
         return result;
+    }
+
+    private parseEmployeesLocalStorage(): IEmployeeModel[] {
+        const localEmployees: string | null = window.localStorage.getItem("employees");
+
+        const employees: IEmployeeModel[] = [];
+
+        for (const employee of JSON.parse(localEmployees!)) {
+            const birthday: Date = new Date(employee.birthday);
+            const employmentDate: Date = new Date(employee.employmentDate);
+            const firstWorkDay: Date = new Date(employee.firstWorkDay);
+            const interviewDate: Date = new Date(employee.interviewDate);
+
+            employees.push({
+                birthday: new TuiDay(birthday.getFullYear(), birthday.getMonth(), birthday.getDay()),
+                career: employee.career.map((c: any) => {
+                    const date: Date = new Date(c.date);
+
+                    const career: ICareer = {
+                        date: new TuiDay(date.getFullYear(), date.getMonth(), date.getDay()),
+                        name: c.name
+                    };
+
+                    return career;
+                }),
+                checked: false,
+                education: employee.education,
+                employmentDate: new TuiDay(employmentDate.getFullYear(), employmentDate.getMonth(), employmentDate.getDay()),
+                firstWorkDay: new TuiDay(firstWorkDay.getFullYear(), firstWorkDay.getMonth(), firstWorkDay.getDay()),
+                fullName: employee.fullName,
+                holidayHistory: employee.holidayHistory.map((h: string) => {
+                    const date: Date = new Date(h);
+
+                    return new TuiDay(date.getFullYear(), date.getMonth(), date.getDay());
+                }),
+                interviewDate: new TuiDay(interviewDate.getFullYear(), interviewDate.getMonth(), interviewDate.getMonth()),
+                jobTitle: employee.jobTitle,
+                projectName: employee.projectName,
+                success: employee.success,
+                wage: employee.wage,
+                id: employee.id
+            });
+        }
+
+        return employees;
     }
 }
