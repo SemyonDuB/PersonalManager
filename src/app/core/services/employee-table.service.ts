@@ -3,7 +3,7 @@ import { IEmployeeModel } from '../models/employee.model';
 import employeesJson from '../../../assets/employees.json';
 import { TuiComparator } from '@taiga-ui/addon-table';
 import { TuiDay, tuiDefaultSort } from '@taiga-ui/cdk';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ICareer } from '../models/career.model';
 import { IHolidays } from '../models/holidays.model';
 
@@ -17,7 +17,17 @@ export class EmployeeTableService {
 
     public deleteEmployees$: BehaviorSubject<void> = new BehaviorSubject<void>(undefined);
 
-    private _employees: IEmployeeModel[] = this.parseEmployeesJson();
+    private _employees: IEmployeeModel[];
+
+    constructor() {
+        const localEmployees: string | null = window.localStorage.getItem("employees");
+
+        this._employees = localEmployees
+            ? JSON.parse(localEmployees)
+            : this.parseEmployeesJson();
+
+        window.localStorage["employees"] = JSON.stringify(this._employees);
+    }
 
     public getData(filterBy: Partial<IEmployeeModel> | null,
                    sorterKey: keyof IEmployeeModel | null,
@@ -66,6 +76,8 @@ export class EmployeeTableService {
         employee.id = 1 + Math.max(...this.employees.map((e: IEmployeeModel) => e.id));
         this._employees.push(employee);
 
+        window.localStorage["employees"] = JSON.stringify(this._employees);
+
         return employee;
     }
 
@@ -78,12 +90,16 @@ export class EmployeeTableService {
 
         this._employees[index] = employee;
 
+        window.localStorage["employees"] = JSON.stringify(this._employees);
+
         return employee;
     }
 
     public deleteEmployees(ids: number[]): void {
         this._employees = this._employees.filter((employee: IEmployeeModel) => !(ids.includes(employee.id)));
         this.deleteEmployees$.next();
+
+        window.localStorage["employees"] = JSON.stringify(this._employees);
     }
 
     private parseEmployeesJson(): IEmployeeModel[] {
@@ -96,7 +112,7 @@ export class EmployeeTableService {
             });
 
             const holidays: IHolidays[] = e.holidayHistory.map(
-                ({startDate, endDate}: {startDate: string, endDate: string}) => <IHolidays>{
+                ({startDate, endDate}: { startDate: string, endDate: string }) => <IHolidays>{
                     startDate: this.dateStringConvertToTuiDay(startDate),
                     endDate: this.dateStringConvertToTuiDay(endDate)
                 }
