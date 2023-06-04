@@ -2,6 +2,7 @@ import {Component, ViewChild, ViewContainerRef} from '@angular/core';
 import {ComponentHostDirective} from "./shared/directives/component-host.directive";
 import {MessagingService} from "./core/services/messaging.service";
 import {MessageModalComponent} from "./shared/components/message-modal/message-modal.component";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'app-root',
@@ -14,9 +15,15 @@ export class AppComponent {
 
     constructor(private readonly _messagingService: MessagingService) {
         const context: AppComponent = this;
-        this._messagingService.newMessage$.subscribe((): void => {
-            context.renderMessageModal();
-            setTimeout((): void => {context.clearMessageModal();}, this._messagingService.timeOut);
+        this._messagingService.openingMessage$.subscribe((isOpen: boolean): void => {
+            if (isOpen) {
+                context.renderMessageModal();
+                setTimeout((): void => {
+                    context.clearMessageModal();
+                },context._messagingService.timeOut);
+            } else {
+                context.clearMessageModal();
+            }
         });
     }
 
