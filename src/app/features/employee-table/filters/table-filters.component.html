@@ -1,0 +1,39 @@
+<div class="filters-container">
+    <form class="b-form" [formGroup]="filterForm" [tuiTextfieldCleaner]="true">
+        <tui-input formControlName="fullName" tuiTextfieldSize="m" class="filter-input">
+            ФИО
+            <input tuiTextfield type="text"/>
+        </tui-input>
+        <tui-input formControlName="jobTitle" tuiTextfieldSize="m" class="filter-input">
+            Должность
+            <input tuiTextfield type="text"/>
+        </tui-input>
+        <tui-input formControlName="projectName" tuiTextfieldSize="m" class="filter-input">
+            Проект
+            <input tuiTextfield type="text"/>
+        </tui-input>
+        <tui-input formControlName="wage" tuiTextfieldSize="m" class="filter-input">
+            Зарплата
+            <input tuiTextfield type="number"/>
+        </tui-input>
+        <tui-input formControlName="success" tuiTextfieldSize="m" class="filter-input">
+            Успешность
+            <input tuiTextfield type="text"/>
+        </tui-input>
+        <tui-input-date tuiUnfinishedValidator="Завершите заполнение поля"
+                        formControlName="date"
+                        tuiTextfieldSize="m"
+                        class="filter-input">
+            Дата рождения
+        </tui-input-date>
+        <tui-input-date tuiUnfinishedValidator="Завершите заполнение поля"
+                        formControlName="employmentDate"
+                        tuiTextfieldSize="m"
+                        class="filter-input">
+            Трудоустройство
+        </tui-input-date>
+        <div class="button-container">
+            <button class="filters-button" (click)="applyFilters()"></button>
+        </div>
+    </form>
+</div>

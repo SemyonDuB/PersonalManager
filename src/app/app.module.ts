@@ -1,53 +1,35 @@
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { TUI_SANITIZER } from "@taiga-ui/core";
 
-import { AppComponent } from './components/app/app.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-
-const components = [
-    AppComponent,
-    PageNotFoundComponent
-];
-
-const routes: Routes = [
-    {
-        path: '',
-        redirectTo: '/login',
-        pathMatch: 'full',
-    },
-    {
-        /** TODO Модуль неавторизованной зоны (находимся до авторизации)*/
-        path: 'login',
-        pathMatch: 'full',
-        component: AppComponent
-        // loadChildren: () => import('./children/account/account.web.routing-module')
-        //     .then((m: any) => m.AccountWebRoutingModule)
-    },
-    {
-        /** TODO Модуль авторизованной зоны (попадаем после авторизации) */
-        path: 'cabinet',
-        component: AppComponent
-        // canActivate: [AuthorizationGuardService],
-        // loadChildren: () => import('./children/cabinet/cabinet.web.routing-module')
-        //     .then((m: any) => m.CabinetWebRoutingModule),
-    },
-    {
-        path: '**',
-        pathMatch: 'full',
-        component: PageNotFoundComponent
-    }
-];
+import {AppComponent} from './app.component';
+import {PageNotFoundComponent} from './features/page-not-found/page-not-found.component';
+import {SharedModule} from "./shared/shared.module";
+import {CoreModule} from "./core/core.module";
+import {AppRoutingModule} from "./app-routing.module";
+import {EmployeeEditorModule} from "./features/employee-editor/employee-editor.module";
+import {EmployeeTableModule} from "./features/employee-table/employee-table.module";
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(routes),
-        BrowserModule
+        BrowserModule,
+        SharedModule,
+        CoreModule,
+        AppRoutingModule,
+        EmployeeEditorModule,
+        EmployeeTableModule
     ],
-    declarations: components,
-    providers: [],
+    declarations: [
+        AppComponent,
+        PageNotFoundComponent,
+    ],
+    providers: [
+        {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}
+    ],
     bootstrap: [
         AppComponent
     ]
 })
-export class AppModule { }
+export class AppModule {
+}

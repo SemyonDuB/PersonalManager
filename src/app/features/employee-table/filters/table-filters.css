@@ -1,0 +1,50 @@
+.filters-container {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    margin-bottom: 9px;
+
+    width: calc(100% - 58px);
+    max-width: 1325px;
+    padding: 20px 29px 20px 29px;
+}
+
+.filter-input {
+    display: inline-block;
+    width: 23.125%;
+    margin: 0 2.5% 20px 0;
+}
+
+.filters-container .filter-input:nth-child(4n) {
+    margin-right: 0;
+}
+
+/*линия?*/
+
+.button-line {
+    background-color: #76C0C2;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+}
+
+.filters-button {
+    background: url("src/assets/img/filter_button.png") no-repeat;
+    background-size: 188px 39px;
+    width: 188px;
+    height: 39px;
+    border: none;
+    cursor: pointer;
+    margin: 0 0 0 auto;
+    display: block;
+}
+
+.filters-button:hover {
+    background: url("src/assets/img/filter_button_hover.png") no-repeat;
+    background-size: 188px 39px;
+}
+
+.filters-button:active {
+    background: url("src/assets/img/filter_button_active.png") no-repeat;
+    background-size: 188px 39px;
+}

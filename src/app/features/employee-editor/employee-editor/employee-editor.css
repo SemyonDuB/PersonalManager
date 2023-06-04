@@ -1,0 +1,167 @@
+.media {
+    background-color: #FFFFFF;
+    width: 100%;
+    margin: 0;
+    border-radius: 17px 17px 0 0;
+    padding: 0 0 79px 0;
+
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.basic-container {
+    display: flex;
+    border-bottom: 1px solid #235759;
+    padding: 30px 1.8vw 30px 1.8vw;
+}
+
+.employee_photo {
+    border-radius: 100px;
+}
+
+.basic-information {
+    margin: 0 0 0 2vw;
+}
+
+.name-field, .age {
+    display: inline-block;
+    vertical-align: top;
+}
+
+input {
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.age {
+    color: #235759;
+    font-size: 24px;
+    margin: 0;
+    padding: 23px 0 0 28px;
+}
+
+#name, #job {
+    padding: 5px 10px 5px 10px;
+}
+
+#name {
+    font-size: 26px;
+}
+
+.name-field, .job-field {
+    /*width: calc(94.4vw - 182px);*/
+    width: calc(94.4vw - 205px);
+}
+
+.name-field {
+    max-width: 550px;
+}
+
+#job {
+    font-size: 22px;
+}
+
+.job-field {
+    max-width: 450px;
+    margin: 17px 0 30px 0;
+}
+
+.work-experience {
+    color: #235759;
+    font-size: 20px;
+}
+
+.work-experience p {
+    margin: 10px 0 0 7px;
+    display: inline-block;
+}
+
+.work-experience p:first-child {
+    margin-left: 0;
+}
+
+.input-group {
+    display: flex;
+    margin: 22px 0 0 0;
+}
+
+.optional-fields {
+    margin: 35px 5.7vw 0 5.7vw;
+}
+
+.education-field {
+    width: 100%;
+    max-width: 620px;
+}
+
+#education, #project {
+    font-size: 18px;
+}
+
+tui-input-date {
+    font-size: 18px;
+    width: 120px;
+}
+
+.project-field {
+    width: 100%;
+    max-width: 400px;
+}
+
+label {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 6px 15px 0 0;
+    color: #235759;
+    line-height: 1;
+}
+
+.reactive-input-group {
+    margin: 22px 0 0 0;
+}
+
+.reactive-inputs {
+    margin: 0 0 0 3vw;
+}
+
+.reactive-inputs>* {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.reactive-inputs tui-input-date {
+    margin-bottom: 14px;
+}
+
+.reactive-input-group label {
+    margin-bottom: 20px;
+    display: block;
+}
+
+.reactive-inputs p {
+    font-size: 18px;
+    color: #235759;
+    margin: 0 0.5vw 0 2vw;
+    padding: 9px 0 0 0;
+}
+
+.reactive-inputs p:first-child {
+    margin-left: 0;
+}
+
+hr {
+    width: 20px;
+    height: 2px;
+    background-color: #79B4B6;
+    margin: 16px 0 0 24px;
+}
+
+.vacancy-field {
+    width: 100%;
+    max-width: 270px;
+    margin: 0 0 0 16px;
+}

@@ -1,0 +1,70 @@
+header {
+    height: 28px;
+    margin: 17px 0 17px 0;
+    border-radius: 12px;
+    padding: 10px 29px;
+    background-color: #FFFFFF;
+}
+
+.little {
+    margin-bottom: 9px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    margin-top: 1px;
+}
+
+.add-button {
+    width: 26px;
+    height: 26px;
+    background: url("src/assets/img/add_icon.png") no-repeat;
+    background-size: 26px;
+    margin-right: 20px;
+}
+
+.add-button:hover {
+    background: url("src/assets/img/add_icon_hover.png") no-repeat;
+    background-size: 26px;
+}
+
+.add-button:active {
+    background: url("src/assets/img/add_icon_active.png") no-repeat;
+    background-size: 26px;
+}
+
+.remove-button {
+    width: 24px;
+    height: 26px;
+    background: url("src/assets/img/remove_icon.png") no-repeat;
+    background-size: 24px 26px;
+    margin-right: 20px;
+}
+
+.remove-button:hover {
+    background: url("src/assets/img/remove_icon_hover.png") no-repeat;
+    background-size: 24px 26px;
+}
+
+.remove-button:active {
+    background: url("src/assets/img/remove_active.png") no-repeat;
+    background-size: 24px 26px;
+}
+
+.filter-button {
+    width: 25px;
+    height: 25px;
+    background: url("src/assets/img/filter_icon.png") no-repeat;
+    background-size: 25px;
+}
+
+.filter-button:hover {
+    background: url("src/assets/img/filter_icon_hover.png") no-repeat;
+    background-size: 25px;
+}
+
+.filter-button:active {
+    background: url("src/assets/img/filter_icon_active.png") no-repeat;
+    background-size: 25px;
+}

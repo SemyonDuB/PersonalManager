@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #ADCACB;
+    margin: 0;
+}
+
+app-root {
+    width: calc(100% - 40px);
+    max-width: 1325px;
+    margin: 0 auto 0 auto;
+    display: block;
+}

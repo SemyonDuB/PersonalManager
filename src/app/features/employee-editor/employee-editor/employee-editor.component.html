@@ -1,0 +1,98 @@
+<employee-editor-menu>
+</employee-editor-menu>
+<div class="media">
+    <form [formGroup]="employeeForm" class="b-form">
+        <div class="basic-container">
+            <img src="{{imgPath}}" alt="Фотография сотрудника" class="employee_photo" width="162" height="162">
+            <div class="basic-information">
+                <tui-input tuiTextfieldSize="l"
+                           formControlName="employeeName"
+                           class="name-field" [tuiTextfieldLabelOutside]="true"
+                >
+                    Имя
+                    <input tuiTextfield type="text" title="Фамилия, имя и отчество" id="name"/>
+                </tui-input>
+                <p *ngIf="age" class="age">{{age}} {{age | declension:'year' }}</p>
+                <tui-input tuiTextfieldSize="m"
+                           formControlName="employeeJob"
+                           class="job-field"
+                           [tuiTextfieldLabelOutside]="true"
+                >
+                    Занимаемая должность
+                    <input tuiTextfield title="Занимаемая должность" type="text" id="job"/>
+                </tui-input>
+                <div class="work-experience">
+                    <p *ngIf="monthWorkExp || yearWorkExp">
+                        Опыт работы в компании:
+                    </p>
+                    <p *ngIf="yearWorkExp">
+                        {{yearWorkExp}} {{yearWorkExp | declension:'year'}}
+                    </p>
+                    <p *ngIf="monthWorkExp">
+                        {{monthWorkExp}} {{monthWorkExp | declension: 'month'}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="optional-fields">
+            <div class="input-group">
+                <label for="education">Образование:</label>
+                <tui-input tuiTextfieldSize="s" formControlName="employeeEducation" class="education-field">
+                    <input tuiTextfield type="text" id="education"/>
+                </tui-input>
+            </div>
+            <div class="input-group">
+                <label for="education">Дата рождения:</label>
+                <tui-input-date formControlName="employeeBirth" tuiTextfieldSize="s">
+                </tui-input-date>
+            </div>
+            <div class="input-group">
+                <label for="education">Текущий проект:</label>
+                <tui-input tuiTextfieldSize="s" formControlName="employeeProject" class="project-field">
+                    <input tuiTextfield type="text" id="project"/>
+                </tui-input>
+            </div>
+            <div class="input-group">
+                <label for="education">Дата собеседования:</label>
+                <tui-input-date formControlName="employeeInterviewDate" tuiTextfieldSize="s">
+                </tui-input-date>
+            </div>
+            <div class="input-group">
+                <label for="education">Дата трудоустройтсва:</label>
+                <tui-input-date formControlName="employeeEmploymentDate" tuiTextfieldSize="s">
+                </tui-input-date>
+            </div>
+            <div class="input-group">
+                <label for="education">Первый рабочий день:</label>
+                <tui-input-date formControlName="employeeFirstWorkDay" tuiTextfieldSize="s">
+                </tui-input-date>
+            </div>
+            <div class="reactive-input-group">
+                <label>История отпусков:</label>
+                <div *ngFor="let vacation of vacationsHistory" class="reactive-inputs">
+                    <p>с</p>
+                    <tui-input-date formControlName="{{vacation.startName}}" tuiTextfieldSize="s">
+                    </tui-input-date>
+                    <p>по</p>
+                    <tui-input-date formControlName="{{vacation.endName}}" tuiTextfieldSize="s">
+                    </tui-input-date>
+                </div>
+            </div>
+            <div class="reactive-input-group">
+                <label>Карьерный рост:</label>
+                <div *ngFor="let vacancy of vacanciesHistory" class="reactive-inputs">
+                    <p>с</p>
+                    <tui-input-date formControlName="{{vacancy.startName}}" tuiTextfieldSize="s">
+                    </tui-input-date>
+                    <p>по</p>
+                    <tui-input-date formControlName="{{vacancy.endName}}" tuiTextfieldSize="s">
+                    </tui-input-date>
+                    <hr>
+                    <tui-input tuiTextfieldSize="s" formControlName="{{vacancy.textName}}" class="vacancy-field">
+                        <input tuiTextfield type="text" id="vacancy"/>
+                    </tui-input>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
