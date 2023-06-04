@@ -158,25 +158,29 @@ export class EmployeeTableService {
 
             employees.push({
                 birthday: new TuiDay(birthday.getFullYear(), birthday.getMonth(), birthday.getDate()),
-                career: employee.career.map((c: any) => {
+                career: employee.career.map((c: {date: string, name: string}): ICareer => {
                     const date: Date = new Date(c.date);
 
-                    const career: ICareer = {
+                    return {
                         date: new TuiDay(date.getFullYear(), date.getMonth(), date.getDate()),
                         name: c.name
                     };
-
-                    return career;
                 }),
                 checked: false,
                 education: employee.education,
                 employmentDate: new TuiDay(employmentDate.getFullYear(), employmentDate.getMonth(), employmentDate.getDate()),
                 firstWorkDay: new TuiDay(firstWorkDay.getFullYear(), firstWorkDay.getMonth(), firstWorkDay.getDate()),
                 fullName: employee.fullName,
-                holidayHistory: employee.holidayHistory.map((h: string) => {
-                    const date: Date = new Date(h);
+                holidayHistory: employee.holidayHistory.map((h: {startDate: string, endDate: string}) => {
+                    const startDate: Date = new Date(h.startDate);
+                    const endDate: Date = new Date(h.endDate);
 
-                    return new TuiDay(date.getFullYear(), date.getMonth(), date.getDate());
+                    const holidays: IHolidays = {
+                        startDate: new TuiDay(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()),
+                        endDate: new TuiDay(endDate.getFullYear(), endDate.getMonth(), endDate.getDate())
+                    };
+
+                    return holidays;
                 }),
                 interviewDate: new TuiDay(interviewDate.getFullYear(), interviewDate.getMonth(), interviewDate.getDate()),
                 jobTitle: employee.jobTitle,
