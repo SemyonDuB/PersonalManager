@@ -5,32 +5,34 @@ import {Pipe, PipeTransform} from "@angular/core";
 })
 export class DeclensionPipe implements PipeTransform {
 
-    public year:string[]=['год','года','лет'];
-    public month:string[]=['месяц','месяца','месяцев'];
-    public declensionNumber (value:number,array:string[]):string {
-        if (value.toString().slice(value.toString().length - 1) === '1') {
-        return array[0];
-    } else if ('234'.includes(value.toString().slice(value.toString().length - 1))) {
-        return array[1];
-    } else {
-        return array[2];
-    }}
-    // eslint-disable-next-line @typescript-eslint/typedef,@typescript-eslint/explicit-function-return-type
-    public transform(value: number, str: string) {
-        if (value > 0) {
-            let k:string[];
-            if (str==='year'){
-                k=this.year;
-
-                return this.declensionNumber(value,k);
-            }else{
-                k=this.month;
-
-                return this.declensionNumber(value,k);
-            }
-        } else {
-            return '';
+    public year: string[] = ['год','года','лет'];
+    public month: string[] = ['месяц','месяца','месяцев'];
+    public declensionNumber (value: number, arrayWords: string[]): string {
+        if (value.toString().slice(value.toString().length - 1) === '1' && !'11'.includes(value.toString().slice(value.toString().length - 1))) {
+            return arrayWords[0];
+        } else if ('234'.includes(value.toString().slice(value.toString().length - 1)) && !'121314'.includes(value.toString().slice(value.toString().length - 1))) {
+            return arrayWords[1];
         }
+
+        return arrayWords[2];
+    }
+
+    public transform(value: number, word: string): string {
+        if (value > 0) {
+            let usedArrayWords: string[];
+            if (word === 'year'){
+                usedArrayWords = this.year;
+
+                return this.declensionNumber(value, usedArrayWords);
+            } else{
+                usedArrayWords = this.month;
+
+                return this.declensionNumber(value, usedArrayWords);
+            }
+        }
+
+        return '';
+
     }
 }
 
