@@ -12,7 +12,5 @@ export class MessagingService {
     public sendModalMessage(message: string): void {
         this.newMessage$.next(message);
         this.message = message;
-
-        console.log('в сервисе' + this.message);
     }
 }
