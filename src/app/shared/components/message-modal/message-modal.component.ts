@@ -9,13 +9,15 @@ import { fromEvent, Observable, Subscription } from 'rxjs';
 })
 export class MessageModalComponent {
 
-    public message: string = '';
+    public message: string;
 
     private _documentClick$: Observable<Event> = fromEvent(document, 'click');
     private _subscriptions: Subscription[] = [];
 
-    constructor(public messagingService: MessagingService) {
+    constructor(public messagingService: MessagingService, private _changeRef: ChangeDetectorRef,) {
         this.message = this.messagingService.message;
+        console.log(this.message);
+        this._changeRef.markForCheck();
         setTimeout((): void => {
             this.clickOutsideSubscribe(this);
         }, 100);
