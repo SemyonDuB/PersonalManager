@@ -20,6 +20,7 @@ export class AuthComponent implements OnInit {
     private _documentClick$: Observable<Event> = fromEvent(document, 'click');
     private _documentKeyDown$: Observable<Event> = fromEvent(document, 'keydown');
     private _subscriptions: Subscription[] = [];
+
     constructor(private readonly _authModalService: AuthModalService,
                 private readonly _router: Router,
                 private readonly _route: ActivatedRoute,
