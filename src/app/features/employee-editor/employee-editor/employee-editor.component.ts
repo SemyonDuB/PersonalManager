@@ -36,6 +36,7 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
     });
     public vacationSubs: Subscription[] = [];
 
+    public employeeId: number = Number(this._route.snapshot.paramMap.get('id')) ?? 0;
     public employee: IEmployeeModel | undefined = undefined;
 
     public basicVacancyControlNames: SignedStartDateNames =
@@ -60,6 +61,7 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
         "interviewDate": new FormControl(),
         "employmentDate": new FormControl(),
         "firstWorkDay": new FormControl(),
+        "success": new FormControl(),
         "vacationStart0": new FormControl(),
         "vacationEnd0": new FormControl(),
         "vacancyStart0": new FormControl(),
@@ -70,9 +72,7 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
                 private _route: ActivatedRoute,
                 private _router: Router,
                 private _employeeTableService: EmployeeTableService) {
-        const id: number = Number(_route.snapshot.paramMap.get('id')) ?? 0;
-
-        this.employee = _employeeTableService.getEmployee(id);
+        this.employee = _employeeTableService.getEmployee(this.employeeId);
 
         this.employeeForm.get("fullName")?.setValue(this.employee?.fullName);
         this.employeeForm.get("jobTitle")?.setValue(this.employee?.jobTitle);
@@ -83,6 +83,11 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
         this.employeeForm.get("employmentDate")?.setValue(this.employee?.employmentDate);
         this.employeeForm.get("firstWorkDay")?.setValue(this.employee?.firstWorkDay);
         this.employeeForm.get("wage")?.setValue(this.employee?.wage);
+        if (this.employee?.success) {
+            this.employeeForm.get("success")?.setValue(this.employee?.success);
+        } else {
+            this.employeeForm.get("success")?.setValue(false);
+        }
 
         this.age = this.employee?.birthday ? this.calculateDateDifference(this.employee.birthday).year : undefined;
         this.yearWorkExp = this.employee?.firstWorkDay ?
@@ -214,7 +219,7 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
         yearDifference = today < nextAnniversaryDay ? yearDifference - 1 : yearDifference;
         let monthDifference: number = Math.abs(today.getMonth() - startDate.getMonth());
         monthDifference = today.getMonth() < nextAnniversaryDay.getMonth() ? monthDifference - 1 : monthDifference;
-        const dayDifference: number = Math.abs(today.getDay() - startDate.getDay()) + 1;
+        const dayDifference: number = Math.abs(today.getDate() - startDate.getDate()) + 1;
 
         return new TuiDay(yearDifference, monthDifference, dayDifference);
     }
@@ -246,24 +251,32 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
     }
 
     public saveEmployee(): void {
-        this._employeeTableService.updateEmployee(
-            {
-                id: this.employee!.id,
-                fullName: this.employeeForm.get("fullName")?.value,
-                birthday: this.employeeForm.get("birthday")?.value,
-                career: this.getCareerValues(),
-                education: this.employeeForm.get("education")?.value,
-                employmentDate: this.employeeForm.get("employmentDate")?.value,
-                firstWorkDay: this.employeeForm.get("firstWorkDay")?.value,
-                holidayHistory: this.getHolidayValues(),
-                interviewDate: this.employeeForm.get("interviewDate")?.value,
-                jobTitle: this.employeeForm.get("jobTitle")?.value,
-                projectName: this.employeeForm.get("projectName")?.value,
-                success: this.employee!.success,
-                wage: this.employeeForm.get("wage")?.value,
-                checked: false
-            }
-        );
+        const employee: IEmployeeModel = {
+            id: this.employeeId,
+            fullName: this.employeeForm.get("fullName")?.value,
+            birthday: this.employeeForm.get("birthday")?.value,
+            career: this.getCareerValues(),
+            education: this.employeeForm.get("education")?.value,
+            employmentDate: this.employeeForm.get("employmentDate")?.value,
+            firstWorkDay: this.employeeForm.get("firstWorkDay")?.value,
+            holidayHistory: this.getHolidayValues(),
+            interviewDate: this.employeeForm.get("interviewDate")?.value,
+            jobTitle: this.employeeForm.get("jobTitle")?.value,
+            projectName: this.employeeForm.get("projectName")?.value,
+
+            // TODO: Добавить контрол для success
+            success: false,
+
+            wage: this.employeeForm.get("wage")?.value,
+            checked: false
+        };
+
+        if (!this.employee) {
+            this._employeeTableService.addEmployee(employee);
+        } else {
+            this._employeeTableService.updateEmployee(employee);
+        }
+
         this._router.navigateByUrl('').then();
     }
 }

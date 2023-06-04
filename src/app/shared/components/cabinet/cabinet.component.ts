@@ -1,21 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { CabinetModalService } from '../../../core/services/cabinet-modal.service';
 import { fromEvent, Observable, Subscription } from 'rxjs';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
     selector: 'app-cabinet',
     templateUrl: './cabinet.component.html',
-    styleUrls: ['./cabinet.css']
+    styleUrls: ['./cabinet.css'],
+    animations: [
+        trigger('openClose', [
+            state('open', style({
+                opacity: 1
+            })),
+            state('closed', style({
+                opacity: 0
+            })),
+            transition('open => closed', [
+                animate('0.15s')
+            ]),
+            transition('closed => open', [
+                animate('0.15s')
+            ])
+        ])
+    ]
 })
-export class CabinetComponent implements OnInit{
+export class CabinetComponent implements OnInit {
 
     public userName: string;
+    public isOpen: boolean = false;
 
     private _documentClick$: Observable<Event> = fromEvent(document, 'click');
     private _documentKeyDown$: Observable<Event> = fromEvent(document, 'keydown');
     private _subscriptions: Subscription[] = [];
 
-    constructor(private readonly _cabinetModalService: CabinetModalService) {
+    constructor(private readonly _cabinetModalService: CabinetModalService, private _changeRef: ChangeDetectorRef) {
         this.userName = window.localStorage['name'];
     }
 
@@ -24,6 +42,8 @@ export class CabinetComponent implements OnInit{
         setTimeout(function(): void {
             context.clickOutsideSubscribe(context);
             context.keyDownSubscribe(context);
+            context.isOpen = true;
+            context._changeRef.markForCheck();
         }, 100);
     }
 
@@ -55,7 +75,9 @@ export class CabinetComponent implements OnInit{
     }
 
     public closeAccountModal(): void {
-        this._subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
-        this._cabinetModalService.isModalOpen$.next(false);
+        this.isOpen = false;
+        const context: CabinetComponent = this;
+        context._subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+        context._cabinetModalService.isModalOpen$.next(false);
     }
 }

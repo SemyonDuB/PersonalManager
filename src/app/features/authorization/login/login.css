@@ -20,6 +20,10 @@
     width: 0;
 }
 
+.container {
+    scrollbar-width: none;
+}
+
 h1 {
     font-family: 'Inter', serif;
     font-style: normal;

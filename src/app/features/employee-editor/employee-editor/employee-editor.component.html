@@ -75,6 +75,14 @@
                 <tui-input-date formControlName="firstWorkDay" tuiTextfieldSize="s">
                 </tui-input-date>
             </div>
+            <div class="input-group">
+                <label>Успешность:</label>
+                <tui-checkbox
+                    formControlName="success"
+                    class="tui-space_bottom-3"
+                    size="l"
+                ></tui-checkbox>
+            </div>
             <div class="reactive-input-group">
                 <label>История отпусков:</label>
                 <div *ngFor="let vacation of vacationsHistory" class="reactive-inputs">

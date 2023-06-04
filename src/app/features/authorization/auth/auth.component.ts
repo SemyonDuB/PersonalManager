@@ -5,6 +5,7 @@ import { ComponentHostDirective } from '../../../shared/directives/component-hos
 import { AuthModalService } from '../../../core/services/auth-modal.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent, Observable, Subscription } from 'rxjs';
+import {MessagingService} from "../../../core/services/messaging.service";
 
 @Component({
     selector: 'app-auth',
@@ -21,7 +22,9 @@ export class AuthComponent implements OnInit {
     private _subscriptions: Subscription[] = [];
     constructor(private readonly _authModalService: AuthModalService,
                 private readonly _router: Router,
-                private readonly _route: ActivatedRoute) {
+                private readonly _route: ActivatedRoute,
+                private readonly _messagingService: MessagingService) {
+        this._messagingService.sendModalMessage('Авторизируйтесь для редактирования', 5000);
     }
 
     public loadAuthComponent(): void {

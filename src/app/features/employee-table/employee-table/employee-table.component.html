@@ -1,8 +1,8 @@
 <router-outlet></router-outlet>
-<menu-bar (clickFilter)="toggleOpeningFilters()" [isOpenFilters]="isOpenFilters">
+<menu-bar>
 </menu-bar>
 <ng-template componentsHost></ng-template>
-<employee-table-filters *ngIf="isOpenFilters">
+<employee-table-filters>
 </employee-table-filters>
 <div [class.disabled-container]="isOpenModal" class="table-container">
     <table
@@ -71,7 +71,7 @@
                 tuiTh
                 tuiSortable
             >
-                Успешность
+                Успех
             </th>
         </tr>
         </thead>
@@ -136,7 +136,10 @@
                 tuiTd
                 (click)="navigateToDetailInfo(item.id)"
             >
-                {{ item.success }}
+                <div *ngIf="item.success else elseBlock" class="is-success success"></div>
+                <ng-template #elseBlock>
+                    <div class="is-success unsuccess"></div>
+                </ng-template>
             </td>
 
         </tr>

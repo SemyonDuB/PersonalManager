@@ -46,10 +46,6 @@ table tr:last-child * {
     border-bottom: none;
 }
 
-/*table thead tr * {*/
-/*    border-bottom: 1px solid #cbcbcb;*/
-/*}*/
-
 .thead-checkbox * {
     border-bottom: none!important;
 }
@@ -63,4 +59,28 @@ table tr:last-child * {
     height: 20px;
     padding: 12px!important;
     border-right: none!important;
+}
+
+.is-success {
+    width: 22px;
+    height: 22px;
+    margin: 0 auto 0 auto;
+}
+
+.success {
+    background: url("src/assets/img/success_icon.svg") no-repeat;
+    background-size: 22px 22px;
+}
+
+.unsuccess {
+    background: url("src/assets/img/unsuccess_icon.svg") no-repeat;
+    background-size: 22px 22px;
+}
+
+td, th {
+    text-align: center;
+}
+
+tr td:nth-child(2) {
+    text-align: left;
 }

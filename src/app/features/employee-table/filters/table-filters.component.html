@@ -1,4 +1,4 @@
-<div class="filters-container">
+<div class="filters-container" [@openClose]="isOpenFilters ? 'open' : 'closed'" [class.disabled]="isDisabled">
     <form class="b-form" [formGroup]="filterForm" [tuiTextfieldCleaner]="true">
         <tui-input formControlName="fullName" tuiTextfieldSize="m" class="filter-input">
             ФИО
@@ -37,3 +37,4 @@
         </div>
     </form>
 </div>
+<div class="margin-box" [@shift]="isOpenFilters ? 'opening' : 'closing'"></div>
