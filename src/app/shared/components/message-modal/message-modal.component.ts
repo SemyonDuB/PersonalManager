@@ -1,5 +1,5 @@
-import {Component, OnInit} from "@angular/core";
-import {MessagingService} from "../../../core/services/messaging.service";
+import { Component, OnInit } from '@angular/core';
+import { MessagingService } from '../../../core/services/messaging.service';
 
 @Component({
     selector: 'message-modal',
@@ -14,6 +14,7 @@ export class MessageModalComponent implements OnInit{
 
         const context: MessageModalComponent = this;
         setTimeout((): void => {
+            console.log(context.messagingService.message);
             context.message = context.messagingService.message;
         }, 100);
     }

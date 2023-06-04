@@ -17,12 +17,12 @@ export class EditorFooterComponent {
     }
 
     public returnToTable(): void {
-        this._messagingService.sendModalMessage('Изменения не сохранены');
+        this._messagingService.sendModalMessage('Изменения не сохранены', 3000);
         this._router.navigateByUrl('').then();
     }
 
     public saveEmployeeChanges(): void {
-        this._messagingService.sendModalMessage('Изменения сохранены');
+        this._messagingService.sendModalMessage('Изменения сохранены', 3000);
         this.saveClick.emit(undefined);
     }
 }

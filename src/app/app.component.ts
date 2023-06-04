@@ -15,18 +15,18 @@ export class AppComponent {
     constructor(private readonly _messagingService: MessagingService) {
         const context: AppComponent = this;
         this._messagingService.newMessage$.subscribe((): void => {
-            context.renderCabinetModal();
-            setTimeout((): void => {context.clearCabinetModal();}, 3000);
+            context.renderMessageModal();
+            setTimeout((): void => {context.clearMessageModal();}, this._messagingService.timeOut);
         });
     }
 
-    public renderCabinetModal(): void {
+    public renderMessageModal(): void {
         const containerRef: ViewContainerRef = this.messageModalHost.viewContainerRef;
         containerRef.clear();
         containerRef.createComponent<MessageModalComponent>(MessageModalComponent);
     }
 
-    public clearCabinetModal(): void {
+    public clearMessageModal(): void {
         this.messageModalHost.viewContainerRef.clear();
     }
 }

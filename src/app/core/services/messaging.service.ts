@@ -8,9 +8,11 @@ export class MessagingService {
 
     public newMessage$: Subject<string> = new Subject<string>();
     public message: string = '';
+    public timeOut: number = 0;
 
-    public sendModalMessage(message: string): void {
+    public sendModalMessage(message: string, timeOut: number): void {
         this.newMessage$.next(message);
         this.message = message;
+        this.timeOut = timeOut;
     }
 }
