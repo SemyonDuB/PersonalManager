@@ -26,6 +26,8 @@ import { ComponentHostDirective } from './directives/component-host.directive';
 import { CabinetComponent } from './components/cabinet/cabinet.component';
 import { DeclensionPipe } from './pipes/declension.pipe';
 import { MessageModalComponent } from './components/message-modal/message-modal.component';
+import { IfDirective } from './directives/if.directive';
+import {TemporarilyShowDirective} from "./directives/temporarily-show.directive";
 
 const modules: TuiRootModule[] = [
     CommonModule,
@@ -58,6 +60,8 @@ const modules: TuiRootModule[] = [
         AccountButtonComponent,
         MenuBarComponent,
         ComponentHostDirective,
+        IfDirective,
+        TemporarilyShowDirective,
         DeclensionPipe,
         CabinetComponent,
         MessageModalComponent
@@ -66,6 +70,8 @@ const modules: TuiRootModule[] = [
         AccountButtonComponent,
         MenuBarComponent,
         ComponentHostDirective,
+        TemporarilyShowDirective,
+        IfDirective,
         DeclensionPipe,
         CabinetComponent,
         MessageModalComponent

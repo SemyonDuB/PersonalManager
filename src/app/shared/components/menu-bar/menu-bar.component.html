@@ -1,6 +1,6 @@
 <header>
-    <button class="add-button" *ngIf="isTablePage" (click)="addEmployee()" title="Добавить работника"></button>
-    <button class="remove-button" *ngIf="isTablePage" (click)="deleteEmployees()" title="Удалить работника"></button>
-    <button class="filter-button" (click)="onFilterClick()" *ngIf="isTablePage" title="Отфильтровать"></button>
+    <button class="add-button" *if="isTablePage" (click)="addEmployee()" title="Добавить работника"></button>
+    <button class="remove-button" *if="isTablePage" (click)="deleteEmployees()" title="Удалить работника"></button>
+    <button class="filter-button" *if="isTablePage" (click)="onFilterClick()" title="Отфильтровать"></button>
     <account-button></account-button>
 </header>
