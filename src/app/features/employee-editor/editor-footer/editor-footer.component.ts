@@ -1,8 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import { Router } from '@angular/router';
-import { IEmployeeModel } from "../../../core/models/employee.model";
-import { EmployeeTableService } from "../../../core/services/employee-table.service";
-import {MessagingService} from "../../../core/services/messaging.service";
+import { MessagingService } from '../../../core/services/messaging.service';
 
 @Component({
     selector: 'employee-editor-footer',
