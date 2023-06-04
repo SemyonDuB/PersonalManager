@@ -14,86 +14,60 @@
 
         "holidayHistory": [
             {
-                "startDate": "2022-04-20T18:25:43.511Z",
-                "endDate": "2022-04-25T18:25:43.511Z"
+                "startDate": "2023-04-20T18:25:43.511Z",
+                "endDate": "2023-04-25T18:25:43.511Z"
             },
             {
-                "startDate": "2023-05-10T18:25:43.511Z",
-                "endDate": "2023-06-15T18:25:43.511Z"
+                "startDate": "2023-07-10T18:25:43.511Z",
+                "endDate": "2023-07-15T18:25:43.511Z"
             }
         ],
         "career": [
             {
-                "date": "2017-04-20T18:25:43.511Z",
+                "date": "2020-04-20T18:25:43.511Z",
                 "name": "Junior Backend"
             },
             {
-                "date": "2022-04-20T18:25:43.511Z",
+                "date": "2020-04-20T18:25:43.511Z",
                 "name": "Главный инженер"
             }
         ]
     },
     {
-    "id": 2,
-    "fullName": "Ларина Ева Кирилловна",
-    "birthday": "2000-01-19T18:25:43.511Z",
-    "jobTitle": "Frontend-разработчик",
-    "wage": 59198,
-    "employmentDate": "2021-06-20T18:25:43.511Z",
-    "projectName": "Интернет-магазин свечей",
-    "success": false,
-    "education": "Middle school",
-    "interviewDate": "2021-04-20T18:25:43.511Z",
-    "firstWorkDay": "2022-04-20T18:25:43.511Z",
-
-    "holidayHistory": [
-        {
-            "startDate": "2023-04-20T18:25:43.511Z",
-            "endDate": "2023-04-25T18:25:43.511Z"
-        },
-        {
-            "startDate": "2023-07-10T18:25:43.511Z",
-            "endDate": "2023-07-15T18:25:43.511Z"
-        }
-    ],
-    "career": [
-        {
-            "date": "2020-04-20T18:25:43.511Z",
-            "name": "Frontend-разработчик"
-        }
-    ]
-    },
-    {
         "id": 3,
         "fullName": "Панов Рудольф Филатович",
         "birthday": "2004-07-21T18:25:43.511Z",
-        "jobTitle": "Product менеджер",
+        "jobTitle": "Облицовщик",
         "wage": 117303,
         "employmentDate": "2024-04-20T18:25:43.511Z",
         "projectName": "Офисное здание",
         "success": true,
         "education": "University",
         "interviewDate": "2021-04-20T18:25:43.511Z",
-        "firstWorkDay": "2021-04-27T18:25:43.511Z",
+        "firstWorkDay": "2022-04-20T18:25:43.511Z",
 
         "holidayHistory": [
             {
-                "startDate": "2021-04-20T18:25:43.511Z",
-                "endDate": "2021-04-28T18:25:43.511Z"
+                "startDate": "2023-04-20T18:25:43.511Z",
+                "endDate": "2023-04-25T18:25:43.511Z"
             },
             {
-                "startDate": "2023-08-10T18:25:43.511Z",
-                "endDate": "2023-08-15T18:25:43.511Z"
+                "startDate": "2023-07-10T18:25:43.511Z",
+                "endDate": "2023-07-15T18:25:43.511Z"
             }
         ],
         "career": [
             {
-                "date": "2020-05-20T18:25:43.511Z",
+                "date": "2020-04-20T18:25:43.511Z",
                 "name": "Junior Frontend"
             },
             {
-                "date": "2023-09-20T18:25:43.511Z",
-                "name": "Product менеджер"
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Senior Frontend"
+            },
+            {
+                "date": "2022-04-20T18:25:43.511Z",
+                "name": "Облицовщик"
             }
         ]
     },
@@ -108,12 +82,12 @@
         "success": false,
         "education": "Middle school",
         "interviewDate": "2021-04-20T18:25:43.511Z",
-        "firstWorkDay": "2021-04-27T18:25:43.511Z",
+        "firstWorkDay": "2022-04-20T18:25:43.511Z",
 
         "holidayHistory": [
             {
-                "startDate": "2021-02-20T18:25:43.511Z",
-                "endDate": "2021-03-25T18:25:43.511Z"
+                "startDate": "2023-04-20T18:25:43.511Z",
+                "endDate": "2023-04-25T18:25:43.511Z"
             },
             {
                 "startDate": "2023-07-10T18:25:43.511Z",
@@ -134,45 +108,7 @@
         "jobTitle": "Backend team-leader",
         "wage": 244529,
         "employmentDate": "2022-04-20T18:25:43.511Z",
-        "projectName": "Мобильное приложение для поиска рецептов",
-        "success": false,
-        "education": "Middle school",
-        "interviewDate": "2021-04-10T18:25:43.511Z",
-        "firstWorkDay": "2021-04-20T18:25:43.511Z",
-
-        "holidayHistory": [
-            {
-                "startDate": "2022-04-20T18:25:43.511Z",
-                "endDate": "2022-04-25T18:25:43.511Z"
-            },
-            {
-                "startDate": "2023-02-10T18:25:43.511Z",
-                "endDate": "2023-02-15T18:25:43.511Z"
-            }
-        ],
-        "career": [
-            {
-                "date": "2019-04-20T18:25:43.511Z",
-                "name": "Junior Backend"
-            },
-            {
-                "date": "2019-04-20T18:25:43.511Z",
-                "name": "Middle Backend"
-            },
-            {
-                "date": "2023-04-20T18:25:43.511Z",
-                "name": "Backend team-leader"
-            }
-        ]
-    },
-    {
-        "id": 6,
-        "fullName": "Веселова Франсуаза Всеволодовна",
-        "birthday": "1995-04-25T18:25:43.511Z",
-        "jobTitle": "Frontend разработчик",
-        "wage": 69895,
-        "employmentDate": "2022-04-20T18:25:43.511Z",
-        "projectName": "Мобильное приложение для поиска рецептов",
+        "projectName": "Secret",
         "success": false,
         "education": "Middle school",
         "interviewDate": "2021-04-20T18:25:43.511Z",
@@ -190,23 +126,23 @@
         ],
         "career": [
             {
-                "date": "2015-04-20T18:25:43.511Z",
-                "name": "Junior Frontend"
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Junior Backend"
             },
             {
                 "date": "2020-04-20T18:25:43.511Z",
-                "name": "Senior Frontend"
+                "name": "Senior Backend"
             }
         ]
     },
     {
-        "id": 7,
-        "fullName": "Рожков Велорий Пётрович",
-        "birthday": "1955-04-28T18:25:43.511Z",
-        "jobTitle": "Frontend разработчик",
-        "wage": 185885,
+        "id": 6,
+        "fullName": "Веселова Франсуаза Всеволодовна",
+        "birthday": "1995-04-25T18:25:43.511Z",
+        "jobTitle": "Frontender",
+        "wage": 69895,
         "employmentDate": "2022-04-20T18:25:43.511Z",
-        "projectName": "Мобильное приложение для аудиоениг",
+        "projectName": "Secret",
         "success": false,
         "education": "Middle school",
         "interviewDate": "2021-04-20T18:25:43.511Z",
@@ -214,22 +150,56 @@
 
         "holidayHistory": [
             {
-                "startDate": "2021-08-20T18:25:43.511Z",
-                "endDate": "2021-08-25T18:25:43.511Z"
+                "startDate": "2023-04-20T18:25:43.511Z",
+                "endDate": "2023-04-25T18:25:43.511Z"
             },
             {
                 "startDate": "2023-07-10T18:25:43.511Z",
-                "endDate": "2023-08-15T18:25:43.511Z"
+                "endDate": "2023-07-15T18:25:43.511Z"
             }
         ],
         "career": [
             {
-                "date": "2016-04-20T18:25:43.511Z",
-                "name": "Junior Frontend"
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Junior Backend"
             },
             {
-                "date": "2021-04-20T18:25:43.511Z",
-                "name": "Senior Frontend"
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Senior Backend"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "fullName": "Рожков Велорий Пётрович",
+        "birthday": "1955-04-28T18:25:43.511Z",
+        "jobTitle": "Frontender",
+        "wage": 185885,
+        "employmentDate": "2022-04-20T18:25:43.511Z",
+        "projectName": "Secret",
+        "success": false,
+        "education": "Middle school",
+        "interviewDate": "2021-04-20T18:25:43.511Z",
+        "firstWorkDay": "2022-04-20T18:25:43.511Z",
+
+        "holidayHistory": [
+            {
+                "startDate": "2023-04-20T18:25:43.511Z",
+                "endDate": "2023-04-25T18:25:43.511Z"
+            },
+            {
+                "startDate": "2023-07-10T18:25:43.511Z",
+                "endDate": "2023-07-15T18:25:43.511Z"
+            }
+        ],
+        "career": [
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Junior Backend"
+            },
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Senior Backend"
             }
         ]
     },
@@ -237,10 +207,10 @@
         "id": 8,
         "fullName": "Степанов Виссарион Куприянович",
         "birthday": "1977-09-08T18:25:43.511Z",
-        "jobTitle": "Backend разработчик",
+        "jobTitle": "Frontender",
         "wage": 215793,
         "employmentDate": "2022-04-20T18:25:43.511Z",
-        "projectName": "Мобильное приложение для аудиоениг",
+        "projectName": "Secret",
         "success": true,
         "education": "Middle school",
         "interviewDate": "2021-04-20T18:25:43.511Z",
@@ -248,21 +218,21 @@
 
         "holidayHistory": [
             {
-                "startDate": "2022-04-20T18:25:43.511Z",
-                "endDate": "2022-04-25T18:25:43.511Z"
+                "startDate": "2023-04-20T18:25:43.511Z",
+                "endDate": "2023-04-25T18:25:43.511Z"
             },
             {
-                "startDate": "2023-03-10T18:25:43.511Z",
-                "endDate": "2023-03-15T18:25:43.511Z"
+                "startDate": "2023-07-10T18:25:43.511Z",
+                "endDate": "2023-07-15T18:25:43.511Z"
             }
         ],
         "career": [
             {
-                "date": "2020-02-20T18:25:43.511Z",
-                "name": "Middle Backend"
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Junior Backend"
             },
             {
-                "date": "2023-04-20T18:25:43.511Z",
+                "date": "2020-04-20T18:25:43.511Z",
                 "name": "Senior Backend"
             }
         ]
@@ -271,14 +241,14 @@
         "id": 9,
         "fullName": "Мясников Казимир Лукьевич",
         "birthday": "2000-09-02T18:25:43.511Z",
-        "jobTitle": "Senior Backend",
+        "jobTitle": "Backender",
         "wage": 186737,
         "employmentDate": "2022-04-20T18:25:43.511Z",
         "projectName": "Интернет-магазин LORCO",
         "success": true,
         "education": "Middle school",
-        "interviewDate": "2021-05-20T18:25:43.511Z",
-        "firstWorkDay": "2021-05-20T18:25:43.511Z",
+        "interviewDate": "2021-04-20T18:25:43.511Z",
+        "firstWorkDay": "2022-04-20T18:25:43.511Z",
 
         "holidayHistory": [
             {
@@ -292,11 +262,11 @@
         ],
         "career": [
             {
-                "date": "2017-04-20T18:25:43.511Z",
+                "date": "2020-04-20T18:25:43.511Z",
                 "name": "Junior Backend"
             },
             {
-                "date": "2023-04-20T18:25:43.511Z",
+                "date": "2020-04-20T18:25:43.511Z",
                 "name": "Senior Backend"
             }
         ]
@@ -305,7 +275,7 @@
         "id": 10,
         "fullName": "Носов Юлиан Максович",
         "birthday": "1980-10-22T18:25:43.511Z",
-        "jobTitle": "Senior Backend",
+        "jobTitle": "Backender",
         "wage": 205111,
         "employmentDate": "2022-04-20T18:25:43.511Z",
         "projectName": "Интернет-магазин LORCO",
@@ -339,7 +309,7 @@
         "id": 11,
         "fullName": "Осипов Казимир Никитевич",
         "birthday": "1978-06-18T18:25:43.511Z",
-        "jobTitle": "Senior Frontend",
+        "jobTitle": "Frontender",
         "wage": 95638,
         "employmentDate": "2022-04-20T18:25:43.511Z",
         "projectName": "Интернет-магазин свечей",
@@ -373,19 +343,19 @@
         "id": 12,
         "fullName": "Антонова Валерия Мэлсовна",
         "birthday": "1999-07-15T18:25:43.511Z",
-        "jobTitle": "junior Backend ",
+        "jobTitle": "Backender junior",
         "wage": 63976,
         "employmentDate": "2022-04-20T18:25:43.511Z",
         "projectName": "Интернет-магазин свечей",
         "success": false,
         "education": "Middle school",
-        "interviewDate": "2022-04-20T18:25:43.511Z",
-        "firstWorkDay": "2022-04-30T18:25:43.511Z",
+        "interviewDate": "2021-04-20T18:25:43.511Z",
+        "firstWorkDay": "2022-04-20T18:25:43.511Z",
 
         "holidayHistory": [
             {
-                "startDate": "2022-08-20T18:25:43.511Z",
-                "endDate": "2023-08-25T18:25:43.511Z"
+                "startDate": "2023-04-20T18:25:43.511Z",
+                "endDate": "2023-04-25T18:25:43.511Z"
             },
             {
                 "startDate": "2023-07-10T18:25:43.511Z",
@@ -396,6 +366,10 @@
             {
                 "date": "2020-04-20T18:25:43.511Z",
                 "name": "Junior Backend"
+            },
+            {
+                "date": "2020-04-20T18:25:43.511Z",
+                "name": "Senior Backend"
             }
         ]
     },
@@ -403,7 +377,7 @@
         "id": 13,
         "fullName": "Белова Ариадна Феликсовна",
         "birthday": "1947-03-14T18:25:43.511Z",
-        "jobTitle": "Frontend Senior",
+        "jobTitle": "Frontender Senior",
         "wage": 119456,
         "employmentDate": "2022-04-20T18:25:43.511Z",
         "projectName": "Мобильный банк",
@@ -425,11 +399,11 @@
         "career": [
             {
                 "date": "2020-04-20T18:25:43.511Z",
-                "name": "Junior Frontend"
+                "name": "Junior Backend"
             },
             {
                 "date": "2020-04-20T18:25:43.511Z",
-                "name": "Senior Frontend"
+                "name": "Senior Backend"
             }
         ]
     },
@@ -459,128 +433,22 @@
         "career": [
             {
                 "date": "2020-04-20T18:25:43.511Z",
-                "name": "Junior UI-UX дизайнер"
+                "name": "Junior Backend"
             },
             {
                 "date": "2020-04-20T18:25:43.511Z",
-                "name": "Middle UI-UX дизайнер"
+                "name": "Senior Backend"
             }
         ]
     },
     {
         "id": 15,
         "fullName": "Субботин Варлаам Христофорович",
-        "birthday": "1995-11-15T18:25:43.511Z",
-        "jobTitle": "Backend",
+        "birthday": "1999-11-17T18:25:43.511Z",
+        "jobTitle": "Backender",
         "wage": 247244,
-        "employmentDate": "2020-04-13T18:25:43.511Z",
-        "projectName": "Приложение для СПА-комплекса",
-        "success": false,
-        "education": "Middle school",
-        "interviewDate": "2021-04-20T18:25:43.511Z",
-        "firstWorkDay": "2021-04-25T18:25:43.511Z",
-
-        "holidayHistory": [
-            {
-                "startDate": "2022-09-20T18:25:43.511Z",
-                "endDate": "2022-09-29T18:25:43.511Z"
-            },
-            {
-                "startDate": "2023-02-10T18:25:43.511Z",
-                "endDate": "2023-03-10T18:25:43.511Z"
-            }
-        ],
-        "career": [
-            {
-                "date": "2020-10-28T18:25:43.511Z",
-                "name": "Junior Backend"
-            },
-            {
-                "date": "2021-11-20T18:25:43.511Z",
-                "name": "Middle Backend"
-            }
-        ]
-    },
-    {
-        "id": 16,
-        "fullName": "Петухов Лев Глебович",
-        "birthday": "1994-10-16T18:25:43.511Z",
-        "jobTitle": "Frontend",
-        "wage": 246520,
         "employmentDate": "2022-04-20T18:25:43.511Z",
-        "projectName": "Приложение для СПА-комплекса",
-        "success": false,
-        "education": "Middle school",
-        "interviewDate": "2021-04-20T18:25:43.511Z",
-        "firstWorkDay": "2022-04-20T18:25:43.511Z",
-
-        "holidayHistory": [
-            {
-                "startDate": "2022-02-10T18:25:43.511Z",
-                "endDate": "2022-02-25T18:25:43.511Z"
-            },
-            {
-                "startDate": "2023-03-10T18:25:43.511Z",
-                "endDate": "2023-03-15T18:25:43.511Z"
-            }
-        ],
-        "career": [
-            {
-                "date": "2019-02-20T18:25:43.511Z",
-                "name": "Junior Frontend"
-            },
-            {
-                "date": "2020-04-20T18:25:43.511Z",
-                "name": "Middle Frontend"
-            }
-        ]
-    },
-    {
-        "id": 17,
-        "fullName": "Егоров Александр Никитич",
-        "birthday": "1999-05-18T18:25:43.511Z",
-        "jobTitle": "Backend",
-        "wage": 246520,
-        "employmentDate": "2022-04-20T18:25:43.511Z",
-        "projectName": "Веб-сайт для шоурума Cherdak",
-        "success": false,
-        "education": "Middle school",
-        "interviewDate": "2021-04-20T18:25:43.511Z",
-        "firstWorkDay": "2022-04-20T18:25:43.511Z",
-
-        "holidayHistory": [
-            {
-                "startDate": "2023-04-20T18:25:43.511Z",
-                "endDate": "2023-04-25T18:25:43.511Z"
-            },
-            {
-                "startDate": "2023-07-10T18:25:43.511Z",
-                "endDate": "2023-07-15T18:25:43.511Z"
-            }
-        ],
-        "career": [
-            {
-                "date": "2018-03-20T18:25:43.511Z",
-                "name": "Junior Backend"
-            },
-            {
-                "date": "2020-04-15T18:25:43.511Z",
-                "name": "Middle Backend"
-            },
-            {
-                "date": "2022-04-17T18:25:43.511Z",
-                "name": "Senior Backend"
-            }
-        ]
-    },
-    {
-        "id": 18,
-        "fullName": "Макаров Даниил Фёдорович",
-        "birthday": "1985-11-13T18:25:43.511Z",
-        "jobTitle": "UI-UX дизайнер",
-        "wage": 246520,
-        "employmentDate": "2022-04-20T18:25:43.511Z",
-        "projectName": "Веб-сайт для шоурума Cherdak",
+        "projectName": "Мобильный банк",
         "success": false,
         "education": "Middle school",
         "interviewDate": "2021-04-20T18:25:43.511Z",
@@ -599,86 +467,10 @@
         "career": [
             {
                 "date": "2020-04-20T18:25:43.511Z",
-                "name": "Junior UI-UX дизайнер"
-            },
-            {
-                "date": "2020-04-20T18:25:43.511Z",
-                "name": "Middle UI-UX дизайнер"
-            },
-            {
-                "date": "2020-04-20T18:25:43.511Z",
-                "name": "Senior UI-UX дизайнер"
-            }
-        ]
-    },
-    {
-        "id": 19,
-        "fullName": "Лебедев Вадим Михайлович",
-        "birthday": "1997-12-17T18:25:43.511Z",
-        "jobTitle": "UI-UX дизайнер",
-        "wage": 246520,
-        "employmentDate": "2022-04-20T18:25:43.511Z",
-        "projectName": "Веб-сайт для шоурума Cherdak",
-        "success": false,
-        "education": "Middle school",
-        "interviewDate": "2020-02-20T18:25:43.511Z",
-        "firstWorkDay": "2020-02-28T18:25:43.511Z",
-
-        "holidayHistory": [
-            {
-                "startDate": "2022-06-10T18:25:43.511Z",
-                "endDate": "2022-06-25T18:25:43.511Z"
-            },
-            {
-                "startDate": "2023-07-10T18:25:43.511Z",
-                "endDate": "2023-07-15T18:25:43.511Z"
-            }
-        ],
-        "career": [
-            {
-                "date": "2019-05-20T18:25:43.511Z",
-                "name": "Junior UI-UX дизайнер"
-            },
-            {
-                "date": "2021-09-18T18:25:43.511Z",
-                "name": "Middle UI-UX дизайнер"
-            }
-        ]
-    },
-    {
-        "id": 20,
-        "fullName": "Маркова Мирослава Андреевна",
-        "birthday": "1998-10-18T18:25:43.511Z",
-        "jobTitle": "Backend разработчик",
-        "wage": 246520,
-        "employmentDate": "2022-04-20T18:25:43.511Z",
-        "projectName": "Приложение для СПА-комплекса",
-        "success": false,
-        "education": "Middle school",
-        "interviewDate": "2021-04-20T18:25:43.511Z",
-        "firstWorkDay": "2022-04-20T18:25:43.511Z",
-
-        "holidayHistory": [
-            {
-                "startDate": "2023-04-20T18:25:43.511Z",
-                "endDate": "2023-04-25T18:25:43.511Z"
-            },
-            {
-                "startDate": "2023-07-10T18:25:43.511Z",
-                "endDate": "2023-07-15T18:25:43.511Z"
-            }
-        ],
-        "career": [
-            {
-                "date": "2015-04-20T18:25:43.511Z",
                 "name": "Junior Backend"
             },
             {
-                "date": "2018-02-10T18:25:43.511Z",
-                "name": "Middle Backend"
-            },
-            {
-                "date": "2021-04-15T18:25:43.511Z",
+                "date": "2020-04-20T18:25:43.511Z",
                 "name": "Senior Backend"
             }
         ]
