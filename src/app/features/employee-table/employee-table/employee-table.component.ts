@@ -23,12 +23,11 @@ type DataInput = [(Partial<IEmployeeModel> | null), (keyof IEmployeeModel | null
     selector: 'app-employee-table',
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './employee-table.component.html',
-    styleUrls: ['./employee-table.css'],
+    styleUrls: ['./employee-table.css']
 })
 export class EmployeeTableComponent implements OnInit {
 
     @ViewChild(ComponentHostDirective, {static: true}) public cabinetHost!: ComponentHostDirective;
-    public isOpenFilters: boolean = false;
     public isOpenModal!: boolean;
 
     public readonly columns: string[] = [
@@ -102,10 +101,6 @@ export class EmployeeTableComponent implements OnInit {
                 context.clearCabinetModal();
             }
         });
-    }
-
-    public toggleOpeningFilters(): void {
-        this.isOpenFilters = !this.isOpenFilters;
     }
 
     /**

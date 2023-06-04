@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { IEmployeeModel } from "../../../core/models/employee.model";
 import { EmployeeTableService } from "../../../core/services/employee-table.service";
-import { TuiDay } from "@taiga-ui/cdk";
 
 @Component({
     selector: 'menu-bar',
@@ -12,8 +11,7 @@ import { TuiDay } from "@taiga-ui/cdk";
 export class MenuBarComponent{
 
     public isTablePage: boolean;
-    @Input() public isOpenFilters: boolean = false;
-    @Output() public clickFilter: EventEmitter<undefined> = new EventEmitter<undefined>();
+    private _isOpenFilters: boolean = false;
 
     constructor(protected readonly router: Router, private _employeeTableService: EmployeeTableService) {
         this.isTablePage = router.url === '/employee-table';
@@ -33,6 +31,7 @@ export class MenuBarComponent{
     }
 
     public onFilterClick(): void {
-        this.clickFilter.emit();
+        this._employeeTableService.isOpenFilters$.next(!this._isOpenFilters);
+        this._isOpenFilters = !this._isOpenFilters;
     }
 }

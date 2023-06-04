@@ -1,11 +1,18 @@
 .filters-container {
     background-color: #FFFFFF;
-    border-radius: 12px;
+    border-radius: 17px;
     margin-bottom: 9px;
 
     width: calc(100% - 58px);
     max-width: 1325px;
     padding: 20px 29px 20px 29px;
+    top: 56px;
+    position: absolute;
+    z-index: 9999;
+}
+
+.disabled {
+    display: none;
 }
 
 .filter-input {

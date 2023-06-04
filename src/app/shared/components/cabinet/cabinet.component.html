@@ -1,4 +1,4 @@
-<div class="cabinet">
+<div class="cabinet" [@openClose]="isOpen ? 'open' : 'closed'">
     <p class="title">Вы зарегистрированы как:</p>
     <p class="name">{{userName}}</p>
     <button (click)="exitFromAccount()">Выйти из аккаунта</button>

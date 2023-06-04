@@ -3,7 +3,7 @@ import { IEmployeeModel } from '../models/employee.model';
 import employeesJson from '../../../assets/employees.json';
 import { TuiComparator } from '@taiga-ui/addon-table';
 import { TuiDay, tuiDefaultSort } from '@taiga-ui/cdk';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { ICareer } from '../models/career.model';
 import { IHolidays } from '../models/holidays.model';
 
@@ -21,6 +21,8 @@ export class EmployeeTableService {
         new BehaviorSubject<Partial<IEmployeeModel> | null>(null);
 
     public deleteEmployees$: BehaviorSubject<void> = new BehaviorSubject<void>(undefined);
+
+    public isOpenFilters$: Subject<boolean> = new Subject<boolean>();
 
     private _employees: IEmployeeModel[];
 
