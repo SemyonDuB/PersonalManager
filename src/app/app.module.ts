@@ -1,5 +1,5 @@
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { TUI_SANITIZER } from '@taiga-ui/core';
 
@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { EmployeeEditorModule } from './features/employee-editor/employee-editor.module';
 import { EmployeeTableModule } from './features/employee-table/employee-table.module';
 import { AuthorizationModule } from './features/authorization/authorization.module';
+import {GlobalErrorHandler} from "./global-error-handler";
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { AuthorizationModule } from './features/authorization/authorization.modu
         PageNotFoundComponent,
     ],
     providers: [
-        {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}
+        {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer},
+        {provide: ErrorHandler, useClass: GlobalErrorHandler}
     ],
     bootstrap: [
         AppComponent

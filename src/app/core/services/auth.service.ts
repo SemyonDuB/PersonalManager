@@ -19,37 +19,33 @@ export class AuthService {
         map(([u1, u2]: [User[], User[]]) => [...u1, ...u2])
     );
 
-    public get isAuthenticated(): boolean {
-        const jwt: string | null = window.localStorage.getItem("jwt");
-
-        return jwt !== null && jwt !== "";
-    }
-
     constructor(private _http: HttpClient) {
     }
 
-    public login(username: string, password: string): Observable<User> {
+    public login(username: string, password: string): Observable<boolean> {
         return this._request$.pipe(
             map((users: User[]) => {
                 const result: User | undefined = users.find((user: User) => user.checkCredentials(username, password));
 
                 if (!result) {
-                    throw new Error("Пароль или логин не верный");
+                    return false;
                 }
 
                 window.localStorage["jwt"] = "randomString";
                 window.localStorage["name"] = username;
 
-                return result!;
+                return true;
             })
         );
     }
 
-    public register(username: string, password: string): Observable<User> {
+    public register(username: string, password: string, confirmPassword: string): Observable<{isSuccess: boolean, message: string}> {
         return this._request$.pipe(
-            map((users: User[]) => {
-                if (users.some((user: User) => user.username === username)) {
-                    throw new Error("Пользователь уже существует");
+            map((users: User[]): {isSuccess: boolean, message: string} => {
+                if (users.some((user: User): boolean => user.username === username)) {
+                    return {isSuccess: false, message: 'Пользователь с таким именем уже существует'};
+                } else if (password !== confirmPassword) {
+                    return {isSuccess: false, message: 'Неверно повторен пароль'};
                 }
 
                 const maxId: number = Math.max(...users.map((user: User) => user.id));
@@ -58,7 +54,7 @@ export class AuthService {
                 window.localStorage["jwt"] = "randomString";
                 window.localStorage["name"] = username;
 
-                return user;
+                return {isSuccess: true, message: 'Вы успешно зарегистрированы'};
             })
         );
     }

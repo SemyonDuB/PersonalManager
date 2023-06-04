@@ -119,7 +119,6 @@ export class EmployeeEditorComponent implements OnInit, OnDestroy {
     public subscribeAnnotationFields(): void {
         this.employeeForm.get("birthday")?.valueChanges.subscribe((newBirthDate: TuiDay) => {
             this.age = this.calculateDateDifference(newBirthDate).year;
-
         });
 
         this.employeeForm.get("firstWorkDay")?.valueChanges.subscribe((newStartDate: TuiDay) => {

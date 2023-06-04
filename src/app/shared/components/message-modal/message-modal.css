@@ -3,9 +3,9 @@
     position: fixed;
     top: 17px;
     border-radius: 10px;
-    width: 165px;
+    width: 280px;
     padding: 0 15px 0 15px;
-    left: calc(50vw - 100px);
+    left: calc(50vw - 155px);
     z-index: 99999;
 }
 
