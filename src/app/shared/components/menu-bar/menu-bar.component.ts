@@ -18,12 +18,24 @@ export class MenuBarComponent{
     }
 
     public addEmployee(): void {
+        if (!window.localStorage.getItem("jwt")) {
+            this.router.navigateByUrl('/employee-table/auth');
+
+            return;
+        }
+
         const id: number = 1 + Math.max(...this._employeeTableService.employees.map((e: IEmployeeModel) => e.id));
 
         this.router.navigateByUrl(`/employee-editor/${id}`).then();
     }
 
     public deleteEmployees(): void {
+        if (!window.localStorage.getItem("jwt")) {
+            this.router.navigateByUrl('/employee-table/auth');
+
+            return;
+        }
+
         const checked: IEmployeeModel[] = this._employeeTableService.employees.filter((e: IEmployeeModel) => e.checked);
         const ids: number[] = checked.map((e: IEmployeeModel) => e.id);
 
