@@ -1,9 +1,9 @@
-import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Component, Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({ selector: '[if]' })
 export class IfDirective {
 
-    constructor(private _templateRef: TemplateRef<any>,
+    constructor(private _templateRef: TemplateRef<Component>,
                 private _viewContainer: ViewContainerRef){
     }
 

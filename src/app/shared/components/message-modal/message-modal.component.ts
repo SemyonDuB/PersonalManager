@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { MessagingService } from '../../../core/services/messaging.service';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 
@@ -16,7 +16,6 @@ export class MessageModalComponent {
 
     constructor(public messagingService: MessagingService, private _changeRef: ChangeDetectorRef,) {
         this.message = this.messagingService.message;
-        console.log(this.message);
         this._changeRef.markForCheck();
         setTimeout((): void => {
             this.clickOutsideSubscribe(this);
